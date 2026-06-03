@@ -278,4 +278,4 @@ section{padding:6rem 5vw}
 .social-link:hover{background:var(--orange);border-color:var(--orange);color:var(--white);transform:translateY(-2px)}
 .map-box{margin-top:1.5rem;border-radius:var(--radius-sm);height:140px;background:linear-gradient(135deg,#f0f0f0,#e0e0e0);display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--gray-100)}
 .map-box::after{content:'📍 Vancouver, BC — Canada';font-size:0.82rem;font-weight:600;color:var(--gray-600)}
-.map-pin{position:absolute;top:50%;left:5
+.map-pin{position:absolute;top:50%;left:5.  
