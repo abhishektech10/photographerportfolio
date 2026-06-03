@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Haru – Beautiful Photography from Brazil</title>
-  <meta name="description" content="Haru is a talented photographer from Brazil with a passion for capturing nature, wildlife, and peaceful landscapes.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Haru — Wildlife & Nature Photography</title>
+  <meta name="description" content="Haru — Japanese-born nature and wildlife photographer. Capturing the untamed world one frame at a time.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
+<!-- ═══════════════════ NAV ═══════════════════ -->
 <nav id="navbar">
   <a href="#" class="nav-logo">Haru<span>.</span></a>
-  <ul class="nav-links" id="navLinks">
+  <ul class="nav-links">
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#featured">Signature</a></li>
     <li><a href="#pricing">Packages</a></li>
@@ -23,197 +20,162 @@
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#contact" class="nav-cta">Book a Session</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- Mobile drawer -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
-  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
-  <a href="#gallery"      class="mobile-link" onclick="closeMobile()">Gallery</a>
-  <a href="#featured"     class="mobile-link" onclick="closeMobile()">Signature</a>
-  <a href="#pricing"      class="mobile-link" onclick="closeMobile()">Packages</a>
-  <a href="#about"        class="mobile-link" onclick="closeMobile()">About</a>
-  <a href="#testimonials" class="mobile-link" onclick="closeMobile()">Reviews</a>
-  <a href="#contact"      class="mobile-link mobile-link--cta" onclick="closeMobile()">Book a Session</a>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#gallery"      onclick="closeMobile()">Gallery</a>
+  <a href="#featured"     onclick="closeMobile()">Signature</a>
+  <a href="#pricing"      onclick="closeMobile()">Packages</a>
+  <a href="#about"        onclick="closeMobile()">About</a>
+  <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+  <a href="#contact"      onclick="closeMobile()">Contact</a>
 </div>
 
-<!-- ═══ HERO ═══ -->
+<!-- ═══════════════════ HERO ═══════════════════ -->
 <section id="hero">
-  <!-- Background blobs -->
-  <div class="hero-bg-blob hero-bg-blob--1"></div>
-  <div class="hero-bg-blob hero-bg-blob--2"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
 
-  <!-- Filmstrip (desktop only) -->
-  <div class="hero-filmstrip" aria-hidden="true">
-    <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="" loading="eager">
-    </div>
-    <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="" loading="eager">
-    </div>
-    <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg" alt="" loading="eager">
-    </div>
-    <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="" loading="lazy" style="filter:saturate(1.3) brightness(0.9)">
-    </div>
-    <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="" loading="lazy" style="filter:hue-rotate(15deg) contrast(1.1)">
-    </div>
+  <div class="hero-filmstrip">
+    <div class="filmstrip-frame"><img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="Haru pic1"></div>
+    <div class="filmstrip-frame"><img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="Haru pic2"></div>
+    <div class="filmstrip-frame"><img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg" alt="Haru pic3"></div>
+    <div class="filmstrip-frame"><img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="Haru pic1" style="filter:saturate(1.3) hue-rotate(15deg)"></div>
+    <div class="filmstrip-frame"><img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="Haru pic2" style="filter:brightness(0.85) contrast(1.15)"></div>
   </div>
 
-  <!-- Hero content -->
-  <div class="hero-content">
-    <div class="hero-tag">
-      <span class="hero-tag-dot"></span>
-      Haru · Nature &amp; Wildlife Photography · Brazil
-    </div>
-    <h1 class="hero-headline">
-      Haru – <em>Beautiful</em><br>Photography<br>from Brazil
-    </h1>
-    <p class="hero-sub">
-      A talented photographer from Brazil with a passion for capturing nature, wildlife, and peaceful landscapes. Her lens turns ordinary moments into beautiful visual stories.
-    </p>
-    <div class="hero-actions">
-      <a href="#gallery" class="btn-primary">
-        View Gallery
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#contact" class="btn-outline">Book a Session</a>
-    </div>
+  <div class="hero-tag">Haru · Nature &amp; Wildlife Photography</div>
+  <h1 class="hero-headline">The Wild<br>Through <em>Her Eyes</em></h1>
+  <p class="hero-sub">
+    Japanese-born photographer Haru has spent a decade chasing light across six continents —
+    from Arctic tundra to tropical rainforests. Her lens speaks for the world that cannot speak for itself.
+  </p>
+  <div class="hero-actions">
+    <a href="#gallery" class="btn-primary">
+      View Gallery
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#pricing" class="btn-outline">Book a Session</a>
   </div>
-
-  <!-- Bottom bar -->
-  <div class="hero-bottom" aria-hidden="true">
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      Scroll to explore
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong>640+</strong><span>Expeditions</span></div>
-      <div class="hero-stat"><strong>10yr</strong><span>Experience</span></div>
-      <div class="hero-stat"><strong>42</strong><span>Awards</span></div>
-    </div>
+  <div class="hero-scroll-hint"><div class="scroll-line"></div>Scroll to explore</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>640+</strong><span>Expeditions</span></div>
+    <div class="hero-stat"><strong>10yr</strong><span>In the Field</span></div>
+    <div class="hero-stat"><strong>42</strong><span>Awards</span></div>
   </div>
 </section>
 
-<!-- ═══ GALLERY ═══ -->
+<!-- ═══════════════════ GALLERY ═══════════════════ -->
 <section id="gallery">
   <div class="gallery-header">
     <div>
-      <div class="section-eyebrow aos">Portfolio</div>
+      <div class="section-label aos">Portfolio</div>
       <h2 class="section-title aos">Photo Gallery</h2>
-      <p class="section-sub aos">Click any photo to preview full-size — and purchase a high-resolution print.</p>
+      <p class="section-sub aos">Click any photograph to preview full-size — and purchase a high-resolution digital print.</p>
     </div>
-    <div class="filter-tabs aos" id="filterTabs" role="group" aria-label="Filter photos by category">
+    <div class="filter-tabs aos" id="filterTabs">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="wildlife">Wildlife</button>
       <button class="filter-btn" data-filter="nature">Nature</button>
       <button class="filter-btn" data-filter="animal">Animals</button>
       <button class="filter-btn" data-filter="landscape">Landscape</button>
-      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn" data-filter="portrait">Self / People</button>
     </div>
   </div>
-  <!-- Cards injected by script.js -->
   <div class="photo-grid" id="photoGrid"></div>
 </section>
 
-<!-- ═══ SIGNATURE SHOTS ═══ -->
+<!-- ═══════════════════ SIGNATURE SHOTS ═══════════════════ -->
 <section id="featured">
-  <div class="section-eyebrow aos">Signature Work</div>
+  <div class="section-label aos">Signature Work</div>
   <h2 class="section-title aos">Behind the Frame</h2>
-  <p class="section-sub aos" style="margin-bottom:3rem">Three photographs from Haru's personal collection — each one a story the world needed to hear.</p>
+  <p class="section-sub aos" style="margin-bottom:3.5rem">Three photographs from Haru's personal collection — each one a story the world needed to hear.</p>
 
   <div class="featured-grid">
 
-    <!-- Shot 01 — Lakeside Birds -->
+    <!-- Shot 01 -->
     <div class="featured-item aos">
-      <div class="featured-img-wrap" onclick="openLightboxReal(0)" role="button" tabindex="0" aria-label="View photo: Lakeside Birds">
-        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg"
-             alt="Lakeside Birds — geese and birds gathered near the water" loading="lazy">
-        <div class="featured-img-overlay"><span>View &amp; Purchase</span></div>
+      <div class="featured-img featured-img--real" onclick="openLightboxReal(0)">
+        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="Haru — Shot 1" loading="lazy">
       </div>
       <div class="featured-content">
-        <div class="featured-num">01</div>
-        <div class="section-eyebrow">Wildlife · Lakeside</div>
-        <h3 class="featured-title">Lakeside Birds</h3>
-        <p class="featured-desc">This photograph captures a peaceful lakeside scene with beautiful geese and birds gathered near the water. The reflections on the lake and the calm atmosphere showcase Haru's ability to capture harmony between wildlife and nature.</p>
-        <div class="pill-row">
-          <span class="pill">Nikon Z9</span>
-          <span class="pill">600mm f/4</span>
-          <span class="pill">Natural Light</span>
-          <span class="pill">RAW Edit</span>
+        <div class="featured-number">01</div>
+        <div class="section-label">Wildlife · Arctic Tundra</div>
+        <h3 class="featured-title">First Light, Last Wild</h3>
+        <p class="featured-desc">At −28°C, Haru waited seven hours in a snow blind for this moment. The frame captures something most people will never witness in their lifetimes — a reminder of why the wild must be protected, not just photographed.</p>
+        <div class="tech-stack">
+          <span class="tech-pill">Nikon Z9</span>
+          <span class="tech-pill">600mm f/4</span>
+          <span class="tech-pill">Pre-dawn</span>
+          <span class="tech-pill">RAW Edit</span>
         </div>
-        <div class="result-row">
+        <div class="featured-results">
           <div class="result-item"><strong>$89</strong><span>Print Price</span></div>
           <div class="result-item"><strong>45MP</strong><span>Resolution</span></div>
           <div class="result-item"><strong>A1+</strong><span>Print Ready</span></div>
         </div>
-        <button class="btn-primary" onclick="openLightboxReal(0)">
+        <button class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.6rem" onclick="openLightboxReal(0)">
           View &amp; Purchase
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
 
-    <!-- Shot 02 — Scenic Lake -->
-    <div class="featured-item featured-item--reverse aos">
-      <div class="featured-img-wrap" onclick="openLightboxReal(1)" role="button" tabindex="0" aria-label="View photo: Scenic Lake Landscape">
-        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg"
-             alt="Scenic Lake Landscape — wooden bridge, green surroundings, tranquil lake" loading="lazy">
-        <div class="featured-img-overlay"><span>View &amp; Purchase</span></div>
+    <!-- Shot 02 -->
+    <div class="featured-item reverse aos aos-delay-1">
+      <div class="featured-img featured-img--real" onclick="openLightboxReal(1)">
+        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="Haru — Shot 2" loading="lazy">
       </div>
       <div class="featured-content">
-        <div class="featured-num">02</div>
-        <div class="section-eyebrow">Nature · Lake Landscape</div>
-        <h3 class="featured-title">Scenic Lake Landscape</h3>
-        <p class="featured-desc">A serene landscape featuring a wooden bridge, green surroundings, and a tranquil lake. The composition highlights the natural beauty of the environment and Haru's eye for peaceful outdoor scenes.</p>
-        <div class="pill-row">
-          <span class="pill">Sony A1</span>
-          <span class="pill">24mm f/1.4</span>
-          <span class="pill">Golden Hour</span>
-          <span class="pill">Long Exposure</span>
+        <div class="featured-number">02</div>
+        <div class="section-label">Nature · Borneo Rainforest</div>
+        <h3 class="featured-title">Canopy &amp; Silence</h3>
+        <p class="featured-desc">Three weeks deep in the Borneo interior with no electricity and no phone signal. The rainforest rewarded Haru's patience with a composition shortlisted for the 2024 Nature Photographer of the Year.</p>
+        <div class="tech-stack">
+          <span class="tech-pill">Sony A1</span>
+          <span class="tech-pill">24mm f/1.4</span>
+          <span class="tech-pill">Golden Hour</span>
+          <span class="tech-pill">Long Exposure</span>
         </div>
-        <div class="result-row">
+        <div class="featured-results">
           <div class="result-item"><strong>$75</strong><span>Print Price</span></div>
           <div class="result-item"><strong>50MP</strong><span>Resolution</span></div>
           <div class="result-item"><strong>A0+</strong><span>Print Ready</span></div>
         </div>
-        <button class="btn-primary" onclick="openLightboxReal(1)">
+        <button class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.6rem" onclick="openLightboxReal(1)">
           View &amp; Purchase
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
 
-    <!-- Shot 03 — Cat Portrait -->
-    <div class="featured-item aos">
-      <div class="featured-img-wrap" onclick="openLightboxReal(2)" role="button" tabindex="0" aria-label="View photo: Cat Portrait">
-        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg"
-             alt="Cat Portrait — curious cat resting while observing its surroundings" loading="lazy">
-        <div class="featured-img-overlay"><span>View &amp; Purchase</span></div>
+    <!-- Shot 03 -->
+    <div class="featured-item aos aos-delay-2">
+      <div class="featured-img featured-img--real" onclick="openLightboxReal(2)">
+        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg" alt="Haru — Shot 3" loading="lazy">
       </div>
       <div class="featured-content">
-        <div class="featured-num">03</div>
-        <div class="section-eyebrow">Animal · Portrait</div>
-        <h3 class="featured-title">Cat Portrait</h3>
-        <p class="featured-desc">This image features a curious cat resting while observing its surroundings. The focus on the cat's expression demonstrates Haru's talent for capturing personality and emotion in animal photography.</p>
-        <div class="pill-row">
-          <span class="pill">Canon R5</span>
-          <span class="pill">85mm f/1.4</span>
-          <span class="pill">Natural Light</span>
-          <span class="pill">Bokeh</span>
+        <div class="featured-number">03</div>
+        <div class="section-label">Self Portrait · Iceland</div>
+        <h3 class="featured-title">Woman in the Storm</h3>
+        <p class="featured-desc">Set up on a remote timer with wind speeds at 70 km/h. Haru believes the best way to show the scale and power of nature is to put a human in it. This self-portrait has been exhibited across 14 cities.</p>
+        <div class="tech-stack">
+          <span class="tech-pill">Canon R5</span>
+          <span class="tech-pill">35mm f/2</span>
+          <span class="tech-pill">Remote Timer</span>
+          <span class="tech-pill">In-Camera</span>
         </div>
-        <div class="result-row">
+        <div class="featured-results">
           <div class="result-item"><strong>$95</strong><span>Print Price</span></div>
           <div class="result-item"><strong>45MP</strong><span>Resolution</span></div>
           <div class="result-item"><strong>A0+</strong><span>Print Ready</span></div>
         </div>
-        <button class="btn-primary" onclick="openLightboxReal(2)">
+        <button class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.6rem" onclick="openLightboxReal(2)">
           View &amp; Purchase
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
@@ -221,20 +183,19 @@
   </div>
 </section>
 
-<!-- ═══ PRICING ═══ -->
+<!-- ═══════════════════ PRICING ═══════════════════ -->
 <section id="pricing">
-  <div class="section-eyebrow aos">Invest in the Wild</div>
+  <div class="section-label aos">Invest in the Wild</div>
   <h2 class="section-title aos">Photography Packages</h2>
   <p class="section-sub aos">Every session includes full post-processing, private online gallery, and lifetime access to your digital files.</p>
 
   <div class="pricing-grid">
-
     <div class="pricing-card aos">
       <div class="pricing-icon">🌿</div>
-      <div class="pricing-tier">Nature Walk</div>
-      <div class="pricing-amount"><sup>$</sup>400</div>
+      <div class="pricing-name">Nature Walk</div>
+      <div class="pricing-price"><sup>$</sup>400</div>
       <div class="pricing-period">per session · half day</div>
-      <div class="pricing-sep"></div>
+      <div class="pricing-divider"></div>
       <ul class="pricing-features">
         <li>4-hour outdoor session</li>
         <li>1 curated natural location</li>
@@ -242,19 +203,18 @@
         <li>Private delivery gallery</li>
         <li>Pre-session briefing</li>
         <li>Personal usage rights</li>
-        <li class="no">Printed products</li>
-        <li class="no">Commercial rights</li>
+        <li class="unavailable">Printed products</li>
+        <li class="unavailable">Commercial rights</li>
       </ul>
-      <button class="btn-book" onclick="openPaymentSession('nature')">Book Nature Session</button>
+      <button class="btn-pricing" onclick="openPaymentSession('nature')">Book Nature Session</button>
     </div>
 
-    <div class="pricing-card popular aos">
-      <div class="popular-badge">Most Popular</div>
+    <div class="pricing-card popular aos aos-delay-1">
       <div class="pricing-icon">🦁</div>
-      <div class="pricing-tier">Wildlife Expedition</div>
-      <div class="pricing-amount"><sup>$</sup>1,800</div>
+      <div class="pricing-name">Wildlife Expedition</div>
+      <div class="pricing-price"><sup>$</sup>1,800</div>
       <div class="pricing-period">per expedition · 2 full days</div>
-      <div class="pricing-sep"></div>
+      <div class="pricing-divider"></div>
       <ul class="pricing-features">
         <li>2-day guided expedition</li>
         <li>Expert wildlife tracking</li>
@@ -265,15 +225,15 @@
         <li>Camp &amp; logistics arranged</li>
         <li>All gear &amp; permits included</li>
       </ul>
-      <button class="btn-book" onclick="openPaymentSession('wildlife')">Book Expedition</button>
+      <button class="btn-pricing" onclick="openPaymentSession('wildlife')">Book Expedition</button>
     </div>
 
-    <div class="pricing-card aos">
+    <div class="pricing-card aos aos-delay-2">
       <div class="pricing-icon">🌍</div>
-      <div class="pricing-tier">World Assignment</div>
-      <div class="pricing-amount"><sup>$</sup>3,500</div>
+      <div class="pricing-name">World Assignment</div>
+      <div class="pricing-price"><sup>$</sup>3,500</div>
       <div class="pricing-period">per assignment · custom</div>
-      <div class="pricing-sep"></div>
+      <div class="pricing-divider"></div>
       <ul class="pricing-features">
         <li>Custom international trip</li>
         <li>Multi-location coverage</li>
@@ -284,232 +244,160 @@
         <li>Travel &amp; logistics included</li>
         <li>Full exclusivity option</li>
       </ul>
-      <button class="btn-book" onclick="openPaymentSession('world')">Book Assignment</button>
+      <button class="btn-pricing" onclick="openPaymentSession('world')">Book Assignment</button>
     </div>
-
   </div>
 
-  <p class="pricing-note aos">
-    Need something custom?&nbsp;
-    <a href="#contact">Let's talk →</a>
-  </p>
+  <div class="aos" style="text-align:center;margin-top:2.5rem">
+    <p style="color:var(--gray-600);font-size:0.9rem">Need a custom quote? &nbsp;<a href="#contact" style="color:var(--orange);font-weight:700;text-decoration:none">Let's talk →</a></p>
+  </div>
 </section>
 
-<!-- ═══ ABOUT — NEW CONTENT ═══ -->
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
 <section id="about">
   <div class="about-grid">
-
-    <!-- Text column -->
-    <div class="about-text">
-      <div class="about-eyebrow aos">The Photographer</div>
-      <h2 class="about-title aos">About <em>Haru</em></h2>
-      <p class="about-body aos">
-        Haru is a talented photographer from Brazil with a passion for capturing nature, wildlife, and peaceful landscapes. Her photography reflects creativity, patience, and a unique artistic vision. Through her lens, ordinary moments become beautiful visual stories that inspire and connect people with nature.
+    <div>
+      <div class="section-label aos" style="color:rgba(255,107,0,0.9)">The Photographer</div>
+      <h2 class="section-title aos">Haru</h2>
+      <p class="section-sub aos" style="color:rgba(255,255,255,0.6);margin-bottom:1.4rem">
+        Born in Hokkaido, Japan — raised on snow-capped mountains and wild coastlines. Haru picked up her first camera at age 14 to photograph the red-crowned cranes near her childhood home. She never stopped.
       </p>
-
+      <p class="section-sub aos" style="color:rgba(255,255,255,0.5);margin-bottom:2rem">
+        Today her work appears in National Geographic, BBC Wildlife, and Der Spiegel. She has permanent collections in galleries across Tokyo, London, and New York — and still sleeps in tents more nights than in hotels.
+      </p>
       <div class="about-features">
         <div class="about-feature aos">
-          <div class="feat-icon">🌿</div>
+          <div class="feat-icon">🏆</div>
           <div class="feat-info">
-            <h4>Nature &amp; Wildlife</h4>
-            <p>Capturing the living world in its most peaceful and powerful moments — from lakeside birds to deep forest scenes.</p>
+            <h4>42 International Awards</h4>
+            <p>Wildlife Photographer of the Year (2022, 2024), Nature TTL Photographer of the Year, GDT European Wildlife.</p>
           </div>
         </div>
-        <div class="about-feature aos">
-          <div class="feat-icon">🎨</div>
+        <div class="about-feature aos aos-delay-1">
+          <div class="feat-icon">🌏</div>
           <div class="feat-info">
-            <h4>Artistic Vision</h4>
-            <p>Every frame reflects creativity and a unique eye — turning ordinary scenes into extraordinary visual stories.</p>
+            <h4>6 Continents, 10 Years</h4>
+            <p>From the Arctic to Antarctica — every ecosystem, every season, every hour of light.</p>
           </div>
         </div>
-        <div class="about-feature aos">
-          <div class="feat-icon">🤝</div>
+        <div class="about-feature aos aos-delay-2">
+          <div class="feat-icon">📰</div>
           <div class="feat-info">
-            <h4>Available Worldwide</h4>
-            <p>Open to collaborations, commissions, and photography inquiries from clients and publications around the globe.</p>
+            <h4>Published Worldwide</h4>
+            <p>National Geographic, BBC Wildlife, GEO Magazine, The Guardian, Smithsonian.</p>
           </div>
         </div>
       </div>
-
-      <div class="about-awards aos">
-        <div class="award-pill"><span>🇧🇷</span> Based in Brazil</div>
-        <div class="award-pill"><span>📸</span> Nature &amp; Wildlife</div>
-        <div class="award-pill"><span>🏆</span> 42 Awards</div>
-        <div class="award-pill"><span>🌍</span> Available Worldwide</div>
+      <div class="awards-strip aos">
+        <div class="award-pill"><span>🥇</span> WPY 2022 &amp; 2024</div>
+        <div class="award-pill"><span>📸</span> Nat Geo Featured</div>
+        <div class="award-pill"><span>🦁</span> BBC Wildlife Cover</div>
+        <div class="award-pill"><span>🖼️</span> 14-City Exhibition</div>
       </div>
     </div>
 
-    <!-- Photo column -->
     <div class="about-visual aos">
-      <div class="about-photo-main">
-        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg"
-             alt="Haru — photographer portrait" loading="lazy">
+      <div class="about-main-img about-main-img--real">
+        <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg" alt="Haru — self portrait" loading="lazy">
       </div>
       <div class="about-badge">
         <strong>10+</strong>
-        <span>Years Experience</span>
+        <span>Years in the Wild</span>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══ STATS ═══ -->
+<!-- ═══════════════════ STATS ═══════════════════ -->
 <section id="stats">
   <div class="stats-grid">
-    <div class="stat-item aos">
-      <div class="stat-number" data-target="640">0<span class="stat-suffix">+</span></div>
-      <div class="stat-bar"></div>
-      <div class="stat-label">Field Expeditions</div>
-    </div>
-    <div class="stat-item aos">
-      <div class="stat-number" data-target="32">0</div>
-      <div class="stat-bar"></div>
-      <div class="stat-label">Countries Shot In</div>
-    </div>
-    <div class="stat-item aos">
-      <div class="stat-number" data-target="10">0<span class="stat-suffix">yr</span></div>
-      <div class="stat-bar"></div>
-      <div class="stat-label">Professional Career</div>
-    </div>
-    <div class="stat-item aos">
-      <div class="stat-number" data-target="42">0<span class="stat-suffix">+</span></div>
-      <div class="stat-bar"></div>
-      <div class="stat-label">Awards Won</div>
-    </div>
+    <div class="stat-item aos"><div class="stat-number" data-target="640">0<span class="stat-suffix">+</span></div><div class="stat-divider"></div><div class="stat-label">Field Expeditions</div></div>
+    <div class="stat-item aos aos-delay-1"><div class="stat-number" data-target="32">0<span class="stat-suffix"></span></div><div class="stat-divider"></div><div class="stat-label">Countries Shot In</div></div>
+    <div class="stat-item aos aos-delay-2"><div class="stat-number" data-target="10">0<span class="stat-suffix">yr</span></div><div class="stat-divider"></div><div class="stat-label">Professional Career</div></div>
+    <div class="stat-item aos aos-delay-3"><div class="stat-number" data-target="42">0<span class="stat-suffix">+</span></div><div class="stat-divider"></div><div class="stat-label">Awards Won</div></div>
   </div>
 </section>
 
-<!-- ═══ TESTIMONIALS ═══ -->
+<!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
 <section id="testimonials">
-  <div class="section-eyebrow aos">Client Reviews</div>
-  <h2 class="section-title aos">What People Say</h2>
-  <!-- Cards injected by script.js -->
-  <div class="testi-wrap" id="testiWrap"></div>
-  <div class="testi-controls">
-    <button class="testi-btn" id="testiPrev" aria-label="Previous testimonial">←</button>
-    <div class="testi-dots" id="testiDots"></div>
-    <button class="testi-btn" id="testiNext" aria-label="Next testimonial">→</button>
+  <div class="testi-header">
+    <div>
+      <div class="section-label aos">Client Reviews</div>
+      <h2 class="section-title aos">What People Say</h2>
+    </div>
+    <div class="testi-nav">
+      <button class="testi-btn" id="testiPrev">←</button>
+      <button class="testi-btn" id="testiNext">→</button>
+    </div>
   </div>
+  <div class="testi-track-wrap"><div class="testi-track" id="testiTrack"></div></div>
+  <div class="testi-dots" id="testiDots"></div>
 </section>
 
-<!-- ═══ CONTACT — OPTIMIZED ═══ -->
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
 <section id="contact">
-  <div class="contact-layout">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="section-label aos">Get in Touch</div>
+      <h2 class="section-title aos" style="margin-bottom:1rem">Let's Chase<br>the <em style="font-style:normal;color:var(--orange)">Wild</em> Together</h2>
+      <p class="section-sub aos" style="margin-bottom:2rem">Whether you want to commission a shoot, license an image, or book an expedition — Haru reads every message.</p>
 
-    <!-- Info column -->
-    <div class="contact-info-block">
-      <div class="section-eyebrow aos">Get in Touch</div>
-      <h2 class="contact-tagline aos">
-        Let's Create<br>Something <em>Beautiful</em>
-      </h2>
-      <p class="contact-lead aos">
-        Whether you want to collaborate, commission a shoot, license an image, or just say hello — Haru reads every message personally.
-      </p>
-
-      <div class="contact-details">
-        <div class="contact-detail aos">
-          <div class="c-icon">✉️</div>
-          <div class="c-text">
-            <h4>Email</h4>
-            <p>hello@haruphotography.com</p>
-          </div>
-        </div>
-        <div class="contact-detail aos">
-          <div class="c-icon">📱</div>
-          <div class="c-text">
-            <h4>WhatsApp</h4>
-            <p>+55 (11) 99999-0192</p>
-          </div>
-        </div>
-        <div class="contact-detail aos">
-          <div class="c-icon">📍</div>
-          <div class="c-text">
-            <h4>Based in</h4>
-            <p>Brazil · Available Worldwide</p>
-          </div>
-        </div>
+      <div class="contact-detail aos">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-info-text"><h4>Email</h4><p>hello@haruphotography.com</p></div>
+      </div>
+      <div class="contact-detail aos">
+        <div class="contact-icon">📞</div>
+        <div class="contact-info-text"><h4>Phone / WhatsApp</h4><p>+1 (604) 555-0192</p></div>
+      </div>
+      <div class="contact-detail aos">
+        <div class="contact-icon">📍</div>
+        <div class="contact-info-text"><h4>Based in</h4><p>Vancouver, BC — Canada · Traveling year-round</p></div>
       </div>
 
-      <div class="social-row aos">
-        <a href="#" class="social-btn" title="Instagram" aria-label="Instagram">📸</a>
-        <a href="#" class="social-btn" title="YouTube" aria-label="YouTube">▶</a>
-        <a href="#" class="social-btn" title="500px" aria-label="500px">5</a>
-        <a href="#" class="social-btn" title="LinkedIn" aria-label="LinkedIn">in</a>
-        <a href="#" class="social-btn" title="Behance" aria-label="Behance">Bē</a>
+      <div class="social-links aos">
+        <a href="#" class="social-link" title="Instagram">📸</a>
+        <a href="#" class="social-link" title="YouTube">▶</a>
+        <a href="#" class="social-link" title="500px">5</a>
+        <a href="#" class="social-link" title="LinkedIn">in</a>
+        <a href="#" class="social-link" title="Behance">Bē</a>
       </div>
-
-      <div class="map-placeholder aos">
-        <div class="map-pin">📍</div>
-        <div class="map-label">Brazil · Available Worldwide</div>
-      </div>
+      <div class="map-box aos"><div class="map-pin">📍</div></div>
     </div>
 
-    <!-- Form column -->
-    <div class="contact-form-card aos">
+    <div class="contact-form aos">
       <h3>Send a Message</h3>
-
-      <!-- Service type pills -->
-      <div class="form-field">
-        <label>I'm interested in</label>
-        <div class="service-pills" id="servicePills">
-          <button class="service-pill active" data-service="wildlife">Wildlife Shoot</button>
-          <button class="service-pill" data-service="nature">Nature Session</button>
-          <button class="service-pill" data-service="print">Print Purchase</button>
-          <button class="service-pill" data-service="license">Image License</button>
-          <button class="service-pill" data-service="collab">Collaboration</button>
-          <button class="service-pill" data-service="other">Other</button>
-        </div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Emma"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Wilson"></div>
       </div>
-
-      <div class="form-grid-2">
-        <div class="form-field">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" placeholder="Emma" autocomplete="given-name">
-        </div>
-        <div class="form-field">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" placeholder="Wilson" autocomplete="family-name">
-        </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="emma@email.com"></div>
+      <div class="form-group"><label>Enquiry Type</label>
+        <select>
+          <option>Wildlife Expedition Booking</option>
+          <option>Nature Session Booking</option>
+          <option>World Assignment</option>
+          <option>Print Purchase</option>
+          <option>Image Licensing</option>
+          <option>Magazine / Editorial</option>
+          <option>Other</option>
+        </select>
       </div>
-
-      <div class="form-field">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="emma@email.com" autocomplete="email">
+      <div class="form-group"><label>Preferred Date / Period</label><input type="text" placeholder="e.g. August 2026 or flexible"></div>
+      <div class="form-group"><label>Tell Haru About Your Vision</label>
+        <textarea placeholder="Describe your dream shoot, the story you want to tell, or the image you're looking for..."></textarea>
       </div>
-
-      <div class="form-field">
-        <label for="phone">Phone / WhatsApp <span style="font-weight:400;text-transform:none;color:var(--gray-400)">(optional)</span></label>
-        <input type="tel" id="phone" placeholder="+1 604 555 0192" autocomplete="tel">
-      </div>
-
-      <div class="form-field">
-        <label for="date">Preferred Date / Period</label>
-        <input type="text" id="date" placeholder="e.g. August 2026 or flexible">
-      </div>
-
-      <div class="form-field">
-        <label for="message">Tell Haru About Your Vision</label>
-        <textarea id="message" rows="4" placeholder="Describe your dream shoot, the story you want to tell, or the image you're looking for..."></textarea>
-      </div>
-
-      <div class="form-note">Haru responds within 24 hours. All enquiries are kept confidential.</div>
-
-      <button class="btn-submit" onclick="submitForm(this)">
-        Send Message
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
+      <button class="form-submit" onclick="submitForm(this)">Send Message →</button>
     </div>
-
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
+  <div class="footer-top">
+    <div>
       <div class="footer-logo">Haru<span>.</span></div>
-      <p class="footer-tagline">Beautiful photography from Brazil — capturing nature, wildlife, and peaceful landscapes that inspire and connect.</p>
+      <p class="footer-tagline">Wildlife &amp; nature photographer — chasing the wild across six continents. Based in Vancouver, shooting everywhere.</p>
     </div>
     <div class="footer-col">
       <h4>Portfolio</h4>
@@ -518,7 +406,7 @@
         <li><a href="#gallery">Nature</a></li>
         <li><a href="#gallery">Animals</a></li>
         <li><a href="#gallery">Landscapes</a></li>
-        <li><a href="#gallery">Portraits</a></li>
+        <li><a href="#gallery">Self / People</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -543,154 +431,113 @@
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2026 Haru · haruphotography.com · All rights reserved.</p>
-    <span class="footer-tag">🌿 Available for Collaborations</span>
+    <span class="footer-badge">🌿 Available for Expeditions</span>
   </div>
 </footer>
 
-<!-- ═══ LIGHTBOX ═══ -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+<!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
+<div class="lightbox" id="lightbox">
   <div class="lightbox-inner">
-    <button class="lb-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
-    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
-    <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button>
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <button class="btn-lb-nav btn-lb-prev" id="lbPrev">←</button>
+    <button class="btn-lb-nav btn-lb-next" id="lbNext">→</button>
 
-    <div class="lb-img-wrap" id="lbImgWrap">
-      <img id="lbImg" src="" alt="" loading="lazy">
+    <div class="lb-photo" id="lbPhoto">
+      <img id="lbImg" src="" alt="Haru photography" loading="lazy">
     </div>
 
     <div class="lb-meta">
       <div class="lb-info">
-        <div class="lb-cat" id="lbCat">CATEGORY</div>
+        <div class="lb-cat-label" id="lbCat">CATEGORY</div>
         <div class="lb-title" id="lbTitle">Photo Title</div>
-        <div class="lb-loc" id="lbLoc">Location</div>
-        <div class="lb-desc" id="lbDesc"></div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:0.3rem" id="lbLoc">Location</div>
+        <div style="font-size:0.82rem;color:rgba(255,255,255,0.6);margin-top:0.5rem;max-width:480px;line-height:1.6" id="lbDesc"></div>
       </div>
-      <div class="lb-right">
-        <div class="lb-counter" id="lbCounter">1 / 3</div>
-        <div class="lb-price" id="lbPrice">$89</div>
+      <div class="lb-actions">
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-right:0.5rem" id="lbCounter">1 / 3</div>
+        <div style="font-size:1rem;font-weight:900;color:var(--orange);margin-right:0.8rem" id="lbPrice">$89</div>
         <button class="btn-buy" onclick="openPaymentPhoto()">🛒 Buy Print</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══ PAYMENT MODAL ═══ -->
-<div class="pay-modal" id="payModal" role="dialog" aria-modal="true" aria-label="Purchase">
-  <div class="pay-box">
-    <div class="pay-handle"></div>
-    <button class="pay-close" onclick="closePayment()" aria-label="Close payment">✕</button>
+<!-- ═══════════════════ PAYMENT MODAL ═══════════════════ -->
+<div class="payment-modal" id="paymentModal">
+  <div class="payment-box">
+    <button class="payment-close" onclick="closePayment()">✕</button>
 
-    <div class="pay-header">
+    <div class="payment-header">
       <h3 id="payTitle">Purchase Print</h3>
-      <p id="paySubtitle">High-resolution download — yours forever.</p>
+      <p id="paySubtitle">High-resolution digital download — yours forever.</p>
     </div>
 
-    <div class="pay-item">
-      <div class="pay-item-img">
-        <img id="payItemImg" src="" alt="">
+    <div class="payment-item">
+      <div class="payment-item-img">
+        <img id="payItemImg" src="" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:8px;display:block">
       </div>
-      <div class="pay-item-info">
+      <div class="payment-item-info">
         <h4 id="payItemName">Photo</h4>
         <p id="payItemSub">Location</p>
       </div>
-      <div class="pay-item-price" id="payItemPrice">$89</div>
+      <div class="payment-item-price" id="payItemPrice">$89</div>
     </div>
 
-    <!-- Photo size selection -->
     <div id="photoBuySection">
-      <div class="pay-methods-label">Print Size</div>
-      <div class="size-row">
-        <button class="size-chip active" data-price="29">8×10 · $29</button>
-        <button class="size-chip" data-price="49">A3 · $49</button>
-        <button class="size-chip" data-price="75">A2 · $75</button>
-        <button class="size-chip" data-price="0">Digital (Full Res)</button>
+      <div style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-600);margin-bottom:0.6rem">Print Size</div>
+      <div class="size-tabs">
+        <button class="size-tab active">8×10 · $29</button>
+        <button class="size-tab">A3 · $49</button>
+        <button class="size-tab">A2 · $75</button>
+        <button class="size-tab">Digital · Full Res</button>
       </div>
     </div>
 
-    <!-- Session booking -->
-    <div id="sessionBuySection" style="display:none">
-      <div class="pay-methods-label">Choose Session</div>
-      <div class="session-row">
-        <button class="session-chip" data-key="nature" data-price="400">Nature Walk · $400</button>
-        <button class="session-chip" data-key="wildlife" data-price="1800">Wildlife Exp. · $1,800</button>
-        <button class="session-chip" data-key="world" data-price="3500">World · $3,500</button>
-        <button class="session-chip" data-key="portrait" data-price="350">Portrait · $350</button>
+    <div id="sessionBookSection" style="display:none">
+      <div style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-600);margin-bottom:0.6rem">Choose Session</div>
+      <div class="session-options">
+        <div class="session-option" data-key="nature"><div class="session-option-name">Nature Walk</div><div class="session-option-price">$400 · Half day</div></div>
+        <div class="session-option" data-key="wildlife"><div class="session-option-name">Wildlife Exp.</div><div class="session-option-price">$1,800 · 2 days</div></div>
+        <div class="session-option" data-key="world"><div class="session-option-name">World Assignment</div><div class="session-option-price">$3,500 · Custom</div></div>
+        <div class="session-option" data-key="portrait"><div class="session-option-name">Portrait</div><div class="session-option-price">$350 · 2 hrs</div></div>
       </div>
     </div>
 
-    <!-- Payment methods -->
-    <div class="pay-methods-label">Payment Method</div>
-    <div class="pay-methods-row">
-      <button class="pay-method active" data-method="card">
-        <span class="pay-method-icon">💳</span>Card
-      </button>
-      <button class="pay-method" data-method="pix">
-        <span class="pay-method-icon">📱</span>PIX
-      </button>
-      <button class="pay-method" data-method="paypal">
-        <span class="pay-method-icon">🌐</span>PayPal
-      </button>
-      <button class="pay-method" data-method="stripe">
-        <span class="pay-method-icon">⚡</span>Stripe
-      </button>
-    </div>
-
-    <!-- Card form -->
-    <div class="pay-form-section" id="form-card">
-      <div class="form-field">
-        <label>Card Number</label>
-        <input type="text" placeholder="4242 4242 4242 4242" maxlength="19" inputmode="numeric">
-      </div>
-      <div class="form-grid-2">
-        <div class="form-field">
-          <label>Expiry</label>
-          <input type="text" placeholder="MM / YY" maxlength="7" inputmode="numeric">
-        </div>
-        <div class="form-field">
-          <label>CVV</label>
-          <input type="text" placeholder="•••" maxlength="3" inputmode="numeric">
-        </div>
-      </div>
-      <div class="form-field">
-        <label>Name on Card</label>
-        <input type="text" placeholder="Emma Wilson" autocomplete="cc-name">
+    <div class="payment-methods">
+      <h4>Payment Method</h4>
+      <div class="method-tabs">
+        <button class="method-tab active" data-method="card"><span class="method-icon">💳</span>Card</button>
+        <button class="method-tab" data-method="upi"><span class="method-icon">📱</span>UPI</button>
+        <button class="method-tab" data-method="netbanking"><span class="method-icon">🏦</span>Net Banking</button>
+        <button class="method-tab" data-method="paypal"><span class="method-icon">🌐</span>PayPal</button>
       </div>
     </div>
 
-    <!-- PIX form -->
-    <div class="pay-form-section" id="form-pix" style="display:none">
-      <div class="form-field">
-        <label>CPF / CNPJ</label>
-        <input type="text" placeholder="000.000.000-00" inputmode="numeric">
+    <div class="payment-form-section" id="form-card">
+      <div class="form-group"><label>Card Number</label><input type="text" placeholder="4242 4242 4242 4242" maxlength="19"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Expiry</label><input type="text" placeholder="MM / YY" maxlength="7"></div>
+        <div class="form-group"><label>CVV</label><input type="text" placeholder="•••" maxlength="3"></div>
       </div>
-      <p style="font-size:0.78rem;color:var(--gray-400);margin-top:0.25rem">A PIX QR code will be generated after confirmation.</p>
+      <div class="form-group"><label>Name on Card</label><input type="text" placeholder="Emma Wilson"></div>
     </div>
-
-    <!-- PayPal form -->
-    <div class="pay-form-section" id="form-paypal" style="display:none">
-      <div class="form-field">
-        <label>PayPal Email</label>
-        <input type="email" placeholder="you@email.com" autocomplete="email">
+    <div class="payment-form-section" id="form-upi" style="display:none">
+      <div class="form-group"><label>UPI ID</label><input type="text" placeholder="yourname@upi"></div>
+      <p style="font-size:0.78rem;color:var(--gray-400);margin:-0.3rem 0 0.8rem">Supports GPay, PhonePe, Paytm, BHIM</p>
+    </div>
+    <div class="payment-form-section" id="form-netbanking" style="display:none">
+      <div class="form-group"><label>Select Bank</label>
+        <select><option>HDFC Bank</option><option>ICICI Bank</option><option>SBI</option><option>Axis Bank</option><option>Other</option></select>
       </div>
-      <p style="font-size:0.78rem;color:var(--gray-400);margin-top:0.25rem">You'll be redirected to PayPal to complete payment securely.</p>
+    </div>
+    <div class="payment-form-section" id="form-paypal" style="display:none">
+      <div class="form-group"><label>PayPal Email</label><input type="email" placeholder="you@email.com"></div>
+      <p style="font-size:0.78rem;color:var(--gray-400);margin:-0.3rem 0 0.8rem">You'll be redirected to PayPal to complete securely.</p>
     </div>
 
-    <!-- Stripe form -->
-    <div class="pay-form-section" id="form-stripe" style="display:none">
-      <p style="font-size:0.85rem;color:var(--gray-600);padding:0.75rem;background:var(--gray-50);border-radius:8px">
-        🔐 You'll be securely redirected to Stripe Checkout to complete your payment.
-      </p>
-    </div>
-
-    <div class="pay-secure">Payments are 100% encrypted via Stripe · PayPal · PIX.</div>
-
-    <button class="btn-pay" id="payBtn" onclick="processPayment(this)">
-      <span id="payBtnLabel">Pay $89</span>
-    </button>
-
-    <div class="pay-powered">
-      Powered by <strong>Stripe</strong> · <strong>PayPal</strong> · <strong>PIX</strong>
-    </div>
+    <div class="payment-secure-note">Payments are 100% encrypted via Stripe / Razorpay / PayPal.</div>
+    <button class="btn-pay" id="payBtn" onclick="processPayment(this)"><span id="payBtnLabel">Pay $89</span></button>
+    <div class="payment-powered">Powered by <strong>Stripe</strong> &nbsp;·&nbsp; Also accepts <strong>Razorpay</strong> &amp; <strong>PayPal</strong></div>
   </div>
 </div>
 
