@@ -1,383 +1,140 @@
 /* ══════════════════════════════════════════
-   HARU — script.js
+   HARU — script.js   (Production-Ready)
    Nature & Wildlife Photography Portfolio
    ══════════════════════════════════════════ */
 
-/* ── IMAGE BASE URL ── */
+'use strict';
+
+/* ─────────────────────────────────────────
+   DATA
+───────────────────────────────────────── */
 const BASE = 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/';
 const IMG  = (n) => BASE + `pic${n}.jpg`;
 
-/* ── REAL PHOTOS (3 from GitHub) ── */
 const realPhotos = [
-  { id:'r1', src: IMG(1), cat:'wildlife',  title:'First Light, Last Wild',  location:'Arctic Tundra, Norway',       price:'$89', desc:'At −28°C, Haru waited seven hours in a snow blind for this moment — a reminder of why the wild must be protected.' },
-  { id:'r2', src: IMG(2), cat:'nature',    title:'Canopy & Silence',         location:'Borneo Rainforest, Malaysia',  price:'$75', desc:'Three weeks off-grid in the Borneo interior. The rainforest rewarded patience with a frame shortlisted for Nature Photographer of the Year 2024.' },
-  { id:'r3', src: IMG(3), cat:'portrait',  title:'Woman in the Storm',       location:'Snaefellsnes Peninsula, Iceland', price:'$95', desc:'Self-portrait on a remote timer at 70 km/h winds. Part of the "Presence" series, exhibited across 14 cities worldwide.' },
+  { id:'r1', src:IMG(1), isReal:true, cat:'wildlife', title:'Lakeside Birds',         location:'Pantanal, Brazil',              price:'$89', priceNum:89, desc:'A peaceful lakeside scene with beautiful geese gathered near the water — one of Haru\'s most beloved shots from the Brazilian wetlands.' },
+  { id:'r2', src:IMG(2), isReal:true, cat:'nature',   title:'Scenic Lake Landscape',  location:'Serra da Mantiqueira, Brazil',  price:'$75', priceNum:75, desc:'A serene lake framed by wooden bridges and lush green hills. Shot at golden hour with a long exposure to capture the perfect stillness.' },
+  { id:'r3', src:IMG(3), isReal:true, cat:'portrait', title:'Cat Portrait',           location:'São Paulo, Brazil',            price:'$95', priceNum:95, desc:'A curious cat captured mid-thought, observing its surroundings. This image demonstrates Haru\'s talent for personality and emotion in animal photography.' },
 ];
 
-/* ── GALLERY DATA (real photos + emoji placeholders) ── */
 const photos = [
-  { id:'r1', src:IMG(1),  isReal:true,  cat:'wildlife',   title:'First Light, Last Wild',    location:'Arctic Tundra, Norway',         price:'$89'  },
-  { id:'r2', src:IMG(2),  isReal:true,  cat:'nature',     title:'Canopy & Silence',           location:'Borneo Rainforest, Malaysia',   price:'$75'  },
-  { id:'r3', src:IMG(3),  isReal:true,  cat:'portrait',   title:'Woman in the Storm',         location:'Iceland',                       price:'$95'  },
-  { id:'p4', emoji:'🦁',  isReal:false, cat:'wildlife',   title:'The Sovereign',              location:'Masai Mara, Kenya',             price:'$65'  },
-  { id:'p5', emoji:'🌲',  isReal:false, cat:'nature',     title:'Cathedral Forest',           location:'Olympic NP, USA',               price:'$55'  },
-  { id:'p6', emoji:'🐘',  isReal:false, cat:'animal',     title:'The Matriarch',              location:'Amboseli, Kenya',               price:'$72'  },
-  { id:'p7', emoji:'🏔️', isReal:false, cat:'landscape',  title:'Above the Clouds',           location:'Patagonia, Chile',              price:'$80'  },
-  { id:'p8', emoji:'🦅',  isReal:false, cat:'wildlife',   title:'Thermal Rider',              location:'Grand Canyon, USA',             price:'$58'  },
-  { id:'p9', emoji:'🌊',  isReal:false, cat:'nature',     title:'The Wave Breaks',            location:'Nazaré, Portugal',              price:'$69'  },
-  { id:'p10',emoji:'🐺',  isReal:false, cat:'animal',     title:'Pack Leader',                location:'Yellowstone, USA',              price:'$77'  },
-  { id:'p11',emoji:'🌅',  isReal:false, cat:'landscape',  title:'Golden Delta',               location:'Okavango Delta, Botswana',      price:'$84'  },
-  { id:'p12',emoji:'🦋',  isReal:false, cat:'nature',     title:'Metamorphosis',              location:'Costa Rica',                    price:'$48'  },
+  { id:'r1', src:IMG(1), isReal:true,  cat:'wildlife',  title:'Lakeside Birds',          location:'Pantanal, Brazil',             price:'$89',  priceNum:89  },
+  { id:'r2', src:IMG(2), isReal:true,  cat:'nature',    title:'Scenic Lake Landscape',   location:'Serra da Mantiqueira, Brazil', price:'$75',  priceNum:75  },
+  { id:'r3', src:IMG(3), isReal:true,  cat:'portrait',  title:'Cat Portrait',            location:'São Paulo, Brazil',           price:'$95',  priceNum:95  },
+  { id:'p4', emoji:'🦁', isReal:false, cat:'wildlife',  title:'The Sovereign',           location:'Masai Mara, Kenya',           price:'$65',  priceNum:65  },
+  { id:'p5', emoji:'🌲', isReal:false, cat:'nature',    title:'Cathedral Forest',        location:'Olympic NP, USA',             price:'$55',  priceNum:55  },
+  { id:'p6', emoji:'🐘', isReal:false, cat:'animal',   title:'The Matriarch',           location:'Amboseli, Kenya',             price:'$72',  priceNum:72  },
+  { id:'p7', emoji:'🏔️',isReal:false, cat:'landscape', title:'Above the Clouds',        location:'Patagonia, Chile',            price:'$80',  priceNum:80  },
+  { id:'p8', emoji:'🦅', isReal:false, cat:'wildlife',  title:'Thermal Rider',           location:'Grand Canyon, USA',           price:'$58',  priceNum:58  },
+  { id:'p9', emoji:'🌊', isReal:false, cat:'nature',    title:'The Wave Breaks',         location:'Nazaré, Portugal',            price:'$69',  priceNum:69  },
+  { id:'p10',emoji:'🐺', isReal:false, cat:'animal',   title:'Pack Leader',             location:'Yellowstone, USA',            price:'$77',  priceNum:77  },
+  { id:'p11',emoji:'🌅', isReal:false, cat:'landscape', title:'Golden Delta',            location:'Okavango Delta, Botswana',    price:'$84',  priceNum:84  },
+  { id:'p12',emoji:'🦋', isReal:false, cat:'nature',    title:'Metamorphosis',           location:'Costa Rica',                  price:'$48',  priceNum:48  },
 ];
 
 const catGrads = {
-  wildlife: 'linear-gradient(135deg,#e8f5e9,#a5d6a7)',
-  nature:   'linear-gradient(135deg,#e3f2fd,#90caf9)',
-  animal:   'linear-gradient(135deg,#fff3e8,#ffcc80)',
-  landscape:'linear-gradient(135deg,#f3e5f5,#ce93d8)',
-  portrait: 'linear-gradient(135deg,#fce4ec,#f48fb1)',
+  wildlife:  'linear-gradient(135deg,#e8f5e9,#a5d6a7)',
+  nature:    'linear-gradient(135deg,#e3f2fd,#90caf9)',
+  animal:    'linear-gradient(135deg,#fff3e8,#ffcc80)',
+  landscape: 'linear-gradient(135deg,#f3e5f5,#ce93d8)',
+  portrait:  'linear-gradient(135deg,#fce4ec,#f48fb1)',
 };
 const catGrad = (cat) => catGrads[cat] || 'linear-gradient(135deg,#f5f5f5,#e0e0e0)';
 
-/* ── TESTIMONIALS ── */
+const sessions = {
+  nature:   { name:'Nature Walk',         price:'$400',   priceNum:400,  dur:'Half day' },
+  wildlife: { name:'Wildlife Expedition', price:'$1,800', priceNum:1800, dur:'2 full days' },
+  world:    { name:'World Assignment',    price:'$3,500', priceNum:3500, dur:'Custom' },
+  portrait: { name:'Portrait Session',    price:'$350',   priceNum:350,  dur:'2 hrs' },
+};
+
 const testimonials = [
-  { text:'Haru photographed our wildlife documentary expedition in Kenya. Her ability to anticipate animal behaviour and capture it in a single frame is something I have never seen in 20 years of commissioning photographers.', name:'Dr. Lena Hoffman',   role:'BBC Wildlife, Series Producer',     init:'LH' },
-  { text:"We licensed Haru's Arctic series for our climate campaign. The images stopped people mid-scroll and drove a 340% increase in donations compared to our previous campaign imagery.",                                   name:'Marcus Webb',        role:'WWF International, Campaign Director',init:'MW' },
-  { text:"Booked Haru for a wildlife expedition in Botswana as a birthday gift. She turned it into the most extraordinary week of my life. The images she delivered are gallery-quality — framed and hanging in my home.",       name:'Priya Rao',          role:'Private Client, London',            init:'PR' },
-  { text:'Haru shot the cover of our annual Nature issue. Her "Canopy & Silence" image became one of the most-shared covers in our magazine history. We work with nobody else for nature commissions.',                         name:'Sophie Laurent',     role:'GEO Magazine, Photo Editor',        init:'SL' },
-  { text:"Purchased three prints for our office. Every single person who walks in asks about them. Haru's packaging and delivery was impeccable, and the print quality is extraordinary.",                                       name:'James Okafor',       role:'Print Collector, New York',         init:'JO' },
-  { text:'We sent Haru to Iceland for our "Wild Places" brand campaign. She delivered images that defined our entire visual identity for the next 3 years. Simply the best nature photographer working today.',                  name:'Akiko Tanaka',       role:'Patagonia, Creative Director',      init:'AT' },
+  { text:"Haru photographed our wildlife documentary expedition in Kenya. Her ability to anticipate animal behaviour and capture it in a single frame is something I have never seen in 20 years of commissioning photographers.", name:'Dr. Lena Hoffman',  role:'BBC Wildlife, Series Producer',       init:'LH' },
+  { text:"We licensed Haru's Arctic series for our climate campaign. The images stopped people mid-scroll and drove a 340% increase in donations compared to our previous campaign imagery.",                                    name:'Marcus Webb',       role:'WWF International, Campaign Director', init:'MW' },
+  { text:"Booked Haru for a wildlife expedition in Botswana as a birthday gift. She turned it into the most extraordinary week of my life. The images she delivered are gallery-quality — framed and hanging in my home.",        name:'Priya Rao',         role:'Private Client, London',              init:'PR' },
+  { text:"Haru shot the cover of our annual Nature issue. Her photograph became one of the most-shared covers in our magazine history. We work with nobody else for nature commissions.",                                          name:'Sophie Laurent',    role:'GEO Magazine, Photo Editor',          init:'SL' },
+  { text:"Purchased three prints for our office. Every single person who walks in asks about them. Haru's packaging and delivery was impeccable, and the print quality is extraordinary.",                                         name:'James Okafor',      role:'Print Collector, New York',           init:'JO' },
+  { text:"We sent Haru to Iceland for our Wild Places brand campaign. She delivered images that defined our entire visual identity for the next three years. Simply the best nature photographer working today.",                   name:'Akiko Tanaka',      role:'Patagonia, Creative Director',         init:'AT' },
 ];
 
-/* ── STATE ── */
+/* ─────────────────────────────────────────
+   STATE
+───────────────────────────────────────── */
 let currentFilter  = 'all';
 let filteredPhotos = [...photos];
 let lbIndex        = 0;
-let lbPool         = realPhotos; // lightbox always uses real photos for featured
+let lbPool         = realPhotos;
 let payTarget      = null;
+let testiCurrent   = 0;
+let testiAutoTimer = null;
+let isPayOpen      = false;
+let isLbOpen       = false;
 
-/* ══════════════════════════════════════════
-   GALLERY RENDER
-   ══════════════════════════════════════════ */
-function renderGallery(filter = 'all') {
-  const grid = document.getElementById('photoGrid');
-  filteredPhotos = filter === 'all' ? photos : photos.filter(p => p.cat === filter);
-  grid.innerHTML = '';
-
-  filteredPhotos.forEach((p, i) => {
-    const item = document.createElement('div');
-    item.className = 'photo-item' + (p.isReal ? ' photo-item--real' : '') + ' aos';
-    item.style.transitionDelay = (i % 3 * 0.07) + 's';
-
-    const thumbContent = p.isReal
-      ? `<img src="${p.src}" alt="${p.title}" loading="lazy">`
-      : `<span style="font-size:3.5rem">${p.emoji}</span>`;
-
-    item.innerHTML = `
-      <div class="photo-thumb" style="${p.isReal ? '' : 'background:' + catGrad(p.cat) + ';aspect-ratio:4/3'}">
-        ${thumbContent}
-        <div class="photo-hover">
-          <div class="photo-hover-cat">${p.cat}</div>
-          <div class="photo-hover-title">${p.title}</div>
-          <div class="photo-hover-price">${p.price}</div>
-        </div>
-      </div>`;
-
-    item.addEventListener('click', () => openGalleryLightbox(i));
-    grid.appendChild(item);
-  });
-
-  setTimeout(() => {
-    grid.querySelectorAll('.aos').forEach(el => { observer.observe(el); el.classList.add('visible'); });
-  }, 40);
-}
-
-/* Gallery filter */
-document.getElementById('filterTabs').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  currentFilter = btn.dataset.filter;
-  renderGallery(currentFilter);
-});
-
-renderGallery();
-
-/* ══════════════════════════════════════════
-   LIGHTBOX — gallery items
-   ══════════════════════════════════════════ */
-function openGalleryLightbox(idx) {
-  lbPool  = filteredPhotos;
-  lbIndex = idx;
-  updateLightbox();
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-/* Lightbox — featured real photos */
-function openLightboxReal(idx) {
-  lbPool  = realPhotos;
-  lbIndex = idx;
-  updateLightbox();
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function updateLightbox() {
-  const p   = lbPool[lbIndex];
-  const img = document.getElementById('lbImg');
-
-  if (p.isReal !== false && p.src) {
-    img.src   = p.src;
-    img.style.display = 'block';
-    document.getElementById('lbPhoto').style.background = '#111';
-  } else {
-    img.src   = '';
-    img.style.display = 'none';
-    document.getElementById('lbPhoto').style.background = catGrad(p.cat);
-    // Show emoji fallback
-    let emojiEl = document.getElementById('lbEmoji');
-    if (!emojiEl) {
-      emojiEl = document.createElement('div');
-      emojiEl.id = 'lbEmoji';
-      emojiEl.style.cssText = 'font-size:6rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';
-      document.getElementById('lbPhoto').appendChild(emojiEl);
-    }
-    emojiEl.textContent = p.emoji || '📷';
-    emojiEl.style.display = 'block';
-  }
-  // Hide emoji on real photos
-  const emojiEl = document.getElementById('lbEmoji');
-  if (emojiEl && (p.isReal !== false && p.src)) emojiEl.style.display = 'none';
-
-  document.getElementById('lbCat').textContent     = (p.cat || 'PHOTOGRAPHY').toUpperCase();
-  document.getElementById('lbTitle').textContent   = p.title || '';
-  document.getElementById('lbLoc').textContent     = p.location || '';
-  document.getElementById('lbDesc').textContent    = p.desc || '';
-  document.getElementById('lbPrice').textContent   = p.price || '';
-  document.getElementById('lbCounter').textContent = `${lbIndex + 1} / ${lbPool.length}`;
-}
-
-document.getElementById('lbPrev').addEventListener('click', () => {
-  lbIndex = (lbIndex - 1 + lbPool.length) % lbPool.length;
-  updateLightbox();
-});
-document.getElementById('lbNext').addEventListener('click', () => {
-  lbIndex = (lbIndex + 1) % lbPool.length;
-  updateLightbox();
-});
-document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox')) closeLightbox();
-});
-document.addEventListener('keydown', e => {
-  if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'Escape')     closeLightbox();
-  if (e.key === 'ArrowLeft')  { lbIndex = (lbIndex - 1 + lbPool.length) % lbPool.length; updateLightbox(); }
-  if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbPool.length; updateLightbox(); }
-});
-
-/* ══════════════════════════════════════════
-   PAYMENT MODAL
-   ══════════════════════════════════════════ */
-function openPaymentPhoto() {
-  const p = lbPool[lbIndex];
-  payTarget = { type: 'photo', data: p };
-
-  document.getElementById('payTitle').textContent    = 'Purchase Print';
-  document.getElementById('paySubtitle').textContent = 'High-resolution digital download — yours forever.';
-  document.getElementById('payItemName').textContent = p.title || 'Photo';
-  document.getElementById('payItemSub').textContent  = p.location || '';
-  document.getElementById('payItemPrice').textContent= p.price || '';
-  document.getElementById('payBtnLabel').textContent = `Pay ${p.price || '$89'}`;
-
-  const imgEl = document.getElementById('payItemImg');
-  if (p.src) { imgEl.src = p.src; imgEl.style.display = 'block'; }
-  else        { imgEl.style.display = 'none'; }
-
-  document.getElementById('photoBuySection').style.display   = 'block';
-  document.getElementById('sessionBookSection').style.display = 'none';
-
-  document.getElementById('paymentModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function openPaymentSession(key) {
-  const sessions = {
-    nature:   { name:'Nature Walk',       price:'$400',   dur:'Half day' },
-    wildlife: { name:'Wildlife Expedition',price:'$1,800', dur:'2 full days' },
-    world:    { name:'World Assignment',  price:'$3,500', dur:'Custom' },
-    portrait: { name:'Portrait Session',  price:'$350',   dur:'2 hrs' },
-  };
-  const s = sessions[key] || sessions.nature;
-  payTarget = { type: 'session', data: s };
-
-  document.getElementById('payTitle').textContent    = 'Book a Session';
-  document.getElementById('paySubtitle').textContent = 'Reserve your photography session — confirmed within 24 hrs.';
-  document.getElementById('payItemName').textContent = s.name;
-  document.getElementById('payItemSub').textContent  = s.dur;
-  document.getElementById('payItemPrice').textContent= s.price;
-  document.getElementById('payBtnLabel').textContent = `Book for ${s.price}`;
-
-  const imgEl = document.getElementById('payItemImg');
-  imgEl.src = IMG(1); imgEl.style.display = 'block';
-
-  document.getElementById('photoBuySection').style.display   = 'none';
-  document.getElementById('sessionBookSection').style.display = 'block';
-
-  // Highlight active session
-  document.querySelectorAll('.session-option').forEach(o => {
-    o.classList.toggle('active', o.dataset.key === key);
-  });
-
-  document.getElementById('paymentModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closePayment() {
-  document.getElementById('paymentModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('paymentModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('paymentModal')) closePayment();
-});
-
-/* Payment method tabs */
-document.querySelectorAll('.method-tab[data-method]').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.method-tab[data-method]').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    document.querySelectorAll('.payment-form-section').forEach(s => s.style.display = 'none');
-    const target = document.getElementById('form-' + tab.dataset.method);
-    if (target) target.style.display = 'block';
-  });
-});
-
-/* Size tabs */
-document.querySelectorAll('.size-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.size-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
-
-/* Session picker */
-document.querySelectorAll('.session-option').forEach(opt => {
-  opt.addEventListener('click', () => {
-    document.querySelectorAll('.session-option').forEach(o => o.classList.remove('active'));
-    opt.classList.add('active');
-    openPaymentSession(opt.dataset.key);
-  });
-});
-
-/* Simulate payment */
-function processPayment(btn) {
-  const orig = btn.textContent;
-  btn.textContent = '⏳ Processing...';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = '✅ Confirmed!';
-    btn.style.background = '#22c55e';
-    setTimeout(() => {
-      closePayment();
-      btn.textContent = orig;
-      btn.disabled = false;
-      btn.style.background = '';
-      showToast(payTarget?.type === 'session'
-        ? '📅 Session booked! Confirmation email on its way.'
-        : '🖼️ Download link sent to your email!');
-    }, 1800);
-  }, 2200);
-}
+/* ─────────────────────────────────────────
+   UTILS
+───────────────────────────────────────── */
+function qs(sel, ctx = document)  { return ctx.querySelector(sel); }
+function qsa(sel, ctx = document) { return [...ctx.querySelectorAll(sel)]; }
 
 function showToast(msg) {
+  const container = qs('#toastContainer');
+  if (!container) return;
   const t = document.createElement('div');
-  t.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:0.8rem 1.6rem;border-radius:100px;font-size:0.85rem;font-weight:600;z-index:99999;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.3);animation:fadeUp 0.4s ease both';
+  t.className = 'toast';
   t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 4000);
+  t.setAttribute('role', 'status');
+  container.appendChild(t);
+  setTimeout(() => {
+    t.classList.add('out');
+    t.addEventListener('animationend', () => t.remove(), { once: true });
+  }, 3600);
 }
 
-/* ══════════════════════════════════════════
-   NAV
-   ══════════════════════════════════════════ */
-const navbar   = document.getElementById('navbar');
-const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
-const sections = document.querySelectorAll('section[id]');
-
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-  let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-});
-
-/* ── MOBILE MENU ── */
-const hamburger  = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-});
-function closeMobile() {
-  mobileMenu.classList.remove('open');
-  document.body.style.overflow = '';
+function trapFocus(el) {
+  const focusable = qsa('a,button,input,textarea,select,[tabindex]:not([tabindex="-1"])', el)
+    .filter(f => !f.disabled && f.offsetParent !== null);
+  if (!focusable.length) return;
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  el._trapHandler = (e) => {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+    else             { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+  };
+  el.addEventListener('keydown', el._trapHandler);
+  focusable[0].focus();
 }
 
-/* ══════════════════════════════════════════
-   TESTIMONIALS CAROUSEL
-   ══════════════════════════════════════════ */
-let testiCurrent = 0;
-const perView = () => window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
-
-function renderTestimonials() {
-  const track = document.getElementById('testiTrack');
-  const dots  = document.getElementById('testiDots');
-  track.innerHTML = testimonials.map(t => `
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-quote">${t.text}</div>
-      <div class="testi-author">
-        <div class="testi-avatar">${t.init}</div>
-        <div><div class="testi-name">${t.name}</div><div class="testi-role">${t.role}</div></div>
-      </div>
-    </div>`).join('');
-
-  const total = testimonials.length - perView() + 1;
-  dots.innerHTML = Array.from({ length: total }, (_, i) =>
-    `<div class="testi-dot ${i === 0 ? 'active' : ''}" onclick="goToTesti(${i})"></div>`
-  ).join('');
+function releaseFocus(el) {
+  if (el._trapHandler) el.removeEventListener('keydown', el._trapHandler);
 }
 
-function goToTesti(i) {
-  const track = document.getElementById('testiTrack');
-  const card  = track.querySelector('.testi-card');
-  if (!card) return;
-  testiCurrent = Math.max(0, Math.min(i, testimonials.length - perView()));
-  track.style.transform = `translateX(-${testiCurrent * (card.offsetWidth + 24)}px)`;
-  document.querySelectorAll('.testi-dot').forEach((d, j) =>
-    d.classList.toggle('active', j === testiCurrent));
+/* ─────────────────────────────────────────
+   INTERSECTION OBSERVER
+───────────────────────────────────────── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    if (e.target.classList.contains('stat-number')) animateCounter(e.target);
+    observer.unobserve(e.target);
+  });
+}, { threshold: 0.12 });
+
+function observeAos() {
+  qsa('.aos, .stat-number').forEach(el => observer.observe(el));
 }
+observeAos();
 
-document.getElementById('testiPrev').addEventListener('click', () => goToTesti(testiCurrent - 1));
-document.getElementById('testiNext').addEventListener('click', () => goToTesti(testiCurrent + 1));
-setInterval(() => goToTesti((testiCurrent + 1) % (testimonials.length - perView() + 1)), 5000);
-renderTestimonials();
-window.addEventListener('resize', () => { renderTestimonials(); goToTesti(0); });
-
-/* ══════════════════════════════════════════
+/* ─────────────────────────────────────────
    ANIMATED COUNTERS
-   ══════════════════════════════════════════ */
+───────────────────────────────────────── */
 function animateCounter(el) {
-  const target = parseInt(el.dataset.target);
-  const suffix = el.querySelector('.stat-suffix').outerHTML;
-  const step   = target / (1800 / 16);
-  let cur = 0;
+  const target = parseInt(el.dataset.target, 10);
+  if (isNaN(target)) return;
+  const suffixEl = el.querySelector('.stat-suffix');
+  const suffix   = suffixEl ? suffixEl.outerHTML : '';
+  const step     = target / (1800 / 16);
+  let cur        = 0;
   const iv = setInterval(() => {
     cur = Math.min(cur + step, target);
     el.innerHTML = Math.floor(cur) + suffix;
@@ -385,25 +142,556 @@ function animateCounter(el) {
   }, 16);
 }
 
-/* ══════════════════════════════════════════
-   INTERSECTION OBSERVER
-   ══════════════════════════════════════════ */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      if (e.target.classList.contains('stat-number')) animateCounter(e.target);
+/* ─────────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────────── */
+const navbar   = qs('#navbar');
+const navLinks = qsa('.nav-links a:not(.nav-cta)');
+const sections = qsa('section[id]');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, { passive: true });
+
+/* Mobile menu */
+const hamburger   = qs('#hamburger');
+const mobileMenu  = qs('#mobileMenu');
+const mobileClose = qs('#mobileClose');
+let prevFocus     = null;
+
+function openMobile() {
+  prevFocus = document.activeElement;
+  mobileMenu.removeAttribute('hidden');
+  mobileMenu.classList.add('open');
+  hamburger.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  trapFocus(mobileMenu);
+}
+
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  releaseFocus(mobileMenu);
+  setTimeout(() => {
+    mobileMenu.setAttribute('hidden', '');
+    if (prevFocus) prevFocus.focus();
+  }, 300);
+}
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.contains('open') ? closeMobile() : openMobile();
+});
+mobileClose.addEventListener('click', closeMobile);
+
+qsa('.mobile-link').forEach(link => {
+  link.addEventListener('click', closeMobile);
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (mobileMenu.classList.contains('open')) closeMobile();
+    if (isLbOpen) closeLightbox();
+    if (isPayOpen) closePayment();
+  }
+});
+
+/* ─────────────────────────────────────────
+   GALLERY
+───────────────────────────────────────── */
+function renderGallery(filter = 'all') {
+  const grid = qs('#photoGrid');
+  filteredPhotos = filter === 'all' ? [...photos] : photos.filter(p => p.cat === filter);
+  grid.innerHTML = '';
+
+  filteredPhotos.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'photo-item' + (p.isReal ? ' photo-item--real' : '') + ' aos';
+    item.style.transitionDelay = (i % 3 * 0.07) + 's';
+    item.setAttribute('role', 'listitem');
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('aria-label', `${p.title} — ${p.cat} — ${p.price}`);
+
+    let thumbContent;
+    if (p.isReal) {
+      thumbContent = `<img src="${p.src}" alt="${p.title}" loading="lazy" width="400" height="300">`;
+    } else {
+      thumbContent = `<div class="photo-emoji" aria-hidden="true" style="background:${catGrad(p.cat)};aspect-ratio:4/3;width:100%">${p.emoji}</div>`;
+    }
+
+    item.innerHTML = `
+      <div class="photo-thumb"${p.isReal ? '' : ''}>
+        ${thumbContent}
+        <div class="photo-hover" aria-hidden="true">
+          <div class="photo-hover-cat">${p.cat}</div>
+          <div class="photo-hover-title">${p.title}</div>
+          <div class="photo-hover-price">${p.price}</div>
+        </div>
+      </div>`;
+
+    const handler = () => openGalleryLightbox(i);
+    item.addEventListener('click', handler);
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+    grid.appendChild(item);
+  });
+
+  // Re-observe new AOS elements
+  qsa('.aos', grid).forEach(el => observer.observe(el));
+}
+
+// Filter buttons
+qs('#filterTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  qsa('.filter-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
+  currentFilter = btn.dataset.filter;
+  renderGallery(currentFilter);
+});
+
+renderGallery();
+
+/* ─────────────────────────────────────────
+   FEATURED SECTION BUTTONS
+───────────────────────────────────────── */
+for (let i = 0; i < 3; i++) {
+  const imgWrap = qs(`#feat-img-${i}`);
+  const btn     = qs(`#feat-btn-${i}`);
+  const handler = () => openLightboxReal(i);
+
+  if (imgWrap) {
+    imgWrap.addEventListener('click', handler);
+    imgWrap.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+  }
+  if (btn) btn.addEventListener('click', handler);
+}
+
+/* ─────────────────────────────────────────
+   LIGHTBOX
+───────────────────────────────────────── */
+const lightbox  = qs('#lightbox');
+const lbImg     = qs('#lbImg');
+const lbEmoji   = qs('#lbEmoji');
+const lbImgWrap = qs('#lbImgWrap');
+
+function openGalleryLightbox(idx) {
+  lbPool  = filteredPhotos;
+  lbIndex = idx;
+  updateLightbox();
+  openLightboxEl();
+}
+
+function openLightboxReal(idx) {
+  lbPool  = realPhotos;
+  lbIndex = idx;
+  updateLightbox();
+  openLightboxEl();
+}
+
+function openLightboxEl() {
+  prevFocus = document.activeElement;
+  lightbox.classList.add('open');
+  lightbox.removeAttribute('aria-hidden');
+  document.body.style.overflow = 'hidden';
+  isLbOpen = true;
+  trapFocus(lightbox);
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = isPayOpen ? 'hidden' : '';
+  releaseFocus(lightbox);
+  isLbOpen = false;
+  setTimeout(() => { if (prevFocus && !isPayOpen) prevFocus.focus(); }, 300);
+}
+
+function updateLightbox() {
+  const p = lbPool[lbIndex];
+  if (!p) return;
+
+  if (p.isReal && p.src) {
+    lbImg.src = p.src;
+    lbImg.alt = p.title || '';
+    lbImg.style.display = 'block';
+    lbImgWrap.style.background = '#0f0f0f';
+    lbEmoji.style.display = 'none';
+  } else {
+    lbImg.src = '';
+    lbImg.style.display = 'none';
+    lbImgWrap.style.background = catGrad(p.cat);
+    lbEmoji.style.display = 'block';
+    lbEmoji.textContent = p.emoji || '📷';
+  }
+
+  qs('#lbCat').textContent     = (p.cat || 'PHOTOGRAPHY').toUpperCase();
+  qs('#lbTitle').textContent   = p.title || '';
+  qs('#lbLoc').textContent     = p.location || '';
+  qs('#lbDesc').textContent    = p.desc || '';
+  qs('#lbPrice').textContent   = p.price || '';
+  qs('#lbCounter').textContent = `${lbIndex + 1} / ${lbPool.length}`;
+
+  qs('#lbPrev').setAttribute('aria-label', `Previous photo (${((lbIndex - 1 + lbPool.length) % lbPool.length) + 1} of ${lbPool.length})`);
+  qs('#lbNext').setAttribute('aria-label', `Next photo (${((lbIndex + 1) % lbPool.length) + 1} of ${lbPool.length})`);
+}
+
+qs('#lbPrev').addEventListener('click', () => {
+  lbIndex = (lbIndex - 1 + lbPool.length) % lbPool.length;
+  updateLightbox();
+});
+qs('#lbNext').addEventListener('click', () => {
+  lbIndex = (lbIndex + 1) % lbPool.length;
+  updateLightbox();
+});
+qs('#lbClose').addEventListener('click', closeLightbox);
+
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+document.addEventListener('keydown', e => {
+  if (!isLbOpen) return;
+  if (e.key === 'ArrowLeft')  { lbIndex = (lbIndex - 1 + lbPool.length) % lbPool.length; updateLightbox(); }
+  if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbPool.length; updateLightbox(); }
+});
+
+// Buy print button from lightbox
+qs('#lbBuyBtn').addEventListener('click', () => {
+  const p = lbPool[lbIndex];
+  openPaymentPhoto(p);
+});
+
+/* ─────────────────────────────────────────
+   PAYMENT MODAL
+───────────────────────────────────────── */
+const payModal = qs('#payModal');
+
+function openPaymentPhoto(p) {
+  if (!p) return;
+  payTarget = { type: 'photo', data: p };
+
+  qs('#payTitle').textContent    = 'Purchase Print';
+  qs('#paySubtitle').textContent = 'High-resolution digital download — yours forever.';
+  qs('#payItemName').textContent = p.title || 'Photo';
+  qs('#payItemSub').textContent  = p.location || '';
+  qs('#payItemPrice').textContent= p.price || '';
+  qs('#payBtnLabel').textContent = `Pay ${p.price || '$89'}`;
+
+  const imgEl = qs('#payItemImg');
+  if (p.src) { imgEl.src = p.src; imgEl.alt = p.title || ''; imgEl.style.display = 'block'; }
+  else        { imgEl.style.display = 'none'; }
+
+  qs('#photoBuySection').style.display   = 'block';
+  qs('#sessionBuySection').style.display = 'none';
+
+  // Reset size chips
+  qsa('.size-chip').forEach((c, i) => {
+    c.classList.toggle('active', i === 0);
+    c.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+  });
+
+  openPayModalEl();
+}
+
+function openPaymentSession(key) {
+  const s = sessions[key] || sessions.nature;
+  payTarget = { type: 'session', data: s, key };
+
+  qs('#payTitle').textContent    = 'Book a Session';
+  qs('#paySubtitle').textContent = 'Reserve your photography session — confirmed within 24 hrs.';
+  qs('#payItemName').textContent = s.name;
+  qs('#payItemSub').textContent  = s.dur;
+  qs('#payItemPrice').textContent= s.price;
+  qs('#payBtnLabel').textContent = `Book for ${s.price}`;
+
+  const imgEl = qs('#payItemImg');
+  imgEl.src = IMG(1); imgEl.alt = 'Session preview'; imgEl.style.display = 'block';
+
+  qs('#photoBuySection').style.display   = 'none';
+  qs('#sessionBuySection').style.display = 'block';
+
+  qsa('.session-chip').forEach(o => {
+    const active = o.dataset.key === key;
+    o.classList.toggle('active', active);
+    o.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+
+  openPayModalEl();
+}
+
+function openPayModalEl() {
+  prevFocus = document.activeElement;
+  payModal.classList.add('open');
+  payModal.removeAttribute('aria-hidden');
+  document.body.style.overflow = 'hidden';
+  isPayOpen = true;
+  trapFocus(payModal);
+}
+
+function closePayment() {
+  payModal.classList.remove('open');
+  payModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = isLbOpen ? 'hidden' : '';
+  releaseFocus(payModal);
+  isPayOpen = false;
+  setTimeout(() => { if (prevFocus) prevFocus.focus(); }, 300);
+}
+
+qs('#payClose').addEventListener('click', closePayment);
+payModal.addEventListener('click', e => { if (e.target === payModal) closePayment(); });
+
+// Pricing card book buttons
+qsa('.btn-book').forEach(btn => {
+  btn.addEventListener('click', () => openPaymentSession(btn.dataset.session));
+});
+
+// Payment method tabs
+qsa('.pay-method').forEach(tab => {
+  tab.addEventListener('click', () => {
+    qsa('.pay-method').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed','false'); });
+    tab.classList.add('active');
+    tab.setAttribute('aria-pressed','true');
+    qsa('.pay-form-section').forEach(s => s.style.display = 'none');
+    const target = qs('#form-' + tab.dataset.method);
+    if (target) target.style.display = 'block';
+  });
+});
+
+// Size chips
+qsa('.size-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    qsa('.size-chip').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed','false'); });
+    chip.classList.add('active');
+    chip.setAttribute('aria-pressed','true');
+    const price = parseInt(chip.dataset.price, 10);
+    if (!isNaN(price)) {
+      const label = price === 0 ? 'Free (Digital)' : `Pay $${price}`;
+      qs('#payBtnLabel').textContent = label;
     }
   });
-}, { threshold: 0.12 });
+});
 
-document.querySelectorAll('.aos, .stat-number').forEach(el => observer.observe(el));
+// Session chips
+qsa('.session-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    qsa('.session-chip').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed','false'); });
+    chip.classList.add('active');
+    chip.setAttribute('aria-pressed','true');
+    const price = parseInt(chip.dataset.price, 10);
+    if (!isNaN(price)) {
+      qs('#payBtnLabel').textContent = `Book for $${price.toLocaleString()}`;
+      qs('#payItemPrice').textContent = `$${price.toLocaleString()}`;
+    }
+  });
+});
 
-/* ══════════════════════════════════════════
+// Process payment
+qs('#payBtn').addEventListener('click', function() {
+  const btn = this;
+  const orig = qs('#payBtnLabel').textContent;
+  btn.disabled = true;
+  qs('#payBtnLabel').textContent = '⏳ Processing…';
+  setTimeout(() => {
+    qs('#payBtnLabel').textContent = '✅ Confirmed!';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      closePayment();
+      btn.disabled = false;
+      btn.style.background = '';
+      qs('#payBtnLabel').textContent = orig;
+      showToast(payTarget?.type === 'session'
+        ? '📅 Session booked! Confirmation email on its way.'
+        : '🖼️ Download link sent to your email!');
+    }, 1800);
+  }, 2200);
+});
+
+/* ─────────────────────────────────────────
+   SERVICE PILLS (contact form)
+───────────────────────────────────────── */
+qsa('#servicePills .service-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    qsa('#servicePills .service-pill').forEach(p => {
+      p.classList.remove('active');
+      p.setAttribute('aria-pressed', 'false');
+    });
+    pill.classList.add('active');
+    pill.setAttribute('aria-pressed', 'true');
+  });
+});
+
+/* ─────────────────────────────────────────
+   TESTIMONIALS CAROUSEL
+───────────────────────────────────────── */
+function perView() {
+  if (window.innerWidth >= 1024) return 3;
+  if (window.innerWidth >= 640)  return 2;
+  return 1;
+}
+
+function renderTestimonials() {
+  const track = qs('#testiTrack');
+  const dots  = qs('#testiDots');
+  if (!track || !dots) return;
+
+  track.innerHTML = testimonials.map((t, i) => `
+    <div class="testi-card" role="article" aria-label="Testimonial from ${t.name}">
+      <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+      <blockquote class="testi-quote">${t.text}</blockquote>
+      <div class="testi-author">
+        <div class="testi-avatar" aria-hidden="true">${t.init}</div>
+        <div>
+          <div class="testi-name">${t.name}</div>
+          <div class="testi-role">${t.role}</div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const totalDots = Math.max(1, testimonials.length - perView() + 1);
+  dots.innerHTML = Array.from({ length: totalDots }, (_, i) =>
+    `<button class="testi-dot ${i === 0 ? 'active' : ''}" data-i="${i}" aria-label="Go to testimonial page ${i + 1}" role="tab"></button>`
+  ).join('');
+
+  dots.querySelectorAll('.testi-dot').forEach(dot => {
+    dot.addEventListener('click', () => goToTesti(parseInt(dot.dataset.i, 10)));
+  });
+
+  testiCurrent = 0;
+  applyTestiTransform();
+}
+
+function applyTestiTransform() {
+  const track = qs('#testiTrack');
+  const cards = qsa('.testi-card', track);
+  if (!cards.length) return;
+  const cardW   = cards[0].offsetWidth;
+  const gap     = 20; // matches CSS 1.25rem ≈ 20px
+  const offset  = testiCurrent * (cardW + gap);
+  track.style.transform = `translateX(-${offset}px)`;
+  qsa('.testi-dot').forEach((d, j) => d.classList.toggle('active', j === testiCurrent));
+}
+
+function goToTesti(i) {
+  const maxIdx = Math.max(0, testimonials.length - perView());
+  testiCurrent = Math.max(0, Math.min(i, maxIdx));
+  applyTestiTransform();
+}
+
+qs('#testiPrev').addEventListener('click', () => goToTesti(testiCurrent - 1));
+qs('#testiNext').addEventListener('click', () => goToTesti(testiCurrent + 1));
+
+function startTestiAuto() {
+  clearInterval(testiAutoTimer);
+  testiAutoTimer = setInterval(() => {
+    const maxIdx = Math.max(0, testimonials.length - perView());
+    goToTesti(testiCurrent >= maxIdx ? 0 : testiCurrent + 1);
+  }, 5000);
+}
+
+qs('#testimonials').addEventListener('mouseenter', () => clearInterval(testiAutoTimer));
+qs('#testimonials').addEventListener('mouseleave', startTestiAuto);
+qs('#testimonials').addEventListener('focusin',    () => clearInterval(testiAutoTimer));
+qs('#testimonials').addEventListener('focusout',   startTestiAuto);
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { renderTestimonials(); startTestiAuto(); }, 150);
+}, { passive: true });
+
+renderTestimonials();
+startTestiAuto();
+
+/* ─────────────────────────────────────────
    CONTACT FORM
-   ══════════════════════════════════════════ */
-function submitForm(btn) {
-  btn.textContent = '✓ Message Sent!';
-  btn.style.background = '#22c55e';
-  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+───────────────────────────────────────── */
+function validateField(input) {
+  const id    = input.id;
+  const errEl = qs(`#${id}-error`);
+  if (!errEl) return true;
+
+  let msg = '';
+  if (input.required && !input.value.trim()) {
+    msg = 'This field is required.';
+  } else if (input.type === 'email' && input.value) {
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(input.value.trim())) msg = 'Please enter a valid email address.';
+  }
+
+  errEl.textContent = msg;
+  input.classList.toggle('error', !!msg);
+  return !msg;
+}
+
+qsa('#firstName, #lastName, #email, #message').forEach(input => {
+  input.addEventListener('blur',  () => validateField(input));
+  input.addEventListener('input', () => { if (input.classList.contains('error')) validateField(input); });
+});
+
+qs('#submitBtn').addEventListener('click', () => {
+  const fields  = qsa('#firstName, #lastName, #email, #message');
+  const allOk   = fields.map(validateField).every(Boolean);
+  const status  = qs('#formStatus');
+  const btn     = qs('#submitBtn');
+
+  if (!allOk) {
+    status.className = 'form-status error';
+    status.textContent = 'Please fix the errors above before submitting.';
+    const first = fields.find(f => f.classList.contains('error'));
+    if (first) first.focus();
+    return;
+  }
+
+  btn.disabled = true;
+  status.className = 'form-status';
+  status.textContent = '';
+
+  // Simulate submission
+  setTimeout(() => {
+    status.className = 'form-status success';
+    status.textContent = '✓ Message sent! Haru will reply within 24 hours.';
+    fields.forEach(f => {
+      f.value = '';
+      f.classList.remove('error');
+      const err = qs(`#${f.id}-error`);
+      if (err) err.textContent = '';
+    });
+    qs('#phone').value = '';
+    qs('#date').value  = '';
+    btn.disabled = false;
+    btn.textContent = '✓ Sent!';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      btn.innerHTML = 'Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      btn.style.background = '';
+    }, 3000);
+  }, 1500);
+});
+
+/* ─────────────────────────────────────────
+   CARD NUMBER FORMATTING
+───────────────────────────────────────── */
+const cardNumberInput = qs('#cardNumber');
+if (cardNumberInput) {
+  cardNumberInput.addEventListener('input', function() {
+    let v = this.value.replace(/\D/g,'').substring(0,16);
+    this.value = v.replace(/(.{4})/g,'$1 ').trim();
+  });
+}
+const cardExpiryInput = qs('#cardExpiry');
+if (cardExpiryInput) {
+  cardExpiryInput.addEventListener('input', function() {
+    let v = this.value.replace(/\D/g,'').substring(0,4);
+    if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2);
+    this.value = v;
+  });
 }
