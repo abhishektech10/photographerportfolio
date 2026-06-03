@@ -1,63 +1,94 @@
 /* ══════════════════════════════════════════
    HARU — script.js
-   Nature & Wildlife Photography Portfolio
+   Beautiful Photography from Brazil
    ══════════════════════════════════════════ */
 
-/* ── IMAGE BASE URL ── */
-const BASE = 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/';
-const IMG  = (n) => BASE + `pic${n}.jpg`;
+/* ══════════════════════════════════════════
+   DATA
+   ══════════════════════════════════════════ */
 
-/* ── REAL PHOTOS (3 from GitHub) ── */
-const realPhotos = [
-  { id:'r1', src: IMG(1), cat:'wildlife',  title:'First Light, Last Wild',  location:'Arctic Tundra, Norway',       price:'$89', desc:'At −28°C, Haru waited seven hours in a snow blind for this moment — a reminder of why the wild must be protected.' },
-  { id:'r2', src: IMG(2), cat:'nature',    title:'Canopy & Silence',         location:'Borneo Rainforest, Malaysia',  price:'$75', desc:'Three weeks off-grid in the Borneo interior. The rainforest rewarded patience with a frame shortlisted for Nature Photographer of the Year 2024.' },
-  { id:'r3', src: IMG(3), cat:'portrait',  title:'Woman in the Storm',       location:'Snaefellsnes Peninsula, Iceland', price:'$95', desc:'Self-portrait on a remote timer at 70 km/h winds. Part of the "Presence" series, exhibited across 14 cities worldwide.' },
-];
-
-/* ── GALLERY DATA (real photos + emoji placeholders) ── */
-const photos = [
-  { id:'r1', src:IMG(1),  isReal:true,  cat:'wildlife',   title:'First Light, Last Wild',    location:'Arctic Tundra, Norway',         price:'$89'  },
-  { id:'r2', src:IMG(2),  isReal:true,  cat:'nature',     title:'Canopy & Silence',           location:'Borneo Rainforest, Malaysia',   price:'$75'  },
-  { id:'r3', src:IMG(3),  isReal:true,  cat:'portrait',   title:'Woman in the Storm',         location:'Iceland',                       price:'$95'  },
-  { id:'p4', emoji:'🦁',  isReal:false, cat:'wildlife',   title:'The Sovereign',              location:'Masai Mara, Kenya',             price:'$65'  },
-  { id:'p5', emoji:'🌲',  isReal:false, cat:'nature',     title:'Cathedral Forest',           location:'Olympic NP, USA',               price:'$55'  },
-  { id:'p6', emoji:'🐘',  isReal:false, cat:'animal',     title:'The Matriarch',              location:'Amboseli, Kenya',               price:'$72'  },
-  { id:'p7', emoji:'🏔️', isReal:false, cat:'landscape',  title:'Above the Clouds',           location:'Patagonia, Chile',              price:'$80'  },
-  { id:'p8', emoji:'🦅',  isReal:false, cat:'wildlife',   title:'Thermal Rider',              location:'Grand Canyon, USA',             price:'$58'  },
-  { id:'p9', emoji:'🌊',  isReal:false, cat:'nature',     title:'The Wave Breaks',            location:'Nazaré, Portugal',              price:'$69'  },
-  { id:'p10',emoji:'🐺',  isReal:false, cat:'animal',     title:'Pack Leader',                location:'Yellowstone, USA',              price:'$77'  },
-  { id:'p11',emoji:'🌅',  isReal:false, cat:'landscape',  title:'Golden Delta',               location:'Okavango Delta, Botswana',      price:'$84'  },
-  { id:'p12',emoji:'🦋',  isReal:false, cat:'nature',     title:'Metamorphosis',              location:'Costa Rica',                    price:'$48'  },
-];
-
-const catGrads = {
-  wildlife: 'linear-gradient(135deg,#e8f5e9,#a5d6a7)',
-  nature:   'linear-gradient(135deg,#e3f2fd,#90caf9)',
-  animal:   'linear-gradient(135deg,#fff3e8,#ffcc80)',
-  landscape:'linear-gradient(135deg,#f3e5f5,#ce93d8)',
-  portrait: 'linear-gradient(135deg,#fce4ec,#f48fb1)',
+// Unsplash images (no API key needed for display URLs)
+const IMGS = {
+  lakeside:  'https://images.unsplash.com/photo-1504173010664-32509107de95?w=1200&q=85',
+  bridge:    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85',
+  cat:       'https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1200&q=85',
+  forest:    'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=85',
+  wildlife1: 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80',
+  wildlife2: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=800&q=80',
+  nature1:   'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=800&q=80',
+  nature2:   'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80',
+  animal1:   'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80',
+  animal2:   'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=800&q=80',
+  land1:     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+  land2:     'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80',
 };
-const catGrad = (cat) => catGrads[cat] || 'linear-gradient(135deg,#f5f5f5,#e0e0e0)';
 
-/* ── TESTIMONIALS ── */
-const testimonials = [
-  { text:'Haru photographed our wildlife documentary expedition in Kenya. Her ability to anticipate animal behaviour and capture it in a single frame is something I have never seen in 20 years of commissioning photographers.', name:'Dr. Lena Hoffman',   role:'BBC Wildlife, Series Producer',     init:'LH' },
-  { text:"We licensed Haru's Arctic series for our climate campaign. The images stopped people mid-scroll and drove a 340% increase in donations compared to our previous campaign imagery.",                                   name:'Marcus Webb',        role:'WWF International, Campaign Director',init:'MW' },
-  { text:"Booked Haru for a wildlife expedition in Botswana as a birthday gift. She turned it into the most extraordinary week of my life. The images she delivered are gallery-quality — framed and hanging in my home.",       name:'Priya Rao',          role:'Private Client, London',            init:'PR' },
-  { text:'Haru shot the cover of our annual Nature issue. Her "Canopy & Silence" image became one of the most-shared covers in our magazine history. We work with nobody else for nature commissions.',                         name:'Sophie Laurent',     role:'GEO Magazine, Photo Editor',        init:'SL' },
-  { text:"Purchased three prints for our office. Every single person who walks in asks about them. Haru's packaging and delivery was impeccable, and the print quality is extraordinary.",                                       name:'James Okafor',       role:'Print Collector, New York',         init:'JO' },
-  { text:'We sent Haru to Iceland for our "Wild Places" brand campaign. She delivered images that defined our entire visual identity for the next 3 years. Simply the best nature photographer working today.',                  name:'Akiko Tanaka',       role:'Patagonia, Creative Director',      init:'AT' },
+const realPhotos = [
+  {
+    id: 'r1',
+    src: IMGS.lakeside,
+    cat: 'wildlife',
+    title: 'Harmony by the Water',
+    location: 'Lakeside, Brazil',
+    price: '$89',
+    desc: 'A peaceful lakeside scene with beautiful geese and birds gathered near the water. The reflections on the lake and the calm atmosphere showcase Haru\'s ability to capture harmony between wildlife and nature.',
+  },
+  {
+    id: 'r2',
+    src: IMGS.bridge,
+    cat: 'nature',
+    title: 'Wooden Bridge, Still Waters',
+    location: 'Southern Brazil',
+    price: '$75',
+    desc: 'A serene landscape featuring a wooden bridge, green surroundings, and a tranquil lake. The composition highlights the natural beauty of the environment and Haru\'s eye for peaceful outdoor scenes.',
+  },
+  {
+    id: 'r3',
+    src: IMGS.cat,
+    cat: 'animal',
+    title: 'The Curious Observer',
+    location: 'São Paulo, Brazil',
+    price: '$65',
+    desc: 'A curious cat resting while observing its surroundings. The focus on the cat\'s expression demonstrates Haru\'s talent for capturing personality and emotion in animal photography.',
+  },
 ];
 
-/* ── STATE ── */
+const photos = [
+  { id: 'r1', src: IMGS.lakeside,  isReal: true,  cat: 'wildlife',  title: 'Harmony by the Water',      location: 'Lakeside, Brazil',        price: '$89' },
+  { id: 'r2', src: IMGS.bridge,    isReal: true,  cat: 'nature',    title: 'Wooden Bridge, Still Waters', location: 'Southern Brazil',         price: '$75' },
+  { id: 'r3', src: IMGS.cat,       isReal: true,  cat: 'animal',    title: 'The Curious Observer',        location: 'São Paulo, Brazil',       price: '$65' },
+  { id: 'p4', src: IMGS.wildlife1, isReal: true,  cat: 'wildlife',  title: 'Amber Gaze',                  location: 'Pantanal, Brazil',        price: '$78' },
+  { id: 'p5', src: IMGS.nature1,   isReal: true,  cat: 'nature',    title: 'Morning Canopy',              location: 'Amazon Rainforest',       price: '$55' },
+  { id: 'p6', src: IMGS.animal2,   isReal: true,  cat: 'animal',    title: 'Shell Explorer',              location: 'Florianópolis, Brazil',   price: '$60' },
+  { id: 'p7', src: IMGS.land1,     isReal: true,  cat: 'landscape', title: 'Summit Light',                location: 'Serra Gaúcha, Brazil',    price: '$80' },
+  { id: 'p8', src: IMGS.wildlife2, isReal: true,  cat: 'wildlife',  title: 'Sunset Encounter',            location: 'Cerrado, Brazil',         price: '$72' },
+  { id: 'p9', src: IMGS.nature2,   isReal: true,  cat: 'nature',    title: 'Ancient Grove',               location: 'Mata Atlântica, Brazil',  price: '$58' },
+  { id: 'p10',src: IMGS.land2,     isReal: true,  cat: 'landscape', title: 'Red Earth at Dusk',           location: 'Chapada Diamantina, BA',  price: '$84' },
+  { id: 'p11',src: IMGS.forest,    isReal: true,  cat: 'nature',    title: 'Cathedral Forest',            location: 'Paraná, Brazil',          price: '$67' },
+  { id: 'p12',src: IMGS.animal1,   isReal: true,  cat: 'wildlife',  title: 'Reflection',                  location: 'Iguaçu, Brazil',          price: '$70' },
+];
+
+const testimonials = [
+  { text: 'Haru photographed our wildlife documentary expedition. Her ability to anticipate animal behaviour and capture it in a single frame is something I have never seen in 20 years of commissioning photographers.', name: 'Dr. Lena Hoffman',  role: 'BBC Wildlife, Series Producer',       init: 'LH' },
+  { text: 'We licensed Haru\'s nature series for our climate campaign. The images stopped people mid-scroll and drove a 340% increase in engagement compared to our previous campaign imagery.',                          name: 'Marcus Webb',       role: 'WWF International, Campaign Director', init: 'MW' },
+  { text: 'Booked Haru for a wildlife expedition in the Pantanal as a birthday gift. She turned it into the most extraordinary week of my life. The images she delivered are gallery-quality.',                           name: 'Priya Rao',         role: 'Private Client, London',               init: 'PR' },
+  { text: 'Haru shot the cover of our annual Nature issue. Her "Wooden Bridge" image became one of the most-shared covers in our magazine history. We work with nobody else for nature commissions.',                    name: 'Sophie Laurent',    role: 'GEO Magazine, Photo Editor',           init: 'SL' },
+  { text: 'Purchased three prints for our studio. Every single person who visits asks about them. Haru\'s packaging and delivery was impeccable, and the print quality is extraordinary.',                               name: 'James Okafor',      role: 'Print Collector, New York',            init: 'JO' },
+  { text: 'We sent Haru to the Amazon for our "Wild Places" brand campaign. She delivered images that defined our entire visual identity for the next 3 years. Simply the best nature photographer working today.',      name: 'Akiko Tanaka',      role: 'Patagonia, Creative Director',         init: 'AT' },
+];
+
+/* ══════════════════════════════════════════
+   STATE
+   ══════════════════════════════════════════ */
 let currentFilter  = 'all';
 let filteredPhotos = [...photos];
 let lbIndex        = 0;
-let lbPool         = realPhotos; // lightbox always uses real photos for featured
+let lbPool         = realPhotos;
 let payTarget      = null;
+let testiCurrent   = 0;
 
 /* ══════════════════════════════════════════
-   GALLERY RENDER
+   GALLERY
    ══════════════════════════════════════════ */
 function renderGallery(filter = 'all') {
   const grid = document.getElementById('photoGrid');
@@ -66,16 +97,12 @@ function renderGallery(filter = 'all') {
 
   filteredPhotos.forEach((p, i) => {
     const item = document.createElement('div');
-    item.className = 'photo-item' + (p.isReal ? ' photo-item--real' : '') + ' aos';
-    item.style.transitionDelay = (i % 3 * 0.07) + 's';
-
-    const thumbContent = p.isReal
-      ? `<img src="${p.src}" alt="${p.title}" loading="lazy">`
-      : `<span style="font-size:3.5rem">${p.emoji}</span>`;
+    item.className = 'photo-item photo-item--real';
+    item.style.animationDelay = (i % 3 * 0.07) + 's';
 
     item.innerHTML = `
-      <div class="photo-thumb" style="${p.isReal ? '' : 'background:' + catGrad(p.cat) + ';aspect-ratio:4/3'}">
-        ${thumbContent}
+      <div class="photo-thumb">
+        <img src="${p.src}" alt="${p.title}" loading="lazy">
         <div class="photo-hover">
           <div class="photo-hover-cat">${p.cat}</div>
           <div class="photo-hover-title">${p.title}</div>
@@ -85,14 +112,20 @@ function renderGallery(filter = 'all') {
 
     item.addEventListener('click', () => openGalleryLightbox(i));
     grid.appendChild(item);
-  });
 
-  setTimeout(() => {
-    grid.querySelectorAll('.aos').forEach(el => { observer.observe(el); el.classList.add('visible'); });
-  }, 40);
+    // Animate in
+    requestAnimationFrame(() => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = `opacity 0.4s ease ${i * 0.04}s, transform 0.4s ease ${i * 0.04}s`;
+      requestAnimationFrame(() => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+      });
+    });
+  });
 }
 
-/* Gallery filter */
 document.getElementById('filterTabs').addEventListener('click', e => {
   const btn = e.target.closest('.filter-btn');
   if (!btn) return;
@@ -105,7 +138,7 @@ document.getElementById('filterTabs').addEventListener('click', e => {
 renderGallery();
 
 /* ══════════════════════════════════════════
-   LIGHTBOX — gallery items
+   LIGHTBOX
    ══════════════════════════════════════════ */
 function openGalleryLightbox(idx) {
   lbPool  = filteredPhotos;
@@ -115,7 +148,6 @@ function openGalleryLightbox(idx) {
   document.body.style.overflow = 'hidden';
 }
 
-/* Lightbox — featured real photos */
 function openLightboxReal(idx) {
   lbPool  = realPhotos;
   lbIndex = idx;
@@ -130,37 +162,23 @@ function closeLightbox() {
 }
 
 function updateLightbox() {
-  const p   = lbPool[lbIndex];
+  const p = lbPool[lbIndex];
   const img = document.getElementById('lbImg');
 
-  if (p.isReal !== false && p.src) {
-    img.src   = p.src;
+  if (p && p.src) {
+    img.src = p.src;
     img.style.display = 'block';
     document.getElementById('lbPhoto').style.background = '#111';
   } else {
-    img.src   = '';
+    img.src = '';
     img.style.display = 'none';
-    document.getElementById('lbPhoto').style.background = catGrad(p.cat);
-    // Show emoji fallback
-    let emojiEl = document.getElementById('lbEmoji');
-    if (!emojiEl) {
-      emojiEl = document.createElement('div');
-      emojiEl.id = 'lbEmoji';
-      emojiEl.style.cssText = 'font-size:6rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';
-      document.getElementById('lbPhoto').appendChild(emojiEl);
-    }
-    emojiEl.textContent = p.emoji || '📷';
-    emojiEl.style.display = 'block';
   }
-  // Hide emoji on real photos
-  const emojiEl = document.getElementById('lbEmoji');
-  if (emojiEl && (p.isReal !== false && p.src)) emojiEl.style.display = 'none';
 
-  document.getElementById('lbCat').textContent     = (p.cat || 'PHOTOGRAPHY').toUpperCase();
-  document.getElementById('lbTitle').textContent   = p.title || '';
-  document.getElementById('lbLoc').textContent     = p.location || '';
-  document.getElementById('lbDesc').textContent    = p.desc || '';
-  document.getElementById('lbPrice').textContent   = p.price || '';
+  document.getElementById('lbCat').textContent    = (p.cat || 'PHOTOGRAPHY').toUpperCase();
+  document.getElementById('lbTitle').textContent  = p.title || '';
+  document.getElementById('lbLoc').textContent    = p.location || '';
+  document.getElementById('lbDesc').textContent   = p.desc || '';
+  document.getElementById('lbPrice').textContent  = p.price || '';
   document.getElementById('lbCounter').textContent = `${lbIndex + 1} / ${lbPool.length}`;
 }
 
@@ -187,50 +205,49 @@ document.addEventListener('keydown', e => {
    ══════════════════════════════════════════ */
 function openPaymentPhoto() {
   const p = lbPool[lbIndex];
+  if (!p) return;
   payTarget = { type: 'photo', data: p };
 
   document.getElementById('payTitle').textContent    = 'Purchase Print';
   document.getElementById('paySubtitle').textContent = 'High-resolution digital download — yours forever.';
   document.getElementById('payItemName').textContent = p.title || 'Photo';
   document.getElementById('payItemSub').textContent  = p.location || '';
-  document.getElementById('payItemPrice').textContent= p.price || '';
+  document.getElementById('payItemPrice').textContent = p.price || '';
   document.getElementById('payBtnLabel').textContent = `Pay ${p.price || '$89'}`;
 
   const imgEl = document.getElementById('payItemImg');
   if (p.src) { imgEl.src = p.src; imgEl.style.display = 'block'; }
   else        { imgEl.style.display = 'none'; }
 
-  document.getElementById('photoBuySection').style.display   = 'block';
+  document.getElementById('photoBuySection').style.display    = 'block';
   document.getElementById('sessionBookSection').style.display = 'none';
-
   document.getElementById('paymentModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function openPaymentSession(key) {
   const sessions = {
-    nature:   { name:'Nature Walk',       price:'$400',   dur:'Half day' },
-    wildlife: { name:'Wildlife Expedition',price:'$1,800', dur:'2 full days' },
-    world:    { name:'World Assignment',  price:'$3,500', dur:'Custom' },
-    portrait: { name:'Portrait Session',  price:'$350',   dur:'2 hrs' },
+    nature:   { name: 'Nature Walk',         price: '$400',   dur: 'Half day' },
+    wildlife: { name: 'Wildlife Expedition',  price: '$1,800', dur: '2 full days' },
+    world:    { name: 'World Assignment',     price: '$3,500', dur: 'Custom timeline' },
+    portrait: { name: 'Portrait Session',     price: '$350',   dur: '2 hours' },
   };
   const s = sessions[key] || sessions.nature;
   payTarget = { type: 'session', data: s };
 
   document.getElementById('payTitle').textContent    = 'Book a Session';
-  document.getElementById('paySubtitle').textContent = 'Reserve your photography session — confirmed within 24 hrs.';
+  document.getElementById('paySubtitle').textContent = 'Reserve your session — confirmed within 24 hours.';
   document.getElementById('payItemName').textContent = s.name;
   document.getElementById('payItemSub').textContent  = s.dur;
-  document.getElementById('payItemPrice').textContent= s.price;
+  document.getElementById('payItemPrice').textContent = s.price;
   document.getElementById('payBtnLabel').textContent = `Book for ${s.price}`;
 
   const imgEl = document.getElementById('payItemImg');
-  imgEl.src = IMG(1); imgEl.style.display = 'block';
+  imgEl.src = IMGS.lakeside; imgEl.style.display = 'block';
 
-  document.getElementById('photoBuySection').style.display   = 'none';
+  document.getElementById('photoBuySection').style.display    = 'none';
   document.getElementById('sessionBookSection').style.display = 'block';
 
-  // Highlight active session
   document.querySelectorAll('.session-option').forEach(o => {
     o.classList.toggle('active', o.dataset.key === key);
   });
@@ -247,7 +264,7 @@ document.getElementById('paymentModal').addEventListener('click', e => {
   if (e.target === document.getElementById('paymentModal')) closePayment();
 });
 
-/* Payment method tabs */
+/* Method tabs */
 document.querySelectorAll('.method-tab[data-method]').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.method-tab[data-method]').forEach(t => t.classList.remove('active'));
@@ -269,23 +286,21 @@ document.querySelectorAll('.size-tab').forEach(tab => {
 /* Session picker */
 document.querySelectorAll('.session-option').forEach(opt => {
   opt.addEventListener('click', () => {
-    document.querySelectorAll('.session-option').forEach(o => o.classList.remove('active'));
-    opt.classList.add('active');
     openPaymentSession(opt.dataset.key);
   });
 });
 
 /* Simulate payment */
 function processPayment(btn) {
-  const orig = btn.textContent;
-  btn.textContent = '⏳ Processing...';
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span>⏳ Processing...</span>';
   btn.disabled = true;
   setTimeout(() => {
-    btn.textContent = '✅ Confirmed!';
+    btn.innerHTML = '<span>✅ Confirmed!</span>';
     btn.style.background = '#22c55e';
     setTimeout(() => {
       closePayment();
-      btn.textContent = orig;
+      btn.innerHTML = orig;
       btn.disabled = false;
       btn.style.background = '';
       showToast(payTarget?.type === 'session'
@@ -295,16 +310,52 @@ function processPayment(btn) {
   }, 2200);
 }
 
+/* ══════════════════════════════════════════
+   TOAST
+   ══════════════════════════════════════════ */
 function showToast(msg) {
+  const existing = document.querySelector('.haru-toast');
+  if (existing) existing.remove();
+
   const t = document.createElement('div');
-  t.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:0.8rem 1.6rem;border-radius:100px;font-size:0.85rem;font-weight:600;z-index:99999;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.3);animation:fadeUp 0.4s ease both';
+  t.className = 'haru-toast';
+  t.style.cssText = [
+    'position:fixed',
+    'bottom:2rem',
+    'left:50%',
+    'transform:translateX(-50%) translateY(20px)',
+    'background:#111',
+    'color:#fff',
+    'padding:0.8rem 1.6rem',
+    'border-radius:100px',
+    'font-family:"Helvetica Neue",Helvetica,Arial,sans-serif',
+    'font-size:0.85rem',
+    'font-weight:600',
+    'z-index:99999',
+    'white-space:nowrap',
+    'box-shadow:0 8px 32px rgba(0,0,0,0.3)',
+    'transition:transform 0.3s ease, opacity 0.3s ease',
+    'opacity:0',
+  ].join(';');
   t.textContent = msg;
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 4000);
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      t.style.transform = 'translateX(-50%) translateY(0)';
+      t.style.opacity = '1';
+    });
+  });
+
+  setTimeout(() => {
+    t.style.opacity = '0';
+    t.style.transform = 'translateX(-50%) translateY(10px)';
+    setTimeout(() => t.remove(), 300);
+  }, 3500);
 }
 
 /* ══════════════════════════════════════════
-   NAV
+   NAV + SCROLL
    ══════════════════════════════════════════ */
 const navbar   = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
@@ -312,45 +363,66 @@ const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 20);
+
   let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, { passive: true });
+
+/* ══════════════════════════════════════════
+   MOBILE MENU
+   ══════════════════════════════════════════ */
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  mobileMenu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
-/* ── MOBILE MENU ── */
-const hamburger  = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-});
+mobileClose.addEventListener('click', closeMobile);
+
 function closeMobile() {
   mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
 /* ══════════════════════════════════════════
    TESTIMONIALS CAROUSEL
    ══════════════════════════════════════════ */
-let testiCurrent = 0;
-const perView = () => window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+function perView() {
+  if (window.innerWidth < 640)  return 1;
+  if (window.innerWidth < 1024) return 2;
+  return 3;
+}
 
 function renderTestimonials() {
   const track = document.getElementById('testiTrack');
   const dots  = document.getElementById('testiDots');
+
   track.innerHTML = testimonials.map(t => `
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <div class="testi-quote">${t.text}</div>
       <div class="testi-author">
         <div class="testi-avatar">${t.init}</div>
-        <div><div class="testi-name">${t.name}</div><div class="testi-role">${t.role}</div></div>
+        <div>
+          <div class="testi-name">${t.name}</div>
+          <div class="testi-role">${t.role}</div>
+        </div>
       </div>
     </div>`).join('');
 
-  const total = testimonials.length - perView() + 1;
+  const total = Math.max(1, testimonials.length - perView() + 1);
   dots.innerHTML = Array.from({ length: total }, (_, i) =>
-    `<div class="testi-dot ${i === 0 ? 'active' : ''}" onclick="goToTesti(${i})"></div>`
+    `<div class="testi-dot${i === 0 ? ' active' : ''}" onclick="goToTesti(${i})" role="button" tabindex="0" aria-label="Go to testimonial ${i + 1}"></div>`
   ).join('');
 }
 
@@ -358,26 +430,50 @@ function goToTesti(i) {
   const track = document.getElementById('testiTrack');
   const card  = track.querySelector('.testi-card');
   if (!card) return;
-  testiCurrent = Math.max(0, Math.min(i, testimonials.length - perView()));
-  track.style.transform = `translateX(-${testiCurrent * (card.offsetWidth + 24)}px)`;
-  document.querySelectorAll('.testi-dot').forEach((d, j) =>
-    d.classList.toggle('active', j === testiCurrent));
+
+  const maxIdx = Math.max(0, testimonials.length - perView());
+  testiCurrent = Math.max(0, Math.min(i, maxIdx));
+  const cardW  = card.offsetWidth + 24; // gap
+  track.style.transform = `translateX(-${testiCurrent * cardW}px)`;
+
+  document.querySelectorAll('.testi-dot').forEach((d, j) => {
+    d.classList.toggle('active', j === testiCurrent);
+  });
 }
 
 document.getElementById('testiPrev').addEventListener('click', () => goToTesti(testiCurrent - 1));
 document.getElementById('testiNext').addEventListener('click', () => goToTesti(testiCurrent + 1));
-setInterval(() => goToTesti((testiCurrent + 1) % (testimonials.length - perView() + 1)), 5000);
+
+let testiInterval = setInterval(() => {
+  const max = Math.max(0, testimonials.length - perView());
+  goToTesti(testiCurrent >= max ? 0 : testiCurrent + 1);
+}, 5000);
+
+// Pause on hover
+document.getElementById('testiTrack').addEventListener('mouseenter', () => clearInterval(testiInterval));
+document.getElementById('testiTrack').addEventListener('mouseleave', () => {
+  testiInterval = setInterval(() => {
+    const max = Math.max(0, testimonials.length - perView());
+    goToTesti(testiCurrent >= max ? 0 : testiCurrent + 1);
+  }, 5000);
+});
+
 renderTestimonials();
-window.addEventListener('resize', () => { renderTestimonials(); goToTesti(0); });
+window.addEventListener('resize', () => {
+  renderTestimonials();
+  goToTesti(0);
+});
 
 /* ══════════════════════════════════════════
    ANIMATED COUNTERS
    ══════════════════════════════════════════ */
 function animateCounter(el) {
-  const target = parseInt(el.dataset.target);
-  const suffix = el.querySelector('.stat-suffix').outerHTML;
-  const step   = target / (1800 / 16);
+  const target = parseInt(el.dataset.target, 10);
+  const suffix = el.querySelector('.stat-suffix')?.outerHTML || '';
+  const duration = 1800;
+  const step = target / (duration / 16);
   let cur = 0;
+
   const iv = setInterval(() => {
     cur = Math.min(cur + step, target);
     el.innerHTML = Math.floor(cur) + suffix;
@@ -393,6 +489,7 @@ const observer = new IntersectionObserver(entries => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
       if (e.target.classList.contains('stat-number')) animateCounter(e.target);
+      observer.unobserve(e.target);
     }
   });
 }, { threshold: 0.12 });
@@ -402,8 +499,63 @@ document.querySelectorAll('.aos, .stat-number').forEach(el => observer.observe(e
 /* ══════════════════════════════════════════
    CONTACT FORM
    ══════════════════════════════════════════ */
-function submitForm(btn) {
-  btn.textContent = '✓ Message Sent!';
-  btn.style.background = '#22c55e';
-  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('formSubmitBtn');
+  const origContent = btn.innerHTML;
+
+  btn.innerHTML = '<span>⏳ Sending...</span>';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.innerHTML = '<span>✅ Message Sent!</span>';
+    btn.classList.add('success');
+
+    document.getElementById('contactForm').reset();
+
+    setTimeout(() => {
+      btn.innerHTML = origContent;
+      btn.classList.remove('success');
+      btn.disabled = false;
+      showToast('✉️ Message received! Haru will reply within 48 hours.');
+    }, 2500);
+  }, 1500);
+
+  return false;
+}
+
+/* ══════════════════════════════════════════
+   SMOOTH ANCHOR SCROLL (for older browsers)
+   ══════════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = document.getElementById('navbar').offsetHeight + 16;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+/* ══════════════════════════════════════════
+   LAZY IMAGE LOADING (native + fallback)
+   ══════════════════════════════════════════ */
+if ('loading' in HTMLImageElement.prototype) {
+  // Native lazy loading supported — nothing extra needed
+} else {
+  // Fallback: IntersectionObserver for images
+  const imgObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const img = e.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          imgObserver.unobserve(img);
+        }
+      }
+    });
+  });
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => imgObserver.observe(img));
 }
