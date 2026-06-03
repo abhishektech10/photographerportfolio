@@ -1,11 +1,40 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Haru is a talented photographer from Brazil with a passion for capturing nature, wildlife, and peaceful landscapes. Her lens turns ordinary moments into beautiful visual stories.">
+  <meta name="theme-color" content="#FF6B00">
+  <link rel="canonical" href="https://haruphotography.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://haruphotography.com/">
+  <meta property="og:title" content="Haru – Beautiful Photography from Brazil">
+  <meta property="og:description" content="Nature, wildlife, and landscape photography from Brazil. 640+ expeditions, 42 awards, available worldwide.">
+  <meta property="og:image" content="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Haru – Beautiful Photography from Brazil">
+  <meta name="twitter:description" content="Nature, wildlife, and landscape photography from Brazil.">
+  <meta name="twitter:image" content="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg">
+
   <title>Haru – Beautiful Photography from Brazil</title>
-  <meta name="description" content="Haru is a talented photographer from Brazil with a passion for capturing nature, wildlife, and peaceful landscapes.">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Haru",
+    "jobTitle": "Nature & Wildlife Photographer",
+    "url": "https://haruphotography.com",
+    "address": { "@type": "PostalAddress", "addressCountry": "BR" },
+    "email": "hello@haruphotography.com"
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,61 +43,64 @@
 <body>
 
 <!-- ═══ NAV ═══ -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">Haru<span>.</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#featured">Signature</a></li>
-    <li><a href="#pricing">Packages</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Book a Session</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<header>
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="Haru Photography – home">Haru<span aria-hidden="true">.</span></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#featured">Signature</a></li>
+      <li><a href="#pricing">Packages</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Session</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
 
 <!-- Mobile drawer -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
-  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
-  <a href="#gallery"      class="mobile-link" onclick="closeMobile()">Gallery</a>
-  <a href="#featured"     class="mobile-link" onclick="closeMobile()">Signature</a>
-  <a href="#pricing"      class="mobile-link" onclick="closeMobile()">Packages</a>
-  <a href="#about"        class="mobile-link" onclick="closeMobile()">About</a>
-  <a href="#testimonials" class="mobile-link" onclick="closeMobile()">Reviews</a>
-  <a href="#contact"      class="mobile-link mobile-link--cta" onclick="closeMobile()">Book a Session</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+  <button class="mobile-close" id="mobileClose" aria-label="Close navigation menu">✕</button>
+  <nav aria-label="Mobile navigation">
+    <a href="#gallery"      class="mobile-link">Gallery</a>
+    <a href="#featured"     class="mobile-link">Signature</a>
+    <a href="#pricing"      class="mobile-link">Packages</a>
+    <a href="#about"        class="mobile-link">About</a>
+    <a href="#testimonials" class="mobile-link">Reviews</a>
+    <a href="#contact"      class="mobile-link mobile-link--cta">Book a Session</a>
+  </nav>
 </div>
 
-<!-- ═══ HERO ═══ -->
-<section id="hero">
-  <!-- Background blobs -->
-  <div class="hero-bg-blob hero-bg-blob--1"></div>
-  <div class="hero-bg-blob hero-bg-blob--2"></div>
+<main>
 
-  <!-- Filmstrip (desktop only) -->
+<!-- ═══ HERO ═══ -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg-blob hero-bg-blob--1" aria-hidden="true"></div>
+  <div class="hero-bg-blob hero-bg-blob--2" aria-hidden="true"></div>
+
   <div class="hero-filmstrip" aria-hidden="true">
     <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="" loading="eager">
+      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="" loading="eager" width="250" height="200">
     </div>
     <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="" loading="eager">
+      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="" loading="eager" width="250" height="200">
     </div>
     <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg" alt="" loading="eager">
+      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg" alt="" loading="eager" width="250" height="200">
     </div>
     <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="" loading="lazy" style="filter:saturate(1.3) brightness(0.9)">
+      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg" alt="" loading="lazy" width="250" height="200" style="filter:saturate(1.3) brightness(0.9)">
     </div>
     <div class="filmstrip-frame">
-      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="" loading="lazy" style="filter:hue-rotate(15deg) contrast(1.1)">
+      <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg" alt="" loading="lazy" width="250" height="200" style="filter:hue-rotate(15deg) contrast(1.1)">
     </div>
   </div>
 
-  <!-- Hero content -->
   <div class="hero-content">
     <div class="hero-tag">
-      <span class="hero-tag-dot"></span>
+      <span class="hero-tag-dot" aria-hidden="true"></span>
       Haru · Nature &amp; Wildlife Photography · Brazil
     </div>
     <h1 class="hero-headline">
@@ -86,7 +118,6 @@
     </div>
   </div>
 
-  <!-- Bottom bar -->
   <div class="hero-bottom" aria-hidden="true">
     <div class="hero-scroll">
       <div class="hero-scroll-line"></div>
@@ -101,47 +132,45 @@
 </section>
 
 <!-- ═══ GALLERY ═══ -->
-<section id="gallery">
+<section id="gallery" aria-labelledby="gallery-heading">
   <div class="gallery-header">
     <div>
-      <div class="section-eyebrow aos">Portfolio</div>
-      <h2 class="section-title aos">Photo Gallery</h2>
+      <div class="section-eyebrow aos" aria-hidden="true">Portfolio</div>
+      <h2 class="section-title aos" id="gallery-heading">Photo Gallery</h2>
       <p class="section-sub aos">Click any photo to preview full-size — and purchase a high-resolution print.</p>
     </div>
     <div class="filter-tabs aos" id="filterTabs" role="group" aria-label="Filter photos by category">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="wildlife">Wildlife</button>
-      <button class="filter-btn" data-filter="nature">Nature</button>
-      <button class="filter-btn" data-filter="animal">Animals</button>
-      <button class="filter-btn" data-filter="landscape">Landscape</button>
-      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-btn" data-filter="wildlife" aria-pressed="false">Wildlife</button>
+      <button class="filter-btn" data-filter="nature" aria-pressed="false">Nature</button>
+      <button class="filter-btn" data-filter="animal" aria-pressed="false">Animals</button>
+      <button class="filter-btn" data-filter="landscape" aria-pressed="false">Landscape</button>
+      <button class="filter-btn" data-filter="portrait" aria-pressed="false">Portrait</button>
     </div>
   </div>
-  <!-- Cards injected by script.js -->
-  <div class="photo-grid" id="photoGrid"></div>
+  <div class="photo-grid" id="photoGrid" role="list" aria-label="Photo gallery"></div>
 </section>
 
 <!-- ═══ SIGNATURE SHOTS ═══ -->
-<section id="featured">
-  <div class="section-eyebrow aos">Signature Work</div>
-  <h2 class="section-title aos">Behind the Frame</h2>
+<section id="featured" aria-labelledby="featured-heading">
+  <div class="section-eyebrow aos" aria-hidden="true">Signature Work</div>
+  <h2 class="section-title aos" id="featured-heading">Behind the Frame</h2>
   <p class="section-sub aos" style="margin-bottom:3rem">Three photographs from Haru's personal collection — each one a story the world needed to hear.</p>
 
   <div class="featured-grid">
 
-    <!-- Shot 01 — Lakeside Birds -->
-    <div class="featured-item aos">
-      <div class="featured-img-wrap" onclick="openLightboxReal(0)" role="button" tabindex="0" aria-label="View photo: Lakeside Birds">
+    <article class="featured-item aos" aria-label="Lakeside Birds">
+      <div class="featured-img-wrap" id="feat-img-0" role="button" tabindex="0" aria-label="View and purchase: Lakeside Birds">
         <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg"
-             alt="Lakeside Birds — geese and birds gathered near the water" loading="lazy">
-        <div class="featured-img-overlay"><span>View &amp; Purchase</span></div>
+             alt="Peaceful lakeside scene with geese and birds gathered near the water at golden hour" loading="lazy" width="800" height="600">
+        <div class="featured-img-overlay" aria-hidden="true"><span>View &amp; Purchase</span></div>
       </div>
       <div class="featured-content">
-        <div class="featured-num">01</div>
-        <div class="section-eyebrow">Wildlife · Lakeside</div>
+        <div class="featured-num" aria-hidden="true">01</div>
+        <div class="section-eyebrow" aria-hidden="true">Wildlife · Lakeside</div>
         <h3 class="featured-title">Lakeside Birds</h3>
         <p class="featured-desc">This photograph captures a peaceful lakeside scene with beautiful geese and birds gathered near the water. The reflections on the lake and the calm atmosphere showcase Haru's ability to capture harmony between wildlife and nature.</p>
-        <div class="pill-row">
+        <div class="pill-row" aria-label="Camera details">
           <span class="pill">Nikon Z9</span>
           <span class="pill">600mm f/4</span>
           <span class="pill">Natural Light</span>
@@ -152,26 +181,25 @@
           <div class="result-item"><strong>45MP</strong><span>Resolution</span></div>
           <div class="result-item"><strong>A1+</strong><span>Print Ready</span></div>
         </div>
-        <button class="btn-primary" onclick="openLightboxReal(0)">
+        <button class="btn-primary" id="feat-btn-0" aria-label="View and purchase Lakeside Birds">
           View &amp; Purchase
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
-    </div>
+    </article>
 
-    <!-- Shot 02 — Scenic Lake -->
-    <div class="featured-item featured-item--reverse aos">
-      <div class="featured-img-wrap" onclick="openLightboxReal(1)" role="button" tabindex="0" aria-label="View photo: Scenic Lake Landscape">
+    <article class="featured-item featured-item--reverse aos" aria-label="Scenic Lake Landscape">
+      <div class="featured-img-wrap" id="feat-img-1" role="button" tabindex="0" aria-label="View and purchase: Scenic Lake Landscape">
         <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg"
-             alt="Scenic Lake Landscape — wooden bridge, green surroundings, tranquil lake" loading="lazy">
-        <div class="featured-img-overlay"><span>View &amp; Purchase</span></div>
+             alt="Serene lake landscape featuring a wooden bridge and lush green surroundings at dusk" loading="lazy" width="800" height="600">
+        <div class="featured-img-overlay" aria-hidden="true"><span>View &amp; Purchase</span></div>
       </div>
       <div class="featured-content">
-        <div class="featured-num">02</div>
-        <div class="section-eyebrow">Nature · Lake Landscape</div>
+        <div class="featured-num" aria-hidden="true">02</div>
+        <div class="section-eyebrow" aria-hidden="true">Nature · Lake Landscape</div>
         <h3 class="featured-title">Scenic Lake Landscape</h3>
         <p class="featured-desc">A serene landscape featuring a wooden bridge, green surroundings, and a tranquil lake. The composition highlights the natural beauty of the environment and Haru's eye for peaceful outdoor scenes.</p>
-        <div class="pill-row">
+        <div class="pill-row" aria-label="Camera details">
           <span class="pill">Sony A1</span>
           <span class="pill">24mm f/1.4</span>
           <span class="pill">Golden Hour</span>
@@ -182,26 +210,25 @@
           <div class="result-item"><strong>50MP</strong><span>Resolution</span></div>
           <div class="result-item"><strong>A0+</strong><span>Print Ready</span></div>
         </div>
-        <button class="btn-primary" onclick="openLightboxReal(1)">
+        <button class="btn-primary" id="feat-btn-1" aria-label="View and purchase Scenic Lake Landscape">
           View &amp; Purchase
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
-    </div>
+    </article>
 
-    <!-- Shot 03 — Cat Portrait -->
-    <div class="featured-item aos">
-      <div class="featured-img-wrap" onclick="openLightboxReal(2)" role="button" tabindex="0" aria-label="View photo: Cat Portrait">
+    <article class="featured-item aos" aria-label="Cat Portrait">
+      <div class="featured-img-wrap" id="feat-img-2" role="button" tabindex="0" aria-label="View and purchase: Cat Portrait">
         <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg"
-             alt="Cat Portrait — curious cat resting while observing its surroundings" loading="lazy">
-        <div class="featured-img-overlay"><span>View &amp; Purchase</span></div>
+             alt="Curious cat resting and observing its surroundings with soft natural light and shallow depth of field" loading="lazy" width="800" height="600">
+        <div class="featured-img-overlay" aria-hidden="true"><span>View &amp; Purchase</span></div>
       </div>
       <div class="featured-content">
-        <div class="featured-num">03</div>
-        <div class="section-eyebrow">Animal · Portrait</div>
+        <div class="featured-num" aria-hidden="true">03</div>
+        <div class="section-eyebrow" aria-hidden="true">Animal · Portrait</div>
         <h3 class="featured-title">Cat Portrait</h3>
         <p class="featured-desc">This image features a curious cat resting while observing its surroundings. The focus on the cat's expression demonstrates Haru's talent for capturing personality and emotion in animal photography.</p>
-        <div class="pill-row">
+        <div class="pill-row" aria-label="Camera details">
           <span class="pill">Canon R5</span>
           <span class="pill">85mm f/1.4</span>
           <span class="pill">Natural Light</span>
@@ -212,31 +239,31 @@
           <div class="result-item"><strong>45MP</strong><span>Resolution</span></div>
           <div class="result-item"><strong>A0+</strong><span>Print Ready</span></div>
         </div>
-        <button class="btn-primary" onclick="openLightboxReal(2)">
+        <button class="btn-primary" id="feat-btn-2" aria-label="View and purchase Cat Portrait">
           View &amp; Purchase
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
-    </div>
+    </article>
 
   </div>
 </section>
 
 <!-- ═══ PRICING ═══ -->
-<section id="pricing">
-  <div class="section-eyebrow aos">Invest in the Wild</div>
-  <h2 class="section-title aos">Photography Packages</h2>
+<section id="pricing" aria-labelledby="pricing-heading">
+  <div class="section-eyebrow aos" aria-hidden="true">Invest in the Wild</div>
+  <h2 class="section-title aos" id="pricing-heading">Photography Packages</h2>
   <p class="section-sub aos">Every session includes full post-processing, private online gallery, and lifetime access to your digital files.</p>
 
   <div class="pricing-grid">
 
     <div class="pricing-card aos">
-      <div class="pricing-icon">🌿</div>
+      <div class="pricing-icon" aria-hidden="true">🌿</div>
       <div class="pricing-tier">Nature Walk</div>
       <div class="pricing-amount"><sup>$</sup>400</div>
       <div class="pricing-period">per session · half day</div>
-      <div class="pricing-sep"></div>
-      <ul class="pricing-features">
+      <div class="pricing-sep" aria-hidden="true"></div>
+      <ul class="pricing-features" aria-label="Nature Walk package features">
         <li>4-hour outdoor session</li>
         <li>1 curated natural location</li>
         <li>40 edited high-res images</li>
@@ -246,17 +273,17 @@
         <li class="no">Printed products</li>
         <li class="no">Commercial rights</li>
       </ul>
-      <button class="btn-book" onclick="openPaymentSession('nature')">Book Nature Session</button>
+      <button class="btn-book" data-session="nature" aria-label="Book Nature Walk session for $400">Book Nature Session</button>
     </div>
 
     <div class="pricing-card popular aos">
-      <div class="popular-badge">Most Popular</div>
-      <div class="pricing-icon">🦁</div>
+      <div class="popular-badge" aria-label="Most popular package">Most Popular</div>
+      <div class="pricing-icon" aria-hidden="true">🦁</div>
       <div class="pricing-tier">Wildlife Expedition</div>
       <div class="pricing-amount"><sup>$</sup>1,800</div>
       <div class="pricing-period">per expedition · 2 full days</div>
-      <div class="pricing-sep"></div>
-      <ul class="pricing-features">
+      <div class="pricing-sep" aria-hidden="true"></div>
+      <ul class="pricing-features" aria-label="Wildlife Expedition package features">
         <li>2-day guided expedition</li>
         <li>Expert wildlife tracking</li>
         <li>200+ edited images</li>
@@ -266,16 +293,16 @@
         <li>Camp &amp; logistics arranged</li>
         <li>All gear &amp; permits included</li>
       </ul>
-      <button class="btn-book" onclick="openPaymentSession('wildlife')">Book Expedition</button>
+      <button class="btn-book" data-session="wildlife" aria-label="Book Wildlife Expedition for $1,800">Book Expedition</button>
     </div>
 
     <div class="pricing-card aos">
-      <div class="pricing-icon">🌍</div>
+      <div class="pricing-icon" aria-hidden="true">🌍</div>
       <div class="pricing-tier">World Assignment</div>
       <div class="pricing-amount"><sup>$</sup>3,500</div>
       <div class="pricing-period">per assignment · custom</div>
-      <div class="pricing-sep"></div>
-      <ul class="pricing-features">
+      <div class="pricing-sep" aria-hidden="true"></div>
+      <ul class="pricing-features" aria-label="World Assignment package features">
         <li>Custom international trip</li>
         <li>Multi-location coverage</li>
         <li>Unlimited edited images</li>
@@ -285,218 +312,217 @@
         <li>Travel &amp; logistics included</li>
         <li>Full exclusivity option</li>
       </ul>
-      <button class="btn-book" onclick="openPaymentSession('world')">Book Assignment</button>
+      <button class="btn-book" data-session="world" aria-label="Book World Assignment for $3,500">Book Assignment</button>
     </div>
 
   </div>
 
   <p class="pricing-note aos">
-    Need something custom?&nbsp;
-    <a href="#contact">Let's talk →</a>
+    Need something custom?&nbsp;<a href="#contact">Let's talk →</a>
   </p>
 </section>
 
-<!-- ═══ ABOUT — NEW CONTENT ═══ -->
-<section id="about">
+<!-- ═══ ABOUT ═══ -->
+<section id="about" aria-labelledby="about-heading">
   <div class="about-grid">
-
-    <!-- Text column -->
     <div class="about-text">
-      <div class="about-eyebrow aos">The Photographer</div>
-      <h2 class="about-title aos">About <em>Haru</em></h2>
+      <div class="about-eyebrow aos" aria-hidden="true">The Photographer</div>
+      <h2 class="about-title aos" id="about-heading">About <em>Haru</em></h2>
       <p class="about-body aos">
         Haru is a talented photographer from Brazil with a passion for capturing nature, wildlife, and peaceful landscapes. Her photography reflects creativity, patience, and a unique artistic vision. Through her lens, ordinary moments become beautiful visual stories that inspire and connect people with nature.
       </p>
 
       <div class="about-features">
         <div class="about-feature aos">
-          <div class="feat-icon">🌿</div>
+          <div class="feat-icon" aria-hidden="true">🌿</div>
           <div class="feat-info">
-            <h4>Nature &amp; Wildlife</h4>
+            <h3>Nature &amp; Wildlife</h3>
             <p>Capturing the living world in its most peaceful and powerful moments — from lakeside birds to deep forest scenes.</p>
           </div>
         </div>
         <div class="about-feature aos">
-          <div class="feat-icon">🎨</div>
+          <div class="feat-icon" aria-hidden="true">🎨</div>
           <div class="feat-info">
-            <h4>Artistic Vision</h4>
+            <h3>Artistic Vision</h3>
             <p>Every frame reflects creativity and a unique eye — turning ordinary scenes into extraordinary visual stories.</p>
           </div>
         </div>
         <div class="about-feature aos">
-          <div class="feat-icon">🤝</div>
+          <div class="feat-icon" aria-hidden="true">🤝</div>
           <div class="feat-info">
-            <h4>Available Worldwide</h4>
+            <h3>Available Worldwide</h3>
             <p>Open to collaborations, commissions, and photography inquiries from clients and publications around the globe.</p>
           </div>
         </div>
       </div>
 
-      <div class="about-awards aos">
-        <div class="award-pill"><span>🇧🇷</span> Based in Brazil</div>
-        <div class="award-pill"><span>📸</span> Nature &amp; Wildlife</div>
-        <div class="award-pill"><span>🏆</span> 42 Awards</div>
-        <div class="award-pill"><span>🌍</span> Available Worldwide</div>
+      <div class="about-awards aos" aria-label="Key facts">
+        <div class="award-pill"><span aria-hidden="true">🇧🇷</span> Based in Brazil</div>
+        <div class="award-pill"><span aria-hidden="true">📸</span> Nature &amp; Wildlife</div>
+        <div class="award-pill"><span aria-hidden="true">🏆</span> 42 Awards</div>
+        <div class="award-pill"><span aria-hidden="true">🌍</span> Available Worldwide</div>
       </div>
     </div>
 
-    <!-- Photo column -->
     <div class="about-visual aos">
       <div class="about-photo-main">
         <img src="https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg"
-             alt="Haru — photographer portrait" loading="lazy">
+             alt="Haru – photographer at work in the field" loading="lazy" width="600" height="750">
       </div>
-      <div class="about-badge">
+      <div class="about-badge" aria-label="10 or more years of experience">
         <strong>10+</strong>
         <span>Years Experience</span>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- ═══ STATS ═══ -->
-<section id="stats">
+<section id="stats" aria-label="Statistics">
   <div class="stats-grid">
     <div class="stat-item aos">
-      <div class="stat-number" data-target="640">0<span class="stat-suffix">+</span></div>
-      <div class="stat-bar"></div>
+      <div class="stat-number" data-target="640" aria-label="640 plus field expeditions">0<span class="stat-suffix" aria-hidden="true">+</span></div>
+      <div class="stat-bar" aria-hidden="true"></div>
       <div class="stat-label">Field Expeditions</div>
     </div>
     <div class="stat-item aos">
-      <div class="stat-number" data-target="32">0</div>
-      <div class="stat-bar"></div>
+      <div class="stat-number" data-target="32" aria-label="32 countries shot in">0</div>
+      <div class="stat-bar" aria-hidden="true"></div>
       <div class="stat-label">Countries Shot In</div>
     </div>
     <div class="stat-item aos">
-      <div class="stat-number" data-target="10">0<span class="stat-suffix">yr</span></div>
-      <div class="stat-bar"></div>
+      <div class="stat-number" data-target="10" aria-label="10 year professional career">0<span class="stat-suffix" aria-hidden="true">yr</span></div>
+      <div class="stat-bar" aria-hidden="true"></div>
       <div class="stat-label">Professional Career</div>
     </div>
     <div class="stat-item aos">
-      <div class="stat-number" data-target="42">0<span class="stat-suffix">+</span></div>
-      <div class="stat-bar"></div>
+      <div class="stat-number" data-target="42" aria-label="42 plus awards won">0<span class="stat-suffix" aria-hidden="true">+</span></div>
+      <div class="stat-bar" aria-hidden="true"></div>
       <div class="stat-label">Awards Won</div>
     </div>
   </div>
 </section>
 
 <!-- ═══ TESTIMONIALS ═══ -->
-<section id="testimonials">
-  <div class="section-eyebrow aos">Client Reviews</div>
-  <h2 class="section-title aos">What People Say</h2>
-  <!-- Cards injected by script.js -->
-  <div class="testi-wrap" id="testiWrap"></div>
-  <div class="testi-controls">
+<section id="testimonials" aria-labelledby="testi-heading">
+  <div class="section-eyebrow aos" aria-hidden="true">Client Reviews</div>
+  <h2 class="section-title aos" id="testi-heading">What People Say</h2>
+  <div class="testi-outer" aria-live="polite">
+    <div class="testi-track" id="testiTrack" aria-label="Testimonials"></div>
+  </div>
+  <div class="testi-controls" role="group" aria-label="Testimonial navigation">
     <button class="testi-btn" id="testiPrev" aria-label="Previous testimonial">←</button>
-    <div class="testi-dots" id="testiDots"></div>
+    <div class="testi-dots" id="testiDots" role="tablist" aria-label="Testimonial pages"></div>
     <button class="testi-btn" id="testiNext" aria-label="Next testimonial">→</button>
   </div>
 </section>
 
-<!-- ═══ CONTACT — OPTIMIZED ═══ -->
-<section id="contact">
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" aria-labelledby="contact-heading">
   <div class="contact-layout">
 
-    <!-- Info column -->
     <div class="contact-info-block">
-      <div class="section-eyebrow aos">Get in Touch</div>
-      <h2 class="contact-tagline aos">
+      <div class="section-eyebrow aos" aria-hidden="true">Get in Touch</div>
+      <h2 class="contact-tagline aos" id="contact-heading">
         Let's Create<br>Something <em>Beautiful</em>
       </h2>
       <p class="contact-lead aos">
         Whether you want to collaborate, commission a shoot, license an image, or just say hello — Haru reads every message personally.
       </p>
 
-      <div class="contact-details">
+      <address class="contact-details" aria-label="Contact information">
         <div class="contact-detail aos">
-          <div class="c-icon">✉️</div>
+          <div class="c-icon" aria-hidden="true">✉️</div>
           <div class="c-text">
-            <h4>Email</h4>
-            <p>hello@haruphotography.com</p>
+            <h3>Email</h3>
+            <p><a href="mailto:hello@haruphotography.com">hello@haruphotography.com</a></p>
           </div>
         </div>
         <div class="contact-detail aos">
-          <div class="c-icon">📱</div>
+          <div class="c-icon" aria-hidden="true">📱</div>
           <div class="c-text">
-            <h4>WhatsApp</h4>
-            <p>+55 (11) 99999-0192</p>
+            <h3>WhatsApp</h3>
+            <p><a href="https://wa.me/5511999990192">+55 (11) 99999-0192</a></p>
           </div>
         </div>
         <div class="contact-detail aos">
-          <div class="c-icon">📍</div>
+          <div class="c-icon" aria-hidden="true">📍</div>
           <div class="c-text">
-            <h4>Based in</h4>
+            <h3>Based in</h3>
             <p>Brazil · Available Worldwide</p>
           </div>
         </div>
+      </address>
+
+      <div class="social-row aos" aria-label="Social media links">
+        <a href="#" class="social-btn" title="Instagram" aria-label="Haru on Instagram">📸</a>
+        <a href="#" class="social-btn" title="YouTube" aria-label="Haru on YouTube">▶</a>
+        <a href="#" class="social-btn" title="500px" aria-label="Haru on 500px">5</a>
+        <a href="#" class="social-btn" title="LinkedIn" aria-label="Haru on LinkedIn">in</a>
+        <a href="#" class="social-btn" title="Behance" aria-label="Haru on Behance">Bē</a>
       </div>
 
-      <div class="social-row aos">
-        <a href="#" class="social-btn" title="Instagram" aria-label="Instagram">📸</a>
-        <a href="#" class="social-btn" title="YouTube" aria-label="YouTube">▶</a>
-        <a href="#" class="social-btn" title="500px" aria-label="500px">5</a>
-        <a href="#" class="social-btn" title="LinkedIn" aria-label="LinkedIn">in</a>
-        <a href="#" class="social-btn" title="Behance" aria-label="Behance">Bē</a>
-      </div>
-
-      <div class="map-placeholder aos">
+      <div class="map-placeholder aos" aria-hidden="true">
         <div class="map-pin">📍</div>
         <div class="map-label">Brazil · Available Worldwide</div>
       </div>
     </div>
 
-    <!-- Form column -->
     <div class="contact-form-card aos">
       <h3>Send a Message</h3>
 
-      <!-- Service type pills -->
       <div class="form-field">
-        <label>I'm interested in</label>
-        <div class="service-pills" id="servicePills">
-          <button class="service-pill active" data-service="wildlife">Wildlife Shoot</button>
-          <button class="service-pill" data-service="nature">Nature Session</button>
-          <button class="service-pill" data-service="print">Print Purchase</button>
-          <button class="service-pill" data-service="license">Image License</button>
-          <button class="service-pill" data-service="collab">Collaboration</button>
-          <button class="service-pill" data-service="other">Other</button>
+        <label id="service-label">I'm interested in</label>
+        <div class="service-pills" id="servicePills" role="group" aria-labelledby="service-label">
+          <button type="button" class="service-pill active" data-service="wildlife" aria-pressed="true">Wildlife Shoot</button>
+          <button type="button" class="service-pill" data-service="nature" aria-pressed="false">Nature Session</button>
+          <button type="button" class="service-pill" data-service="print" aria-pressed="false">Print Purchase</button>
+          <button type="button" class="service-pill" data-service="license" aria-pressed="false">Image License</button>
+          <button type="button" class="service-pill" data-service="collab" aria-pressed="false">Collaboration</button>
+          <button type="button" class="service-pill" data-service="other" aria-pressed="false">Other</button>
         </div>
       </div>
 
       <div class="form-grid-2">
         <div class="form-field">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" placeholder="Emma" autocomplete="given-name">
+          <label for="firstName">First Name <span class="required" aria-label="required">*</span></label>
+          <input type="text" id="firstName" name="firstName" placeholder="Emma" autocomplete="given-name" required aria-required="true">
+          <span class="field-error" id="firstName-error" role="alert" aria-live="polite"></span>
         </div>
         <div class="form-field">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" placeholder="Wilson" autocomplete="family-name">
+          <label for="lastName">Last Name <span class="required" aria-label="required">*</span></label>
+          <input type="text" id="lastName" name="lastName" placeholder="Wilson" autocomplete="family-name" required aria-required="true">
+          <span class="field-error" id="lastName-error" role="alert" aria-live="polite"></span>
         </div>
       </div>
 
       <div class="form-field">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="emma@email.com" autocomplete="email">
+        <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="emma@email.com" autocomplete="email" required aria-required="true">
+        <span class="field-error" id="email-error" role="alert" aria-live="polite"></span>
       </div>
 
       <div class="form-field">
-        <label for="phone">Phone / WhatsApp <span style="font-weight:400;text-transform:none;color:var(--gray-400)">(optional)</span></label>
-        <input type="tel" id="phone" placeholder="+1 604 555 0192" autocomplete="tel">
+        <label for="phone">Phone / WhatsApp <span class="optional">(optional)</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+1 604 555 0192" autocomplete="tel">
       </div>
 
       <div class="form-field">
         <label for="date">Preferred Date / Period</label>
-        <input type="text" id="date" placeholder="e.g. August 2026 or flexible">
+        <input type="text" id="date" name="date" placeholder="e.g. August 2026 or flexible">
       </div>
 
       <div class="form-field">
-        <label for="message">Tell Haru About Your Vision</label>
-        <textarea id="message" rows="4" placeholder="Describe your dream shoot, the story you want to tell, or the image you're looking for..."></textarea>
+        <label for="message">Tell Haru About Your Vision <span class="required" aria-label="required">*</span></label>
+        <textarea id="message" name="message" rows="4" placeholder="Describe your dream shoot, the story you want to tell, or the image you're looking for..." required aria-required="true"></textarea>
+        <span class="field-error" id="message-error" role="alert" aria-live="polite"></span>
       </div>
 
-      <div class="form-note">Haru responds within 24 hours. All enquiries are kept confidential.</div>
+      <p class="form-note">Haru responds within 24 hours. All enquiries are kept confidential.</p>
 
-      <button class="btn-submit" onclick="submitForm(this)">
+      <div class="form-status" id="formStatus" role="status" aria-live="polite" aria-atomic="true"></div>
+
+      <button type="button" class="btn-submit" id="submitBtn" aria-label="Send message to Haru">
         Send Message
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
@@ -505,16 +531,18 @@
   </div>
 </section>
 
+</main>
+
 <!-- ═══ FOOTER ═══ -->
-<footer>
+<footer aria-label="Site footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo">Haru<span>.</span></div>
+      <div class="footer-logo">Haru<span aria-hidden="true">.</span></div>
       <p class="footer-tagline">Beautiful photography from Brazil — capturing nature, wildlife, and peaceful landscapes that inspire and connect.</p>
     </div>
     <div class="footer-col">
       <h4>Portfolio</h4>
-      <ul>
+      <ul role="list">
         <li><a href="#gallery">Wildlife</a></li>
         <li><a href="#gallery">Nature</a></li>
         <li><a href="#gallery">Animals</a></li>
@@ -524,7 +552,7 @@
     </div>
     <div class="footer-col">
       <h4>Services</h4>
-      <ul>
+      <ul role="list">
         <li><a href="#pricing">Nature Walk</a></li>
         <li><a href="#pricing">Wildlife Expedition</a></li>
         <li><a href="#pricing">World Assignment</a></li>
@@ -534,166 +562,163 @@
     </div>
     <div class="footer-col">
       <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Refund Policy</a></li>
-        <li><a href="#">Image Licensing</a></li>
+      <ul role="list">
+        <li><a href="#" aria-label="Privacy Policy">Privacy Policy</a></li>
+        <li><a href="#" aria-label="Terms of Service">Terms of Service</a></li>
+        <li><a href="#" aria-label="Refund Policy">Refund Policy</a></li>
+        <li><a href="#" aria-label="Image Licensing">Image Licensing</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2026 Haru · haruphotography.com · All rights reserved.</p>
-    <span class="footer-tag">🌿 Available for Collaborations</span>
+    <span class="footer-tag" aria-hidden="true">🌿 Available for Collaborations</span>
   </div>
 </footer>
 
 <!-- ═══ LIGHTBOX ═══ -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <div class="lightbox-inner">
-    <button class="lb-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+  <div class="lightbox-inner" role="document">
+    <button class="lb-close" id="lbClose" aria-label="Close photo viewer">✕</button>
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
     <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button>
 
     <div class="lb-img-wrap" id="lbImgWrap">
       <img id="lbImg" src="" alt="" loading="lazy">
+      <div class="lb-emoji" id="lbEmoji" aria-hidden="true"></div>
     </div>
 
     <div class="lb-meta">
       <div class="lb-info">
-        <div class="lb-cat" id="lbCat">CATEGORY</div>
-        <div class="lb-title" id="lbTitle">Photo Title</div>
-        <div class="lb-loc" id="lbLoc">Location</div>
+        <div class="lb-cat" id="lbCat"></div>
+        <div class="lb-title" id="lbTitle"></div>
+        <div class="lb-loc" id="lbLoc"></div>
         <div class="lb-desc" id="lbDesc"></div>
       </div>
       <div class="lb-right">
-        <div class="lb-counter" id="lbCounter">1 / 3</div>
-        <div class="lb-price" id="lbPrice">$89</div>
-        <button class="btn-buy" onclick="openPaymentPhoto()">🛒 Buy Print</button>
+        <div class="lb-counter" id="lbCounter" aria-live="polite"></div>
+        <div class="lb-price" id="lbPrice"></div>
+        <button class="btn-buy" id="lbBuyBtn" aria-label="Purchase this photo">🛒 Buy Print</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ═══ PAYMENT MODAL ═══ -->
-<div class="pay-modal" id="payModal" role="dialog" aria-modal="true" aria-label="Purchase">
-  <div class="pay-box">
-    <div class="pay-handle"></div>
-    <button class="pay-close" onclick="closePayment()" aria-label="Close payment">✕</button>
+<div class="pay-modal" id="payModal" role="dialog" aria-modal="true" aria-label="Purchase" aria-hidden="true">
+  <div class="pay-box" role="document">
+    <div class="pay-handle" aria-hidden="true"></div>
+    <button class="pay-close" id="payClose" aria-label="Close payment">✕</button>
 
     <div class="pay-header">
-      <h3 id="payTitle">Purchase Print</h3>
+      <h2 id="payTitle">Purchase Print</h2>
       <p id="paySubtitle">High-resolution download — yours forever.</p>
     </div>
 
     <div class="pay-item">
       <div class="pay-item-img">
-        <img id="payItemImg" src="" alt="">
+        <img id="payItemImg" src="" alt="" loading="lazy">
       </div>
       <div class="pay-item-info">
-        <h4 id="payItemName">Photo</h4>
-        <p id="payItemSub">Location</p>
+        <h3 id="payItemName">Photo</h3>
+        <p id="payItemSub"></p>
       </div>
-      <div class="pay-item-price" id="payItemPrice">$89</div>
+      <div class="pay-item-price" id="payItemPrice" aria-live="polite">$89</div>
     </div>
 
-    <!-- Photo size selection -->
     <div id="photoBuySection">
-      <div class="pay-methods-label">Print Size</div>
-      <div class="size-row">
-        <button class="size-chip active" data-price="29">8×10 · $29</button>
-        <button class="size-chip" data-price="49">A3 · $49</button>
-        <button class="size-chip" data-price="75">A2 · $75</button>
-        <button class="size-chip" data-price="0">Digital (Full Res)</button>
+      <div class="pay-methods-label" id="size-label">Print Size</div>
+      <div class="size-row" role="group" aria-labelledby="size-label">
+        <button type="button" class="size-chip active" data-price="29" aria-pressed="true">8×10 · $29</button>
+        <button type="button" class="size-chip" data-price="49" aria-pressed="false">A3 · $49</button>
+        <button type="button" class="size-chip" data-price="75" aria-pressed="false">A2 · $75</button>
+        <button type="button" class="size-chip" data-price="0" aria-pressed="false">Digital (Full Res)</button>
       </div>
     </div>
 
-    <!-- Session booking -->
     <div id="sessionBuySection" style="display:none">
-      <div class="pay-methods-label">Choose Session</div>
-      <div class="session-row">
-        <button class="session-chip" data-key="nature" data-price="400">Nature Walk · $400</button>
-        <button class="session-chip" data-key="wildlife" data-price="1800">Wildlife Exp. · $1,800</button>
-        <button class="session-chip" data-key="world" data-price="3500">World · $3,500</button>
-        <button class="session-chip" data-key="portrait" data-price="350">Portrait · $350</button>
+      <div class="pay-methods-label" id="session-label">Choose Session</div>
+      <div class="session-row" role="group" aria-labelledby="session-label">
+        <button type="button" class="session-chip" data-key="nature"   data-price="400"  aria-pressed="false">Nature Walk · $400</button>
+        <button type="button" class="session-chip" data-key="wildlife" data-price="1800" aria-pressed="false">Wildlife Exp. · $1,800</button>
+        <button type="button" class="session-chip" data-key="world"    data-price="3500" aria-pressed="false">World · $3,500</button>
+        <button type="button" class="session-chip" data-key="portrait" data-price="350"  aria-pressed="false">Portrait · $350</button>
       </div>
     </div>
 
-    <!-- Payment methods -->
-    <div class="pay-methods-label">Payment Method</div>
-    <div class="pay-methods-row">
-      <button class="pay-method active" data-method="card">
-        <span class="pay-method-icon">💳</span>Card
+    <div class="pay-methods-label" id="method-label">Payment Method</div>
+    <div class="pay-methods-row" role="group" aria-labelledby="method-label">
+      <button type="button" class="pay-method active" data-method="card" aria-pressed="true">
+        <span class="pay-method-icon" aria-hidden="true">💳</span>Card
       </button>
-      <button class="pay-method" data-method="pix">
-        <span class="pay-method-icon">📱</span>PIX
+      <button type="button" class="pay-method" data-method="pix" aria-pressed="false">
+        <span class="pay-method-icon" aria-hidden="true">📱</span>PIX
       </button>
-      <button class="pay-method" data-method="paypal">
-        <span class="pay-method-icon">🌐</span>PayPal
+      <button type="button" class="pay-method" data-method="paypal" aria-pressed="false">
+        <span class="pay-method-icon" aria-hidden="true">🌐</span>PayPal
       </button>
-      <button class="pay-method" data-method="stripe">
-        <span class="pay-method-icon">⚡</span>Stripe
+      <button type="button" class="pay-method" data-method="stripe" aria-pressed="false">
+        <span class="pay-method-icon" aria-hidden="true">⚡</span>Stripe
       </button>
     </div>
 
-    <!-- Card form -->
     <div class="pay-form-section" id="form-card">
       <div class="form-field">
-        <label>Card Number</label>
-        <input type="text" placeholder="4242 4242 4242 4242" maxlength="19" inputmode="numeric">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" placeholder="4242 4242 4242 4242" maxlength="19" inputmode="numeric" autocomplete="cc-number">
       </div>
       <div class="form-grid-2">
         <div class="form-field">
-          <label>Expiry</label>
-          <input type="text" placeholder="MM / YY" maxlength="7" inputmode="numeric">
+          <label for="cardExpiry">Expiry</label>
+          <input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="7" inputmode="numeric" autocomplete="cc-exp">
         </div>
         <div class="form-field">
-          <label>CVV</label>
-          <input type="text" placeholder="•••" maxlength="3" inputmode="numeric">
+          <label for="cardCvv">CVV</label>
+          <input type="text" id="cardCvv" placeholder="•••" maxlength="3" inputmode="numeric" autocomplete="cc-csc">
         </div>
       </div>
       <div class="form-field">
-        <label>Name on Card</label>
-        <input type="text" placeholder="Emma Wilson" autocomplete="cc-name">
+        <label for="cardName">Name on Card</label>
+        <input type="text" id="cardName" placeholder="Emma Wilson" autocomplete="cc-name">
       </div>
     </div>
 
-    <!-- PIX form -->
     <div class="pay-form-section" id="form-pix" style="display:none">
       <div class="form-field">
-        <label>CPF / CNPJ</label>
-        <input type="text" placeholder="000.000.000-00" inputmode="numeric">
+        <label for="pixCpf">CPF / CNPJ</label>
+        <input type="text" id="pixCpf" placeholder="000.000.000-00" inputmode="numeric">
       </div>
-      <p style="font-size:0.78rem;color:var(--gray-400);margin-top:0.25rem">A PIX QR code will be generated after confirmation.</p>
+      <p class="pay-hint">A PIX QR code will be generated after confirmation.</p>
     </div>
 
-    <!-- PayPal form -->
     <div class="pay-form-section" id="form-paypal" style="display:none">
       <div class="form-field">
-        <label>PayPal Email</label>
-        <input type="email" placeholder="you@email.com" autocomplete="email">
+        <label for="paypalEmail">PayPal Email</label>
+        <input type="email" id="paypalEmail" placeholder="you@email.com" autocomplete="email">
       </div>
-      <p style="font-size:0.78rem;color:var(--gray-400);margin-top:0.25rem">You'll be redirected to PayPal to complete payment securely.</p>
+      <p class="pay-hint">You'll be redirected to PayPal to complete payment securely.</p>
     </div>
 
-    <!-- Stripe form -->
     <div class="pay-form-section" id="form-stripe" style="display:none">
-      <p style="font-size:0.85rem;color:var(--gray-600);padding:0.75rem;background:var(--gray-50);border-radius:8px">
+      <p class="pay-stripe-note">
         🔐 You'll be securely redirected to Stripe Checkout to complete your payment.
       </p>
     </div>
 
-    <div class="pay-secure">Payments are 100% encrypted via Stripe · PayPal · PIX.</div>
+    <p class="pay-secure">Payments are 100% encrypted via Stripe · PayPal · PIX.</p>
 
-    <button class="btn-pay" id="payBtn" onclick="processPayment(this)">
+    <button type="button" class="btn-pay" id="payBtn">
       <span id="payBtnLabel">Pay $89</span>
     </button>
 
-    <div class="pay-powered">
+    <p class="pay-powered">
       Powered by <strong>Stripe</strong> · <strong>PayPal</strong> · <strong>PIX</strong>
-    </div>
+    </p>
   </div>
 </div>
+
+<!-- Toast container -->
+<div id="toastContainer" aria-live="polite" aria-atomic="true" class="toast-container"></div>
 
 <script src="script.js"></script>
 </body>
