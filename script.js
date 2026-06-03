@@ -2,23 +2,23 @@
    DATA
    ══════════════════════════════════════════ */
 
-/* GitHub Images */
+/* GitHub Images - Using raw.githubusercontent.com for better reliability */
 const IMGS = {
-  pic1: 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg',
-  pic2: 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg',
-  pic3: 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg',
-  lakeside:  IMGS.pic1,
-  bridge:    IMGS.pic2,
-  cat:       IMGS.pic3,
-  forest:    IMGS.pic1,
-  wildlife1: IMGS.pic1,
-  wildlife2: IMGS.pic2,
-  nature1:   IMGS.pic2,
-  nature2:   IMGS.pic1,
-  animal1:   IMGS.pic3,
-  animal2:   IMGS.pic3,
-  land1:     IMGS.pic2,
-  land2:     IMGS.pic1,
+  pic1: 'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic1.jpg',
+  pic2: 'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic2.jpg',
+  pic3: 'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic3.jpg',
+  lakeside:  'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic1.jpg',
+  bridge:    'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic2.jpg',
+  cat:       'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic3.jpg',
+  forest:    'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic1.jpg',
+  wildlife1: 'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic1.jpg',
+  wildlife2: 'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic2.jpg',
+  nature1:   'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic2.jpg',
+  nature2:   'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic1.jpg',
+  animal1:   'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic3.jpg',
+  animal2:   'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic3.jpg',
+  land1:     'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic2.jpg',
+  land2:     'https://raw.githubusercontent.com/abhishektech10/photographerportfolio/main/images/pic1.jpg',
 };
 
 const realPhotos = [
