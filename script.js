@@ -638,4 +638,4 @@ document.querySelectorAll('input, textarea').forEach(input => {
   input.addEventListener('blur', function() {
     this.parentElement?.classList.remove('focused');
   }, false);
-});
+}); 
