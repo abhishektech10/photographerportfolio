@@ -3,22 +3,22 @@
    ══════════════════════════════════════════ */
 
 /* GitHub Images */
-const BASE = 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/';
-const IMG  = (n) => `${BASE}pic${n}.jpg`;
-
 const IMGS = {
-  lakeside:  IMG(1),
-  bridge:    IMG(2),
-  cat:       IMG(3),
-  forest:    IMG(1),
-  wildlife1: IMG(1),
-  wildlife2: IMG(2),
-  nature1:   IMG(2),
-  nature2:   IMG(1),
-  animal1:   IMG(3),
-  animal2:   IMG(3),
-  land1:     IMG(2),
-  land2:     IMG(1),
+  pic1: 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic1.jpg',
+  pic2: 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic2.jpg',
+  pic3: 'https://github.com/abhishektech10/photographerportfolio/releases/download/Picture/pic3.jpg',
+  lakeside:  IMGS.pic1,
+  bridge:    IMGS.pic2,
+  cat:       IMGS.pic3,
+  forest:    IMGS.pic1,
+  wildlife1: IMGS.pic1,
+  wildlife2: IMGS.pic2,
+  nature1:   IMGS.pic2,
+  nature2:   IMGS.pic1,
+  animal1:   IMGS.pic3,
+  animal2:   IMGS.pic3,
+  land1:     IMGS.pic2,
+  land2:     IMGS.pic1,
 };
 
 const realPhotos = [
@@ -365,7 +365,7 @@ function openPaymentSession(key) {
   if (payBtnLabel) payBtnLabel.textContent = `Book for ${s.price}`;
 
   if (payItemImg) {
-    payItemImg.src = IMG(1);
+    payItemImg.src = IMGS.pic1;
     payItemImg.style.display = 'block';
   }
 
@@ -638,4 +638,4 @@ document.querySelectorAll('input, textarea').forEach(input => {
   input.addEventListener('blur', function() {
     this.parentElement?.classList.remove('focused');
   }, false);
-}); 
+});
