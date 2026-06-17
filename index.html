@@ -1,799 +1,583 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chhota Don 💖</title>
+<title>💖 Chhota Don — Sara 💖</title>
 <style>
-/* ══════════════════════════════════════════
-   RESET & TOKENS
-══════════════════════════════════════════ */
-* { margin:0; padding:0; box-sizing:border-box; }
+  /* ─── TOKENS ─────────────────────────────────────────────── */
+  :root {
+    --pink-100: #fff0f5;
+    --pink-200: #ffd6e7;
+    --pink-300: #ffadd0;
+    --pink-400: #ff80b5;
+    --pink-500: #ff4d94;
+    --pink-600: #e6006e;
+    --rose:     #ff6b9d;
+    --peach:    #ffb3c6;
+    --lavender: #f3d7ff;
+    --mint:     #d4f5e9;
+    --gold:     #ffd166;
+    --white:    #ffffff;
+    --glass-bg:     rgba(255,255,255,0.55);
+    --glass-border: rgba(255,182,210,0.35);
+    --shadow:   0 8px 40px rgba(255,77,148,0.12);
+    --text-main:  #3a1a2e;
+    --text-soft:  #7a4a64;
+    --text-muted: #b07090;
+    --bg-body:  linear-gradient(135deg,#fff0f5 0%,#ffd6e7 35%,#f3d7ff 65%,#ffe4f0 100%);
+    --card-bg:  rgba(255,255,255,0.62);
+    --toggle-bg: #ff80b5;
+    --nav-bg:   rgba(255,240,245,0.82);
+    font-size: 16px;
+  }
+  [data-theme="dark"] {
+    --pink-100: #1a0d14;
+    --pink-200: #2e1020;
+    --pink-300: #4a1a35;
+    --pink-400: #7a2a55;
+    --glass-bg:     rgba(30,10,22,0.72);
+    --glass-border: rgba(255,105,180,0.25);
+    --shadow:   0 8px 40px rgba(255,77,148,0.22);
+    --text-main:  #ffe0ef;
+    --text-soft:  #ffb3d4;
+    --text-muted: #c878a0;
+    --bg-body:  linear-gradient(135deg,#1a0d14 0%,#2e1020 40%,#1a0d22 70%,#200d18 100%);
+    --card-bg:  rgba(40,12,28,0.72);
+    --toggle-bg: #e6006e;
+    --nav-bg:   rgba(20,8,16,0.88);
+  }
 
-:root {
-  --pink-deep:#e8739a; --pink-mid:#f4a7c0; --pink-light:#fbd5e4;
-  --pink-pale:#fff0f5; --blush:#ffe4ee; --white:#ffffff;
-  --text-dark:#5a2d4c; --text-mid:#9b4d72; --text-soft:#c47d9e;
+  /* ─── RESET & BASE ───────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: var(--bg-body);
+    min-height: 100vh;
+    color: var(--text-main);
+    overflow-x: hidden;
+    transition: background 0.5s, color 0.4s;
+  }
 
-  /* surfaces */
-  --bg-page:var(--pink-pale);
-  --bg-hero:linear-gradient(160deg,#ffe0ee 0%,#ffc8df 25%,#ffd6e8 50%,#ffe8f2 75%,#fff0f8 100%);
-  --bg-warn:linear-gradient(135deg,#fff5f8 0%,#ffe8f2 100%);
-  --bg-ty:var(--white);
-  --bg-wish:linear-gradient(160deg,#ffe8f2 0%,#fff5ff 50%,#e8f4ff 100%);
-  --bg-comp:var(--white);
-  --bg-quote:linear-gradient(135deg,#ffd6e8 0%,#e8d5f5 50%,#d5e8f5 100%);
-  --bg-end:linear-gradient(160deg,#ffe0ee 0%,#ffc8df 40%,#ffb3d4 100%);
-  --card-bg:var(--white);
-  --card-shadow:0 8px 60px rgba(232,115,154,.18),0 2px 20px rgba(232,115,154,.1);
-  --item-bg:var(--blush);
-  --bubble-bg:linear-gradient(135deg,#fff0f5 0%,#ffd6e8 100%);
-  --cc-bg:linear-gradient(145deg,#fff5f8,#ffe8f2);
-  --cc-hover-bg:linear-gradient(145deg,white,#ffd6e8);
-  --warn-title-color:var(--text-dark);
-}
+  /* ─── CANVAS (particles) ─────────────────────────────────── */
+  #particle-canvas {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-/* ── DARK MODE TOKENS ── */
-body.dark {
-  --bg-page:#1a0d14;
-  --bg-hero:linear-gradient(160deg,#2a0d1a 0%,#3d1528 25%,#2e1020 50%,#1f0a16 100%);
-  --bg-warn:linear-gradient(135deg,#1f0a16 0%,#2a1020 100%);
-  --bg-ty:#160a12;
-  --bg-wish:linear-gradient(160deg,#1f0d18 0%,#1a0d1f 50%,#0d1520 100%);
-  --bg-comp:#160a12;
-  --bg-quote:linear-gradient(135deg,#2a1020 0%,#1a1028 50%,#0d1828 100%);
-  --bg-end:linear-gradient(160deg,#2a0d1a 0%,#3d1528 40%,#4a1a34 100%);
-  --card-bg:#2a1020;
-  --card-shadow:0 8px 60px rgba(232,115,154,.3),0 2px 20px rgba(232,115,154,.15);
-  --item-bg:#3d1830;
-  --bubble-bg:linear-gradient(135deg,#2a1020 0%,#3d1830 100%);
-  --cc-bg:linear-gradient(145deg,#2a1020,#3d1830);
-  --cc-hover-bg:linear-gradient(145deg,#3d1830,#521e3c);
-  --text-dark:#ffd6e8;
-  --text-mid:#f4a7c0;
-  --text-soft:#e8739a;
-  --white:#2a1020;
-  --blush:#3d1830;
-  --warn-title-color:#ffd6e8;
-}
+  /* ─── NAV ────────────────────────────────────────────────── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 28px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid var(--glass-border);
+    transition: background 0.4s;
+  }
+  .nav-brand {
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--pink-500);
+    letter-spacing: 0.01em;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-controls { display: flex; align-items: center; gap: 10px; }
+  .btn-toggle, .btn-lang {
+    border: none; cursor: pointer;
+    border-radius: 50px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 600; font-size: 0.78rem;
+    transition: transform 0.18s, box-shadow 0.18s, background 0.3s;
+    outline: none;
+  }
+  .btn-toggle {
+    background: var(--toggle-bg);
+    color: #fff;
+    padding: 7px 16px;
+    box-shadow: 0 2px 12px rgba(255,77,148,0.3);
+    letter-spacing: 0.03em;
+  }
+  .btn-toggle:hover { transform: scale(1.07); box-shadow: 0 4px 20px rgba(255,77,148,0.45); }
 
-html { scroll-behavior:smooth; }
+  .lang-menu { position: relative; }
+  .btn-lang {
+    background: var(--glass-bg);
+    color: var(--pink-500);
+    border: 1.5px solid var(--glass-border);
+    padding: 7px 16px;
+    backdrop-filter: blur(8px);
+  }
+  .btn-lang:hover { transform: scale(1.07); }
+  .lang-dropdown {
+    display: none;
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-width: 130px;
+    z-index: 200;
+  }
+  .lang-menu:hover .lang-dropdown,
+  .lang-menu:focus-within .lang-dropdown { display: block; }
+  .lang-option {
+    display: block; width: 100%;
+    padding: 10px 18px;
+    background: none; border: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.85rem; color: var(--text-main);
+    cursor: pointer; text-align: left;
+    transition: background 0.15s;
+  }
+  .lang-option:hover { background: var(--pink-200); }
 
-body {
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-  background:var(--bg-page);
-  color:var(--text-dark);
-  overflow-x:hidden;
-  cursor:default;
-  transition:background .4s ease, color .4s ease;
-}
+  /* ─── SECTIONS ───────────────────────────────────────────── */
+  section { position: relative; z-index: 1; }
 
-/* ── FIXED TOOLBAR ── */
-.toolbar {
-  position:fixed;
-  top:1rem; right:1rem;
-  display:flex;
-  gap:0.5rem;
-  z-index:1000;
-}
+  /* ─── HERO ───────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 110px 24px 60px;
+  }
+  .hero-emoji-row {
+    font-size: 2.4rem; margin-bottom: 18px;
+    animation: float 3.2s ease-in-out infinite;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    font-weight: 800; line-height: 1.1;
+    background: linear-gradient(135deg, var(--pink-500), #e040a0, var(--rose));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 28px;
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-name-badge {
+    display: inline-block;
+    background: linear-gradient(120deg, var(--pink-400), var(--rose));
+    color: #fff;
+    border-radius: 50px;
+    padding: 6px 22px;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 18px rgba(255,77,148,0.35);
+    animation: fadeUp 1.1s ease both;
+    letter-spacing: 0.04em;
+  }
+  .hero-card {
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    border-radius: 28px;
+    padding: 36px 40px;
+    max-width: 680px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 1.3s ease both;
+  }
+  .hero-msg { font-size: 1.08rem; line-height: 1.75; color: var(--text-soft); }
+  .hero-msg .lang-block { display: none; }
+  .hero-msg .lang-block.active { display: block; }
+  .lang-divider {
+    border: none;
+    border-top: 1px solid var(--glass-border);
+    margin: 14px 0;
+  }
 
-.tb-btn {
-  display:flex;
-  align-items:center;
-  gap:0.4rem;
-  padding:0.45rem 0.9rem;
-  border-radius:999px;
-  border:1.5px solid rgba(232,115,154,.35);
-  background:rgba(255,255,255,.75);
-  color:var(--pink-deep);
-  font-family:inherit;
-  font-size:0.78rem;
-  font-weight:700;
-  letter-spacing:0.05em;
-  cursor:pointer;
-  backdrop-filter:blur(12px);
-  transition:all .25s ease;
-  box-shadow:0 4px 20px rgba(232,115,154,.15);
-  white-space:nowrap;
-}
+  /* ─── GLASS CARD BASE ────────────────────────────────────── */
+  .glass-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--glass-border);
+    backdrop-filter: blur(18px);
+    border-radius: 28px;
+    padding: 40px 44px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 50px rgba(255,77,148,0.2);
+  }
+  .section-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 70px 24px;
+    display: flex; flex-direction: column; gap: 40px;
+    align-items: center;
+  }
 
-body.dark .tb-btn {
-  background:rgba(42,16,32,.85);
-  border-color:rgba(232,115,154,.5);
-  color:var(--pink-mid);
-  box-shadow:0 4px 20px rgba(232,115,154,.25);
-}
+  /* ─── SECTION HEADERS ────────────────────────────────────── */
+  .sec-heading {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800; text-align: center;
+    background: linear-gradient(130deg, var(--pink-500), var(--rose));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .sec-sub {
+    font-size: 1rem; color: var(--text-muted);
+    text-align: center;
+  }
 
-.tb-btn:hover {
-  background:var(--pink-deep);
-  color:white;
-  border-color:var(--pink-deep);
-  transform:translateY(-2px);
-  box-shadow:0 8px 28px rgba(232,115,154,.35);
-}
+  /* ─── WARNING SECTION ────────────────────────────────────── */
+  .warning-section { background: transparent; }
+  .warning-badge {
+    display: inline-block;
+    background: linear-gradient(120deg, #ff4d94, #e6006e);
+    color: #fff;
+    border-radius: 14px;
+    padding: 8px 22px;
+    font-size: 0.92rem; font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .warning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .warning-item {
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 20px 16px;
+    text-align: center;
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--text-soft);
+    cursor: default;
+    transition: transform 0.22s, box-shadow 0.22s, background 0.22s;
+    position: relative; overflow: hidden;
+  }
+  .warning-item::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,77,148,0.08), transparent);
+    opacity: 0; transition: opacity 0.22s;
+    border-radius: inherit;
+  }
+  .warning-item:hover {
+    transform: scale(1.06) translateY(-3px);
+    box-shadow: 0 8px 28px rgba(255,77,148,0.28);
+  }
+  .warning-item:hover::before { opacity: 1; }
+  .warning-icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
 
-.tb-icon { font-size:1rem; }
+  /* ─── COMPLIMENT CARDS ───────────────────────────────────── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    width: 100%;
+  }
+  .comp-card {
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 24px 12px;
+    text-align: center;
+    cursor: default;
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s;
+    position: relative;
+  }
+  .comp-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 0 30px rgba(255,77,148,0.38), 0 0 60px rgba(255,130,200,0.18);
+  }
+  .comp-emoji { font-size: 2rem; display: block; margin-bottom: 10px; }
+  .comp-label {
+    font-size: 0.88rem; font-weight: 700;
+    color: var(--text-soft); letter-spacing: 0.03em;
+  }
+  /* glow on hover */
+  .comp-card::after {
+    content: '';
+    position: absolute; inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--pink-400), var(--lavender), var(--peach));
+    opacity: 0; z-index: -1;
+    transition: opacity 0.25s;
+    filter: blur(8px);
+  }
+  .comp-card:hover::after { opacity: 0.7; }
 
-/* ── CANVASES ── */
-#particle-canvas,#confetti-canvas {
-  position:fixed; top:0; left:0;
-  width:100%; height:100%;
-  pointer-events:none; z-index:0;
-}
-#confetti-canvas { z-index:999; }
-section { position:relative; z-index:1; }
+  /* ─── FINAL HEART ────────────────────────────────────────── */
+  .final-section {
+    padding: 80px 24px 120px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 28px;
+  }
+  .big-heart {
+    font-size: clamp(5rem, 14vw, 9rem);
+    animation: heartbeat 1.2s ease-in-out infinite;
+    display: inline-block;
+    filter: drop-shadow(0 0 24px rgba(255,77,148,0.6));
+  }
+  .final-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(120deg, var(--pink-500), var(--rose), #e040a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .final-card {
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
+    backdrop-filter: blur(18px);
+    border-radius: 28px;
+    padding: 34px 40px;
+    max-width: 640px;
+    box-shadow: var(--shadow);
+    font-size: 1rem; line-height: 1.8; color: var(--text-soft);
+  }
+  .funny-end {
+    font-size: 1rem; color: var(--text-muted);
+    font-style: italic; font-weight: 600;
+    margin-top: 8px;
+  }
 
-/* ══════════════════════════════════════════
-   HERO
-══════════════════════════════════════════ */
-.hero {
-  min-height:100vh;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  text-align:center;
-  padding:6rem 2rem 4rem;
-  background:var(--bg-hero);
-  overflow:hidden;
-  transition:background .4s ease;
-}
+  /* ─── QUOTE BLOCK ────────────────────────────────────────── */
+  .quote-block {
+    border-left: 4px solid var(--pink-400);
+    padding-left: 22px;
+    text-align: left;
+    font-size: 1.05rem; line-height: 1.8;
+    color: var(--text-soft);
+    font-style: italic;
+  }
 
-.hero-badge {
-  display:inline-block;
-  background:rgba(255,255,255,.6);
-  border:1.5px solid var(--pink-mid);
-  border-radius:999px;
-  padding:.35rem 1.1rem;
-  font-size:.78rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--pink-deep);
-  margin-bottom:2rem;
-  backdrop-filter:blur(8px);
-  animation:fadeSlideDown .8s ease both;
-}
-body.dark .hero-badge { background:rgba(42,16,32,.6); }
+  /* ─── EXAM BANNER ────────────────────────────────────────── */
+  .exam-banner {
+    width: 100%;
+    background: linear-gradient(120deg, var(--pink-300), var(--peach), var(--lavender));
+    border-radius: 20px;
+    padding: 24px 28px;
+    display: flex; align-items: center; gap: 18px;
+    box-shadow: 0 4px 24px rgba(255,77,148,0.2);
+  }
+  .exam-banner-icon { font-size: 2.4rem; flex-shrink: 0; }
+  .exam-banner-text { font-size: 0.95rem; line-height: 1.7; color: var(--text-main); font-weight: 500; }
 
-.hero h1 {
-  font-size:clamp(2.6rem,7vw,5.5rem);
-  font-weight:800;
-  line-height:1.1;
-  letter-spacing:-.02em;
-  background:linear-gradient(135deg,#d4548a 0%,#e8739a 40%,#f4a7c0 70%,#c94f8a 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:fadeSlideDown .9s ease .1s both;
-  margin-bottom:1.5rem;
-}
+  /* ─── SCROLL REVEAL ──────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-.hero-sub {
-  font-size:clamp(1rem,2.5vw,1.3rem);
-  color:var(--text-mid);
-  max-width:580px;
-  line-height:1.7;
-  font-weight:400;
-  animation:fadeSlideDown 1s ease .25s both;
-  margin-bottom:1rem;
-}
+  /* ─── CONFETTI OVERLAY ───────────────────────────────────── */
+  #confetti-canvas {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 999;
+  }
 
-/* "still here" live badge */
-.live-badge {
-  display:inline-flex;
-  align-items:center;
-  gap:.45rem;
-  background:rgba(255,255,255,.7);
-  border:1.5px solid rgba(232,115,154,.4);
-  border-radius:999px;
-  padding:.38rem 1rem;
-  font-size:.82rem;
-  font-weight:600;
-  color:var(--pink-deep);
-  margin-bottom:2rem;
-  backdrop-filter:blur(8px);
-  animation:fadeSlideDown 1s ease .35s both;
-}
-body.dark .live-badge { background:rgba(42,16,32,.7); }
-.live-dot {
-  width:8px; height:8px;
-  border-radius:50%;
-  background:#e8739a;
-  animation:livePulse 1.4s ease-in-out infinite;
-  flex-shrink:0;
-}
+  /* ─── LANGUAGE SWITCHING ─────────────────────────────────── */
+  .t { display: none; }
+  [data-lang="en"] .t-en { display: block; }
+  [data-lang="hi"] .t-hi { display: block; }
+  [data-lang="bn"] .t-bn { display: block; }
+  /* inline spans */
+  span.t { display: none; }
+  [data-lang="en"] span.t-en { display: inline; }
+  [data-lang="hi"] span.t-hi { display: inline; }
+  [data-lang="bn"] span.t-bn { display: inline; }
 
-.float-row {
-  display:flex; gap:1.2rem;
-  justify-content:center;
-  font-size:1.8rem;
-  animation:fadeSlideDown 1s ease .45s both;
-}
-.float-item { display:inline-block; animation:gentleFloat 3s ease-in-out infinite; }
-.float-item:nth-child(2){animation-delay:.4s}
-.float-item:nth-child(3){animation-delay:.8s}
-.float-item:nth-child(4){animation-delay:1.2s}
-.float-item:nth-child(5){animation-delay:1.6s}
+  /* ─── ANIMATIONS ─────────────────────────────────────────── */
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(30px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14%      { transform: scale(1.18); }
+    28%      { transform: scale(1); }
+    42%      { transform: scale(1.12); }
+    70%      { transform: scale(1); }
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(255,77,148,0.5); }
+    50%      { box-shadow: 0 0 0 10px rgba(255,77,148,0); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes langFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .lang-anim { animation: langFade 0.38s ease both; }
 
-/* Clouds */
-.cloud {
-  position:absolute;
-  background:rgba(255,255,255,.7);
-  border-radius:999px;
-  filter:blur(1px);
-  animation:driftCloud linear infinite;
-}
-body.dark .cloud { background:rgba(255,255,255,.08); }
-.cloud::before,.cloud::after {
-  content:''; position:absolute;
-  background:inherit; border-radius:50%;
-}
-.cloud-1{width:120px;height:40px;top:12%;left:-140px;animation-duration:28s}
-.cloud-1::before{width:60px;height:60px;top:-25px;left:20px}
-.cloud-1::after{width:45px;height:45px;top:-15px;left:55px}
-.cloud-2{width:90px;height:30px;top:28%;left:-110px;animation-duration:36s;animation-delay:-10s}
-.cloud-2::before{width:50px;height:50px;top:-20px;left:15px}
-.cloud-2::after{width:38px;height:38px;top:-12px;left:44px}
-.cloud-3{width:150px;height:50px;top:60%;left:-180px;animation-duration:24s;animation-delay:-16s}
-.cloud-3::before{width:70px;height:70px;top:-30px;left:25px}
-.cloud-3::after{width:55px;height:55px;top:-20px;left:70px}
+  /* ─── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .glass-card, .final-card { padding: 26px 20px; }
+    .hero-card { padding: 26px 20px; }
+    .section-wrap { padding: 50px 16px; }
+    .nav { padding: 10px 16px; }
+    .comp-grid { grid-template-columns: repeat(2, 1fr); }
+    .exam-banner { flex-direction: column; text-align: center; }
+  }
 
-/* ══════════════════════════════════════════
-   SHARED
-══════════════════════════════════════════ */
-.section-wrap { padding:5rem 2rem; max-width:900px; margin:0 auto; }
-.section-label {
-  font-size:.72rem; letter-spacing:.22em;
-  text-transform:uppercase; color:var(--pink-deep);
-  margin-bottom:.8rem; font-weight:600;
-}
-.section-title {
-  font-size:clamp(1.8rem,4vw,2.8rem);
-  font-weight:800; color:var(--text-dark);
-  margin-bottom:2.5rem; letter-spacing:-.02em; line-height:1.2;
-}
-
-/* ══════════════════════════════════════════
-   WARNING
-══════════════════════════════════════════ */
-.warning-section {
-  background:var(--bg-warn);
-  padding:5rem 2rem;
-  transition:background .4s ease;
-}
-.warning-card {
-  max-width:620px; margin:0 auto;
-  background:var(--card-bg);
-  border-radius:28px; padding:2.5rem 2.8rem;
-  box-shadow:var(--card-shadow);
-  border:1.5px solid rgba(232,115,154,.2);
-  position:relative; overflow:hidden;
-  transition:background .4s ease, box-shadow .4s ease;
-}
-.warning-card::before {
-  content:''; position:absolute; top:0;left:0;right:0; height:4px;
-  background:linear-gradient(90deg,#d4548a,#f4a7c0,#d4548a);
-}
-.warning-header {
-  display:flex; align-items:center; gap:.8rem; margin-bottom:2rem;
-}
-.warning-icon { font-size:1.8rem; animation:pulse 2s ease-in-out infinite; }
-.warning-title { font-size:1.3rem; font-weight:800; color:var(--warn-title-color); letter-spacing:-.01em; }
-.warning-list { list-style:none; display:flex; flex-direction:column; gap:.9rem; }
-.warning-item {
-  display:flex; align-items:center; gap:.9rem;
-  padding:.85rem 1.1rem;
-  background:var(--item-bg);
-  border-radius:14px; font-size:.97rem; font-weight:500;
-  color:var(--text-mid); cursor:default;
-  transition:all .3s cubic-bezier(.34,1.56,.64,1);
-  border:1px solid transparent;
-}
-.warning-item:hover {
-  background:var(--pink-mid); color:white;
-  transform:translateX(8px) scale(1.02);
-  border-color:var(--pink-deep);
-  box-shadow:0 6px 24px rgba(232,115,154,.3);
-}
-.warning-item:hover .wi-dot { background:white; box-shadow:0 0 8px white; }
-.wi-dot {
-  width:8px;height:8px;border-radius:50%;
-  background:var(--pink-deep);flex-shrink:0;
-  transition:all .3s ease;
-}
-
-/* ══════════════════════════════════════════
-   THANK YOU
-══════════════════════════════════════════ */
-.thankyou-section {
-  padding:5rem 2rem;
-  background:var(--bg-ty);
-  transition:background .4s ease;
-}
-.message-bubble {
-  max-width:680px; margin:0 auto;
-  background:var(--bubble-bg);
-  border-radius:32px 32px 32px 8px;
-  padding:2.8rem 3rem;
-  border:1.5px solid rgba(232,115,154,.2);
-  box-shadow:0 12px 60px rgba(232,115,154,.12);
-  position:relative;
-  transition:background .4s ease;
-}
-.message-bubble::after {
-  content:'💬'; position:absolute;
-  top:-1.4rem; left:2rem; font-size:2rem;
-}
-.message-bubble p {
-  font-size:clamp(1.05rem,2.2vw,1.22rem);
-  line-height:1.85; color:var(--text-mid); font-weight:400;
-}
-
-/* ══════════════════════════════════════════
-   BEST WISHES
-══════════════════════════════════════════ */
-.wishes-section {
-  padding:5rem 2rem;
-  background:var(--bg-wish);
-  transition:background .4s ease;
-}
-.wishes-card {
-  max-width:680px; margin:0 auto;
-  background:var(--card-bg);
-  border-radius:32px; padding:3rem; text-align:center;
-  box-shadow:var(--card-shadow);
-  border:1.5px solid rgba(232,115,154,.15);
-  position:relative; overflow:hidden;
-  transition:background .4s ease, box-shadow .4s ease;
-}
-.wishes-card::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(255,180,210,.18) 0%,transparent 70%);
-  pointer-events:none;
-}
-.wishes-emoji { font-size:3rem; display:block; margin-bottom:1rem; animation:gentleFloat 3s ease-in-out infinite; }
-.wishes-heading { font-size:clamp(1.6rem,4vw,2.3rem); font-weight:800; color:var(--text-dark); margin-bottom:1.4rem; letter-spacing:-.02em; }
-.wishes-body { font-size:1.05rem; color:var(--text-soft); line-height:1.8; max-width:500px; margin:0 auto; }
-
-/* ══════════════════════════════════════════
-   COMPLIMENTS
-══════════════════════════════════════════ */
-.compliments-section {
-  padding:5rem 2rem;
-  background:var(--bg-comp);
-  transition:background .4s ease;
-}
-.compliment-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:1.2rem; max-width:860px; margin:0 auto;
-}
-.compliment-card {
-  background:var(--cc-bg);
-  border-radius:24px; padding:2rem 1rem; text-align:center;
-  cursor:default;
-  transition:all .35s cubic-bezier(.34,1.56,.64,1);
-  border:1.5px solid rgba(232,115,154,.15);
-  box-shadow:0 4px 20px rgba(232,115,154,.08);
-}
-.compliment-card:hover {
-  transform:translateY(-10px) scale(1.05);
-  box-shadow:0 20px 60px rgba(232,115,154,.25),0 0 30px rgba(232,115,154,.12);
-  border-color:var(--pink-mid);
-  background:var(--cc-hover-bg);
-}
-.compliment-card:hover .cc-emoji { animation:spin .5s ease; }
-.cc-emoji { font-size:2.2rem; display:block; margin-bottom:.7rem; transition:transform .3s; }
-.cc-label { font-size:.95rem; font-weight:700; color:var(--text-mid); letter-spacing:.02em; }
-
-/* ══════════════════════════════════════════
-   QUOTE
-══════════════════════════════════════════ */
-.quote-section {
-  padding:5rem 2rem;
-  background:var(--bg-quote);
-  transition:background .4s ease;
-}
-.quote-inner { max-width:660px; margin:0 auto; text-align:center; }
-.quote-mark {
-  font-size:6rem; line-height:.5;
-  color:rgba(232,115,154,.25); font-family:Georgia,serif; font-weight:900;
-  display:block; margin-bottom:1rem; user-select:none;
-}
-.quote-text {
-  font-size:clamp(1.2rem,3vw,1.7rem);
-  font-weight:600; color:var(--text-dark);
-  line-height:1.65; letter-spacing:-.01em;
-}
-
-/* ══════════════════════════════════════════
-   ENDING
-══════════════════════════════════════════ */
-.ending-section {
-  padding:6rem 2rem; text-align:center;
-  background:var(--bg-end);
-  position:relative; overflow:hidden;
-  transition:background .4s ease;
-}
-.big-heart {
-  font-size:6rem; display:block; margin:0 auto 1.5rem;
-  animation:heartbeat 1.4s ease-in-out infinite;
-  filter:drop-shadow(0 0 20px rgba(232,115,154,.5));
-}
-.ending-main {
-  font-size:clamp(2rem,5vw,3.5rem); font-weight:900;
-  letter-spacing:-.03em;
-  background:linear-gradient(135deg,#c94f8a 0%,#e8739a 50%,#f4a7c0 100%);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  margin-bottom:1rem;
-}
-.ending-sub {
-  font-size:1.1rem; color:var(--text-mid);
-  font-weight:500; font-style:italic; opacity:.85;
-}
-
-/* ══════════════════════════════════════════
-   KEYFRAMES
-══════════════════════════════════════════ */
-@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes gentleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.15)}28%{transform:scale(1)}42%{transform:scale(1.1)}70%{transform:scale(1)}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-@keyframes spin{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.3)}100%{transform:rotate(360deg) scale(1)}}
-@keyframes driftCloud{from{transform:translateX(-200px)}to{transform:translateX(calc(100vw + 200px))}}
-@keyframes livePulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
-
-/* Scroll reveal */
-.reveal { opacity:0; transform:translateY(40px); transition:opacity .7s ease,transform .7s ease; }
-.reveal.visible { opacity:1; transform:translateY(0); }
-
-/* ══════════════════════════════════════════
-   MOBILE
-══════════════════════════════════════════ */
-@media(max-width:600px){
-  .warning-card{padding:1.8rem 1.5rem}
-  .message-bubble{padding:2rem 1.6rem}
-  .wishes-card{padding:2rem 1.4rem}
-  .compliment-grid{grid-template-columns:repeat(3,1fr);gap:.8rem}
-  .section-wrap{padding:3.5rem 1.2rem}
-  .toolbar{top:.6rem;right:.6rem;gap:.35rem}
-  .tb-btn{padding:.38rem .65rem;font-size:.7rem}
-}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+  /* ─── REDUCED MOTION ─────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ── TOOLBAR ── -->
-<div class="toolbar">
-  <button class="tb-btn" id="dark-btn" onclick="toggleDark()" aria-label="Toggle dark mode">
-    <span class="tb-icon" id="dark-icon">🌙</span>
-    <span id="dark-label">Dark</span>
-  </button>
-  <button class="tb-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">
-    <span class="tb-icon">🌺</span>
-    <span id="lang-label">Bisaya</span>
-  </button>
-</div>
-
+<!-- Canvases -->
 <canvas id="particle-canvas"></canvas>
 <canvas id="confetti-canvas"></canvas>
 
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
+<!-- ─── NAV ─────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-brand">💖 <span>Chhota Don</span></div>
+  <div class="nav-controls">
+    <div class="lang-menu" tabindex="0">
+      <button class="btn-lang" aria-label="Language">🌐 Lang</button>
+      <div class="lang-dropdown">
+        <button class="lang-option" onclick="setLang('en')">🇬🇧 English</button>
+        <button class="lang-option" onclick="setLang('hi')">🇮🇳 हिन्दी</button>
+        <button class="lang-option" onclick="setLang('bn')">🇧🇩 বাংলা</button>
+      </div>
+    </div>
+    <button class="btn-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <span id="theme-icon">🌙 Dark</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────────────── -->
 <section class="hero">
-  <div class="cloud cloud-1"></div>
-  <div class="cloud cloud-2"></div>
-  <div class="cloud cloud-3"></div>
-
-  <span class="hero-badge" data-en="✨ A little something for someone special ✨" data-bi="✨ Gamay nga butang para sa espesyal nga tawo ✨">
-    ✨ A little something for someone special ✨
-  </span>
-
-  <h1 data-en="Thank You,&lt;br&gt;Chhota Don 💖" data-bi="Salamat Kaayo,&lt;br&gt;Chhota Don 💖">
-    Thank You,<br>Chhota Don 💖
+  <div class="hero-emoji-row">💖✨💖</div>
+  <h1 class="hero-title">
+    <span class="t t-en">Thank You, Chhota Don</span>
+    <span class="t t-hi">शुक्रिया, छोटा डॉन</span>
+    <span class="t t-bn">ধন্যবাদ, ছোটা ডন</span>
   </h1>
-
-  <p class="hero-sub"
-    data-en="Thank you for talking to me, listening to me, and making moments more special than you probably realize. And hey — you're still here. That already means the world. 💕"
-    data-bi="Salamat sa pakigsulti nimo nako, sa pagpaminaw, ug sa paghimo sa mga higayon nga mas espesyal kaysa imong nahibalo. Ug hoy — naa ka pa gihapon. Mao na kana ang tanan. 💕">
-    Thank you for talking to me, listening to me, and making moments more special than you probably realize. And hey — you're still here. That already means the world. 💕
-  </p>
-
-  <div class="live-badge">
-    <span class="live-dot"></span>
-    <span
-      data-en="Chhota Don is still here 🥹"
-      data-bi="Naa pa si Chhota Don 🥹">
-      Chhota Don is still here 🥹
-    </span>
-  </div>
-
-  <div class="float-row">
-    <span class="float-item">🦋</span>
-    <span class="float-item">🌸</span>
-    <span class="float-item">💕</span>
-    <span class="float-item">✨</span>
-    <span class="float-item">🌷</span>
+  <div class="hero-name-badge">✨ Sara ✨</div>
+  <div class="hero-card">
+    <div class="hero-msg">
+      <div class="lang-block t-en active">
+        Thank you for talking to me and spending your time with me.
+        Some conversations become memories, and yours definitely did. 💕
+      </div>
+      <div class="lang-block t-hi">
+        मुझसे बात करने, मेरा साथ देने और मेरी बातें सुनने के लिए दिल से धन्यवाद।
+        तुम्हारी बातें हमेशा याद रहेंगी। 💕
+      </div>
+      <div class="lang-block t-bn">
+        আমার সঙ্গে কথা বলার জন্য এবং সময় দেওয়ার জন্য ধন্যবাদ।
+        তোমার কথা আমার কাছে সুন্দর স্মৃতি হয়ে থাকবে। 💕
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     WARNING
-══════════════════════════════════════════ -->
+<!-- ─── WARNING SECTION ───────────────────────────────────────── -->
 <section class="warning-section">
-  <div class="section-wrap" style="padding-top:0;padding-bottom:0;">
-    <div class="section-label reveal"
-      data-en="official report"
-      data-bi="opisyal nga taho">official report</div>
-    <div class="section-title reveal"
-      data-en="Danger Level: Extremely High 🚨"
-      data-bi="Lebel sa Peligro: Grabe Kaayo 🚨">
-      Danger Level: Extremely High 🚨
+  <div class="section-wrap">
+    <div class="glass-card reveal" style="width:100%;text-align:center;">
+      <div class="warning-badge">⚠️ OFFICIAL WARNING ⚠️</div>
+      <p class="sec-heading">🚨 Chhota Don Detected 🚨</p>
+      <p class="sec-sub" style="margin-bottom:28px;">
+        <span class="t t-en">Authorities have been notified. No cure available.</span>
+        <span class="t t-hi">अधिकारियों को सूचित किया जा चुका है। कोई इलाज नहीं है।</span>
+        <span class="t t-bn">কর্তৃপক্ষকে জানানো হয়েছে। কোনো প্রতিকার নেই।</span>
+      </p>
+      <div class="warning-grid">
+        <div class="warning-item"><span class="warning-icon">😍</span> Extremely Cute</div>
+        <div class="warning-item"><span class="warning-icon">😎</span> Surprisingly Dangerous</div>
+        <div class="warning-item"><span class="warning-icon">💘</span> Professional Heart Thief</div>
+        <div class="warning-item"><span class="warning-icon">✨</span> Beautiful Without Trying</div>
+        <div class="warning-item"><span class="warning-icon">🌸</span> Smile Level: Unlimited</div>
+        <div class="warning-item"><span class="warning-icon">💖</span> Makes People Miss Her Instantly</div>
+      </div>
     </div>
-  </div>
-
-  <div class="warning-card reveal">
-    <div class="warning-header">
-      <span class="warning-icon">⚠️</span>
-      <span class="warning-title"
-        data-en="Warning: Chhota Don Detected!"
-        data-bi="Pahimangno: Nakita si Chhota Don!">
-        Warning: Chhota Don Detected!
-      </span>
-    </div>
-    <ul class="warning-list">
-      <li class="warning-item"><span class="wi-dot"></span>
-        <span data-en="Extremely Cute" data-bi="Grabe ka Cute">Extremely Cute</span></li>
-      <li class="warning-item"><span class="wi-dot"></span>
-        <span data-en="Surprisingly Dangerous" data-bi="Makangil-ad nga Delikado">Surprisingly Dangerous</span></li>
-      <li class="warning-item"><span class="wi-dot"></span>
-        <span data-en="Professionally Adorable" data-bi="Propesyonal nga Maanyag">Professionally Adorable</span></li>
-      <li class="warning-item"><span class="wi-dot"></span>
-        <span data-en="Beautiful Without Even Trying" data-bi="Gwapa Bisan Dili Magsugal">Beautiful Without Even Trying</span></li>
-      <li class="warning-item"><span class="wi-dot"></span>
-        <span data-en="Can Steal Hearts in Seconds" data-bi="Makawat ug Kasingkasing sa Segundo">Can Steal Hearts in Seconds</span></li>
-      <li class="warning-item"><span class="wi-dot"></span>
-        <span data-en="Still Talking &amp; Still Not Leaving 😭" data-bi="Nagsulti Pa ug Wala Pa Mibiya 😭">Still Talking &amp; Still Not Leaving 😭</span></li>
-    </ul>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     THANK YOU
-══════════════════════════════════════════ -->
-<section class="thankyou-section">
-  <div class="section-wrap" style="padding-top:0;padding-bottom:0;">
-    <div class="section-label reveal"
-      data-en="from the bottom of my heart"
-      data-bi="gikan sa kasingkasing">from the bottom of my heart</div>
-    <div class="section-title reveal"
-      data-en="A Little Thank You 💌"
-      data-bi="Gamay nga Salamat 💌">A Little Thank You 💌</div>
-    <div class="message-bubble reveal">
-      <p data-en="Thank you for all the conversations, laughs, and little moments. I honestly didn't expect you to stay this long — but here you are, still talking, still making everything better. Some people just have that energy, and you're one of them. I'm genuinely grateful you exist."
-         data-bi="Salamat sa tanan nga panag-istoryahanay, kataw-anan, ug gagmay nga mga higayon. Tinuod, wala ko maabot nga magpabilin ka nga dugay — apan naa ka gihapon, nagsulti pa, nagpabuti pa sa tanan. Adunay mga tawo nga ingon ana ang kusog, ug ikaw usa nila. Tinuod gyod akong pagpasalamat nga naa ka.">
-        Thank you for all the conversations, laughs, and little moments. I honestly didn't expect you to stay this long — but here you are, still talking, still making everything better. Some people just have that energy, and you're one of them. I'm genuinely grateful you exist.
+<!-- ─── THANK YOU SECTION ─────────────────────────────────────── -->
+<section>
+  <div class="section-wrap">
+    <h2 class="sec-heading reveal">
+      <span class="t t-en">💝 You're One of Those People</span>
+      <span class="t t-hi">💝 तुम उन्हीं लोगों में से एक हो</span>
+      <span class="t t-bn">💝 তুমি সেই বিশেষ মানুষদের একজন</span>
+    </h2>
+    <div class="glass-card reveal">
+      <p style="font-size:1.05rem;line-height:1.85;color:var(--text-soft);">
+        <span class="t t-en">
+          Sometimes people enter our lives unexpectedly and leave behind beautiful memories.
+          They don't need to stay forever — sometimes a short chapter is the most beautiful one.
+        </span>
+        <span class="t t-hi">
+          कुछ लोग ज़िंदगी में अचानक आते हैं और अपनी प्यारी यादें छोड़ जाते हैं।
+          तुम उन्हीं लोगों में से एक हो — जिनकी याद हमेशा मुस्कान लाती है।
+        </span>
+        <span class="t t-bn">
+          কিছু মানুষ হঠাৎ জীবনে আসে এবং সুন্দর স্মৃতি রেখে যায়।
+          তুমি তাদের মধ্যেই একজন — যাদের কথা মনে পড়লে মনে হাসি আসে।
+        </span>
       </p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     BEST WISHES
-══════════════════════════════════════════ -->
-<section class="wishes-section">
-  <div class="section-wrap" style="padding-top:0;padding-bottom:0;">
-    <div class="section-label reveal"
-      data-en="a new chapter begins"
-      data-bi="bag-ong kapitulo ang nagsugod">a new chapter begins</div>
-    <div class="section-title reveal"
-      data-en="Wishing You the Best 🌸"
-      data-bi="Nagaalagad ko sa Pinakamaayo para Nimo 🌸">Wishing You the Best 🌸</div>
-  </div>
-  <div class="wishes-card reveal">
-    <span class="wishes-emoji">🎒</span>
-    <div class="wishes-heading"
-      data-en="Best of luck for your new school! 🌸"
-      data-bi="Maayong Swerte sa imong bag-ong eskwelahan! 🌸">
-      Best of luck for your new school! 🌸
-    </div>
-    <p class="wishes-body"
-      data-en="May you make amazing friends, create wonderful memories, achieve your goals, and always keep smiling. Wishing you happiness, success, confidence, and lots of unforgettable adventures."
-      data-bi="Hinaut makahumag maayong mga higala, makahimog maanindot nga mga handumanan, makab-ot ang imong mga katuyoan, ug pirmi magpabilin nga nagkataaw. Nagaalagad ko nimo og kalipay, kalampusan, pagtuo sa kaugalingon, ug daghang di malimtang mga adbentura.">
-      May you make amazing friends, create wonderful memories, achieve your goals, and always keep smiling. Wishing you happiness, success, confidence, and lots of unforgettable adventures.
-    </p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     COMPLIMENTS
-══════════════════════════════════════════ -->
-<section class="compliments-section">
-  <div class="section-wrap" style="padding-top:0;padding-bottom:0;">
-    <div class="section-label reveal"
-      data-en="just so you know"
-      data-bi="para mahibalo ka">just so you know</div>
-    <div class="section-title reveal"
-      data-en="Things That Are True About You"
-      data-bi="Mga Tinuod Mahitungod Nimo">Things That Are True About You</div>
-    <div class="compliment-grid">
-      <div class="compliment-card reveal"><span class="cc-emoji">🌷</span>
-        <span class="cc-label" data-en="Beautiful" data-bi="Gwapa">Beautiful</span></div>
-      <div class="compliment-card reveal"><span class="cc-emoji">🎀</span>
-        <span class="cc-label" data-en="Cute" data-bi="Cute">Cute</span></div>
-      <div class="compliment-card reveal"><span class="cc-emoji">✨</span>
-        <span class="cc-label" data-en="Amazing" data-bi="Katingad-an">Amazing</span></div>
-      <div class="compliment-card reveal"><span class="cc-emoji">🌸</span>
-        <span class="cc-label" data-en="Kind" data-bi="Maaghop">Kind</span></div>
-      <div class="compliment-card reveal"><span class="cc-emoji">💖</span>
-        <span class="cc-label" data-en="Special" data-bi="Espesyal">Special</span></div>
-      <div class="compliment-card reveal"><span class="cc-emoji">🦋</span>
-        <span class="cc-label" data-en="Wonderful" data-bi="Makapahingangha">Wonderful</span></div>
+<!-- ─── EXAM SECTION ───────────────────────────────────────────── -->
+<section>
+  <div class="section-wrap">
+    <h2 class="sec-heading reveal">📚 Best of Luck for Your Exams 🌸</h2>
+    <div class="glass-card reveal" style="width:100%;">
+      <p style="font-size:1.05rem;line-height:1.85;color:var(--text-soft);margin-bottom:22px;">
+        <span class="t t-en">
+          I wish you the very best for your exams. May all your hard work pay off
+          and may you achieve excellent marks. You've got this, Sara! 💪
+        </span>
+        <span class="t t-hi">
+          तुम्हारी परीक्षा के लिए ढेर सारी शुभकामनाएँ। भगवान करे तुम्हारे बहुत
+          अच्छे नंबर आएँ और तुम्हारी मेहनत का शानदार परिणाम मिले। 💪
+        </span>
+        <span class="t t-bn">
+          তোমার পরীক্ষার জন্য অনেক অনেক শুভকামনা। তোমার অনেক ভালো নম্বর আসুক
+          এবং তোমার পরিশ্রম সফল হোক। 💪
+        </span>
+      </p>
+      <div class="exam-banner reveal">
+        <div class="exam-banner-icon">🎉</div>
+        <div class="exam-banner-text">
+          <strong>Many Congratulations in Advance!</strong><br>
+          <span class="t t-en">May you make yourself proud and achieve all the success you deserve. You are already a winner!</span>
+          <span class="t t-hi">बहुत-बहुत बधाई। उम्मीद है कि तुम शानदार अंक लाकर सबको गर्व महसूस कराओगी।</span>
+          <span class="t t-bn">অনেক অনেক অভিনন্দন। আশা করি তুমি অসাধারণ ফলাফল করবে এবং সবাইকে গর্বিত করবে।</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     QUOTE
-══════════════════════════════════════════ -->
-<section class="quote-section">
-  <div class="quote-inner reveal">
-    <span class="quote-mark">"</span>
-    <p class="quote-text"
-      data-en="Some people walk into your life and just stay — talking, laughing, making ordinary moments feel rare. You're that kind of person. Don't ever change."
-      data-bi="Adunay mga tawo nga mosulod sa imong kinabuhi ug magpabilin lang — nagsulti, nagatawa, naghimo sa ordinaryong mga higayon nga bililhon. Ikaw ang ingon niana. Ayaw gyod mausab.">
-      Some people walk into your life and just stay — talking, laughing, making ordinary moments feel rare. You're that kind of person. Don't ever change.
-    </p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     ENDING
-══════════════════════════════════════════ -->
-<section class="ending-section">
-  <span class="big-heart">💕</span>
-  <div class="ending-main reveal"
-    data-en="Stay Happy, Chhota Don 💕"
-    data-bi="Pabilin nga Malipayon, Chhota Don 💕">
-    Stay Happy, Chhota Don 💕
-  </div>
-  <p class="ending-sub reveal"
-    data-en="The world's cutest dangerous person. Still here. Still iconic. 👑"
-    data-bi="Ang pinaka-cute nga delikadong tawo sa kalibutan. Naa pa. Ikonika gihapon. 👑">
-    The world's cutest dangerous person. Still here. Still iconic. 👑
-  </p>
-</section>
-
-<!-- ══════════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════════ -->
-<script>
-// ── Dark Mode ─────────────────────────────────
-let isDark = false;
-function toggleDark() {
-  isDark = !isDark;
-  document.body.classList.toggle('dark', isDark);
-  document.getElementById('dark-icon').textContent  = isDark ? '☀️' : '🌙';
-  document.getElementById('dark-label').textContent = isDark ? 'Light' : 'Dark';
-}
-
-// ── Language Toggle ────────────────────────────
-let isBisaya = false;
-function toggleLang() {
-  isBisaya = !isBisaya;
-  const attr = isBisaya ? 'data-bi' : 'data-en';
-  const btnLabel = document.getElementById('lang-label');
-  btnLabel.textContent = isBisaya ? 'English' : 'Bisaya';
-
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const val = el.getAttribute(attr);
-    if (!val) return;
-    // Use innerHTML for elements that may contain <br> tags
-    el.innerHTML = val;
-  });
-}
-
-// ── Scroll reveal ──────────────────────────────
-const reveals = document.querySelectorAll('.reveal');
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 60);
-      revObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-reveals.forEach(el => revObs.observe(el));
-
-// ── Floating particles ─────────────────────────
-(function initParticles() {
-  const canvas = document.getElementById('particle-canvas');
-  const ctx    = canvas.getContext('2d');
-  let W, H, particles = [];
-  const EMOJIS = ['💖','💕','💗','🌸','✨','🦋','💫','🌷','🎀'];
-
-  function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function make() {
-    return {
-      x: Math.random() * W, y: H + 30,
-      emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
-      size: 14 + Math.random() * 16,
-      speedY: 0.5 + Math.random() * 0.9,
-      speedX: (Math.random() - 0.5) * 0.6,
-      opacity: 0.6 + Math.random() * 0.4,
-      angle: Math.random() * Math.PI * 2,
-      spin: (Math.random() - 0.5) * 0.04,
-      wobble: Math.random() * 100,
-      wobbleSpeed: 0.015 + Math.random() * 0.02,
-    };
-  }
-
-  for (let i = 0; i < 22; i++) { const p = make(); p.y = Math.random() * H; particles.push(p); }
-
-  let frame = 0;
-  function tick() {
-    ctx.clearRect(0, 0, W, H);
-    frame++;
-    if (frame % 40 === 0 && particles.length < 36) particles.push(make());
-    particles.forEach((p, i) => {
-      p.y -= p.speedY;
-      p.x += p.speedX + Math.sin(frame * p.wobbleSpeed + p.wobble) * 0.4;
-      p.angle += p.spin;
-      p.opacity -= 0.0012;
-      if (p.y < -40 || p.opacity <= 0) { particles[i] = make(); return; }
-      ctx.save();
-      ctx.globalAlpha = p.opacity;
-      ctx.font = `${p.size}px serif`;
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.angle);
-      ctx.fillText(p.emoji, -p.size/2, p.size/2);
-      ctx.restore();
-    });
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
-
-// ── Confetti burst ─────────────────────────────
-(function initConfetti() {
-  const canvas = document.getElementById('confetti-canvas');
-  const ctx    = canvas.getContext('2d');
-  canvas.width = innerWidth; canvas.height = innerHeight;
-  const COLORS = ['#f4a7c0','#e8739a','#fbd5e4','#f7c948','#c8a4f5','#a4d4f5','#d4548a'];
-  const pieces = Array.from({ length: 130 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height - canvas.height,
-    w: 7 + Math.random() * 7, h: 4 + Math.random() * 5,
-    color: COLORS[Math.floor(Math.random() * COLORS.length)],
-    speed: 2 + Math.random() * 4,
-    angle: Math.random() * Math.PI * 2,
-    spin: (Math.random() - 0.5) * 0.2,
-    wobble: Math.random() * 100,
-  }));
-  let lt = 0;
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    lt++;
-    let alive = false;
-    pieces.forEach(p => {
-      p.y += p.speed; p.angle += p.spin;
-      p.x += Math.sin(p.wobble + lt * 0.05) * 1.2;
-      if (p.y < canvas.height + 20) alive = true;
-      ctx.save();
-      ctx.globalAlpha = Math.max(0, 1 - lt / 160);
-      ctx.translate(p.x, p.y); ctx.rotate(p.angle);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-      ctx.restore();
-    });
-    if (alive && lt < 180) requestAnimationFrame(draw);
-    else ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-  draw();
-})();
-</script>
-</body>
-</html>
+<!-- ─── COMPLIMENT CARDS ──────────────
