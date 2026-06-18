@@ -580,4 +580,215 @@
   </div>
 </section>
 
-<!-- ─── COMPLIMENT CARDS ──────────────
+<!-- ─── COMPLIMENT CARDS ───────────────────────────────────────── -->
+<section>
+  <div class="section-wrap">
+    <h2 class="sec-heading reveal">🌟 Sara's Official Titles 🌟</h2>
+    <div class="comp-grid reveal">
+      <div class="comp-card"><span class="comp-emoji">🌸</span><span class="comp-label">Beautiful</span></div>
+      <div class="comp-card"><span class="comp-emoji">🎀</span><span class="comp-label">Cute</span></div>
+      <div class="comp-card"><span class="comp-emoji">✨</span><span class="comp-label">Amazing</span></div>
+      <div class="comp-card"><span class="comp-emoji">💖</span><span class="comp-label">Special</span></div>
+      <div class="comp-card"><span class="comp-emoji">🦋</span><span class="comp-label">Wonderful</span></div>
+      <div class="comp-card"><span class="comp-emoji">🌷</span><span class="comp-label">One of a Kind</span></div>
+      <div class="comp-card"><span class="comp-emoji">👑</span><span class="comp-label">Future Topper</span></div>
+      <div class="comp-card"><span class="comp-emoji">⭐</span><span class="comp-label">Always Memorable</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── QUOTE SECTION ─────────────────────────────────────────── -->
+<section>
+  <div class="section-wrap">
+    <div class="glass-card reveal" style="width:100%;">
+      <blockquote class="quote-block">
+        <span class="t t-en">
+          "Every conversation doesn't become a memory, but some people make even
+          simple conversations unforgettable."
+        </span>
+        <span class="t t-hi">
+          "हर बातचीत याद नहीं रहती, लेकिन कुछ लोग साधारण बातों को भी खास बना देते हैं।"
+        </span>
+        <span class="t t-bn">
+          "সব কথা মনে থাকে না, কিন্তু কিছু মানুষ সাধারণ মুহূর্তকেও বিশেষ করে তোলে।"
+        </span>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL SECTION ─────────────────────────────────────────── -->
+<section class="final-section">
+  <div class="big-heart">❤️</div>
+  <h2 class="final-title">
+    <span class="t t-en">Stay Happy, Chhota Don 💕</span>
+    <span class="t t-hi">हमेशा खुश रहना, छोटा डॉन 💕</span>
+    <span class="t t-bn">সবসময় হাসিখুশি থেকো, ছোটা ডন 💕</span>
+  </h2>
+  <div class="final-card reveal">
+    <p>
+      <span class="t t-en">
+        Stay happy, keep smiling, and keep moving forward in life.
+        Every chapter ahead of you is going to be beautiful — because you make it so. 💕
+      </span>
+      <span class="t t-hi">
+        हमेशा खुश रहना, मुस्कुराते रहना और जीवन में आगे बढ़ते रहना।
+        तुम्हारा हर नया अध्याय खूबसूरत होगा। 💕
+      </span>
+      <span class="t t-bn">
+        সবসময় হাসিখুশি থেকো এবং জীবনের প্রতিটি নতুন অধ্যায় উপভোগ করো।
+        তোমার প্রতিটি নতুন অধ্যায় সুন্দর হবে। 💕
+      </span>
+    </p>
+  </div>
+  <p class="funny-end">
+    😎💖<br>
+    <span class="t t-en">"The World's Cutest Dangerous Person"</span>
+    <span class="t t-hi">"दुनिया की सबसे प्यारी और सबसे खतरनाक इंसान।"</span>
+    <span class="t t-bn">"পৃথিবীর সবচেয়ে কিউট এবং সবচেয়ে বিপজ্জনক মানুষ।"</span>
+  </p>
+</section>
+
+<!-- ─── SCRIPT ─────────────────────────────────────────────────── -->
+<script>
+/* ── THEME TOGGLE ─────────────────────────────────────────────── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('theme-icon').textContent = isDark ? '🌙 Dark' : '☀️ Light';
+}
+
+/* ── LANGUAGE SWITCH ──────────────────────────────────────────── */
+let currentLang = 'en';
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+  // animate all visible text-bearing elements
+  document.querySelectorAll('.glass-card, .hero-card, .final-card, .sec-heading, .hero-title, .final-title, .quote-block, .funny-end, .exam-banner-text').forEach(el => {
+    el.classList.remove('lang-anim');
+    void el.offsetWidth; // reflow
+    el.classList.add('lang-anim');
+  });
+  // hero-msg blocks
+  document.querySelectorAll('.lang-block').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll(`.lang-block.t-${lang}`).forEach(b => b.classList.add('active'));
+}
+
+/* ── SCROLL REVEAL ────────────────────────────────────────────── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── PARTICLE SYSTEM ──────────────────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], rafId;
+
+  const SYMBOLS = ['♥','✦','✿','❋','✾','·','˙','*'];
+  const COLORS = ['#ff80b5','#ffadd0','#f3d7ff','#ffd6e7','#ff4d94','#ffb3c6','#ffeaf3'];
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function Particle() {
+    this.reset(true);
+  }
+  Particle.prototype.reset = function(init) {
+    this.x = Math.random() * W;
+    this.y = init ? Math.random() * H : H + 20;
+    this.symbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.size = 10 + Math.random() * 14;
+    this.speedY = 0.4 + Math.random() * 0.9;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.opacity = 0.15 + Math.random() * 0.5;
+    this.wobble = Math.random() * Math.PI * 2;
+    this.wobbleSpeed = 0.018 + Math.random() * 0.03;
+  };
+
+  for (let i = 0; i < 45; i++) particles.push(new Particle());
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of particles) {
+      p.wobble += p.wobbleSpeed;
+      p.x += p.speedX + Math.sin(p.wobble) * 0.35;
+      p.y -= p.speedY;
+      ctx.globalAlpha = p.opacity;
+      ctx.font = `${p.size}px serif`;
+      ctx.fillStyle = p.color;
+      ctx.fillText(p.symbol, p.x, p.y);
+      if (p.y < -30) p.reset(false);
+    }
+    ctx.globalAlpha = 1;
+    rafId = requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ── CONFETTI on LOAD ─────────────────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+  window.addEventListener('resize', () => {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  const COLORS = ['#ff4d94','#ff80b5','#ffadd0','#f3d7ff','#ffd166','#a8edea','#ffb3c6'];
+  let pieces = [];
+
+  for (let i = 0; i < 110; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: 7 + Math.random() * 9,
+      h: 4 + Math.random() * 6,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.12,
+      speedY: 2.5 + Math.random() * 3.5,
+      speedX: (Math.random() - 0.5) * 2.5,
+      opacity: 1,
+    });
+  }
+
+  let frame = 0;
+  function drop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const p of pieces) {
+      p.y += p.speedY;
+      p.x += p.speedX;
+      p.rot += p.rotSpeed;
+      p.opacity = Math.max(0, 1 - frame / 130);
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    }
+    frame++;
+    if (frame < 135) requestAnimationFrame(drop);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  requestAnimationFrame(drop);
+})();
+</script>
+</body>
+</html>
